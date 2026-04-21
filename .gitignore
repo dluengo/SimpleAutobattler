@@ -74,6 +74,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-### Don't commit third-party resources into the repo
-/[Aa]ssets/[Tt]hird\-party/*
 
