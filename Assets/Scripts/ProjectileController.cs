@@ -4,6 +4,7 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
     // --- Members ---
+    [HideInInspector]
     public Vector3 direction = Vector3.right;
 
     [SerializeField] float speed = 10f;
@@ -32,5 +33,12 @@ public class ProjectileController : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
+    }
+
+
+    // --- Collision Handling ---
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
     }
 }
