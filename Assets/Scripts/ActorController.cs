@@ -6,6 +6,8 @@ public abstract class ActorController : MonoBehaviour
     public bool isAttacking { get; private set; } = false;
 
     [SerializeField] protected float moveSpeed = 5f;
+    [SerializeField] string m_animAttackParamName = "isAttacking";
+    [SerializeField] string m_animMoveParamName = "isMoving";
 
     protected Vector2 m_look = Vector2.right;
     private Vector2 m_direction;
@@ -19,9 +21,9 @@ public abstract class ActorController : MonoBehaviour
             }
 
             if (m_direction != Vector2.zero) {
-                m_animator.SetBool("isMoving", true);
+                m_animator.SetBool(m_animMoveParamName, true);
             } else {
-                m_animator.SetBool("isMoving", false);
+                m_animator.SetBool(m_animMoveParamName, false);
             }
         }
     }
@@ -42,7 +44,7 @@ public abstract class ActorController : MonoBehaviour
         Debug.Assert(m_animator != null, "ActorController: Animator component is missing.");
     }
 
-    protected void OnEnable()
+    protected virtual void OnEnable()
     {
         // Subscribe to AttackEndSMB.OnAttackEnd
         if (m_animator != null) {
@@ -53,7 +55,7 @@ public abstract class ActorController : MonoBehaviour
         }
     }
 
-    protected void OnDisable()
+    protected virtual void OnDisable()
     {
         // Unsubscribe from AttackEndSMB.OnAttackEnd
         if (m_attackEndSMB != null) {
@@ -89,14 +91,14 @@ public abstract class ActorController : MonoBehaviour
     protected void StartAttack()
     {
         isAttacking = true;
-        m_animator.SetBool("isAttacking", true);
+        m_animator.SetBool(m_animAttackParamName, true);
     }
 
     private void HandleAttackEnd()
     {
         if (!m_attackInput) {
             isAttacking = false;
-            m_animator.SetBool("isAttacking", false);
+            m_animator.SetBool(m_animAttackParamName, false);
         }
     }
 

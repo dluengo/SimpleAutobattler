@@ -30699,6 +30699,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 5
+  m_animAttackParamName: isAttacking
+  m_animMoveParamName: isMoving
   projectilePrefab: {fileID: 2432679671526927853, guid: ab8c8a1e12d25a940b13832db6224138, type: 3}
   projectileSpawnPoint: {fileID: 420438440}
   m_minInputThreshold: 0.1
@@ -31283,10 +31285,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -4.979042, y: 7.112481}
-      - {x: -4.958578, y: -10.863466}
-      - {x: 19.16646, y: -11.05046}
-      - {x: 19.2885, y: 7.0691786}
+    - - {x: -6.107544, y: 11.416608}
+      - {x: -6.14095, y: -14.29876}
+      - {x: 30.438307, y: -14.305519}
+      - {x: 30.464758, y: 11.64005}
   m_UseDelaunayMesh: 1
 --- !u!1 &1905998734
 GameObject:
