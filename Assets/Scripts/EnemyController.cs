@@ -1,15 +1,16 @@
 using UnityEngine;
 
-public class EnemyController : ActorController
+public abstract class EnemyController : ActorController
 {
+    // --- Members ---
+    protected PlayerController player;
+
+
     // --- Methods ---
-    protected void Update()
+    protected void Start()
     {
-        // Move towards the player
-        PlayerController player = GameManager.Instance.Player;
-        if (player != null) {
-            direction = (player.transform.position - transform.position).normalized;
-        }
+        player = GameManager.Instance.Player;
+        Debug.Assert(player != null, "Player reference is null in EnemyController!");
     }
 
 
