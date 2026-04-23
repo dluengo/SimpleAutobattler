@@ -55,12 +55,14 @@ public class PlayerController : ActorController
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.performed) {
+            //Debug.Log("Attack input performed.");
             m_attackInput = true;
             if (!isAttacking) {
                 StartAttack();
             }
         }
         else if (context.canceled) {
+            //Debug.Log("Attack input canceled.");
             m_attackInput = false;
         }
     }
