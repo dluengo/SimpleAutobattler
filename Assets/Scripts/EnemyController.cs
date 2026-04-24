@@ -15,10 +15,8 @@ public abstract class EnemyController : ActorController
 
 
     // --- Collision Handling ---
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) {
-            Debug.Log("Enemy collided with Player!");
-        }
+        Debug.Log($"Enemy collided with {collision.gameObject.name}!");
     }
 }
