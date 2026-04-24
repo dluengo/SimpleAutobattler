@@ -75,3 +75,8 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 
+### Ignore Text Mesh Pro
+/[Aa]ssets/[Tt]ext[Mm]esh Pro/*
+/[Aa]ssets/[Tt]ext[Mm]esh Pro.meta
+
+
