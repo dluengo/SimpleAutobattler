@@ -25,10 +25,10 @@ public class ProjectileController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Move in the direction the projectile is facing (its up vector)
+        // Move in the m_moveDir the projectile is facing (its up vector)
         transform.position += direction * speed * Time.fixedDeltaTime;
 
-        // Rotate to face the direction of movement
+        // Rotate to face the m_moveDir of movement
         if (direction != Vector3.zero) {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angle);

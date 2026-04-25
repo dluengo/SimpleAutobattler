@@ -7,7 +7,7 @@ public abstract class ActorController : MonoBehaviour
     private bool m_isAttacking = false;
     public bool isAttacking {
         get => m_isAttacking;
-        private set { 
+        private set {
             m_isAttacking = value;
             if (m_isAttacking) {
                 m_attackAnimRunning = true;
@@ -17,7 +17,7 @@ public abstract class ActorController : MonoBehaviour
                 m_attackAnimRunning = false;
                 m_animator.SetBool(m_animAttackParamName, false);
             }
-        } 
+        }
     }
 
     [SerializeField] protected float m_moveSpeed = 5f;
@@ -30,7 +30,7 @@ public abstract class ActorController : MonoBehaviour
 
     protected Vector2 m_look = Vector2.right;
     private Vector2 m_direction;
-    protected Vector2 direction {
+    protected Vector2 m_moveDir {
         get => m_direction;
         set {
             m_direction = value;
@@ -47,13 +47,15 @@ public abstract class ActorController : MonoBehaviour
         }
     }
     protected Rigidbody2D m_rb;
-    protected Animator m_animator; 
+    protected Animator m_animator;
     protected bool m_attackInput = false;
     protected bool m_attackOnCooldown = false;
+    protected Vector2 m_attackDir;
 
     private AttackEndSMB m_attackEndSMB;
     private float m_attackAnimDuration;
     private bool m_attackAnimRunning = false;
+    private bool m_allowFlip = true;
 
 
     // --- Methods ---
@@ -116,27 +118,38 @@ public abstract class ActorController : MonoBehaviour
 
     private void Flip()
     {
-        transform.localScale = new Vector3(
-            -transform.localScale.x,
-            transform.localScale.y,
-            transform.localScale.z);
+        if (m_allowFlip) {
+            transform.localScale = new Vector3(
+                -transform.localScale.x,
+                transform.localScale.y,
+                transform.localScale.z);
+
+            m_look = -m_look;
+        }
     }
 
     protected void StartAttack()
     {
         if (m_attackOnCooldown || m_attackAnimRunning) {
-            //Debug.Log("Attack input received but attack is on cooldown or already started.");
             return;
         }
 
-        //Debug.Log("Starting attack.");
         isAttacking = true;
         m_attackOnCooldown = true;
+
+        //Debug.Log($"Attack started with m_moveDir {m_attackDir} and look {m_look}.");
+        // Flip to face the attack m_moveDir if needed
+        if (m_attackDir.x < 0f && m_look.x > 0f ||
+            m_attackDir.x > 0f && m_look.x < 0f) {
+            //Debug.Log("Flipping to face attack m_moveDir.");
+            Flip();
+        }
+
+        m_allowFlip = false;
 
         // Adjust animation speed if needed
         float cooldown = 1f / m_attackSpeed;
         float speedMultiplier = m_attackAnimDuration > cooldown ? m_attackAnimDuration / cooldown : 1f;
-        //Debug.Log($"Attack started. Animation duration: {m_attackAnimDuration:F2}s, Cooldown: {cooldown:F2}s, Speed Multiplier: {speedMultiplier:F2}");
         m_animator.SetFloat(m_attackSpeedMultiplierParamName, speedMultiplier);
 
         StartCoroutine(AttackCooldownCR());
@@ -162,6 +175,13 @@ public abstract class ActorController : MonoBehaviour
     private void HandleAttackEnd()
     {
         m_attackAnimRunning = false;
+        m_allowFlip = true;
+
+        // Flip if needed
+        if (m_moveDir.x > 0f && transform.localScale.x < 0f ||
+            m_moveDir.x < 0f && transform.localScale.x > 0f) {
+            Flip();
+        }
 
         //Debug.Log("Attack animation ended.");
         isAttacking = false;
@@ -176,5 +196,14 @@ public abstract class ActorController : MonoBehaviour
     protected virtual void OnAttackPerformedEventHandler()
     {
         Debug.Log("ActorController: OnAttackPerformedEventHandler called.");
+    }
+
+    // --- Gizmos ---
+    private void OnDrawGizmosSelected()
+    {
+        // Draw a line indicating the look m_moveDir
+        Gizmos.color = Color.blue;
+        Vector3 lookDirection = new Vector3(m_look.x, m_look.y, 0f);
+        Gizmos.DrawLine(transform.position, transform.position + lookDirection);
     }
 }

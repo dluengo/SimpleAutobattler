@@ -15,12 +15,12 @@ public class TNTGoblinController : EnemyController
         if (player != null) {
             if (Vector2.Distance(transform.position, player.transform.position) <= m_range) {
                 // Stop moving towards the player and throw dynamite.
-                direction = Vector2.zero;
+                m_moveDir = Vector2.zero;
 
                 StartAttack();
             }
             else {
-                direction = (player.transform.position - transform.position).normalized;
+                m_moveDir = (player.transform.position - transform.position).normalized;
             }
         }
     }

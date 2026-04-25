@@ -10,7 +10,7 @@ public class GoblinController : EnemyController
     {
         // Move towards the player
         if (player != null) {
-            direction = (player.transform.position - transform.position).normalized;
+            m_moveDir = (player.transform.position - transform.position).normalized;
         }
     }
 
