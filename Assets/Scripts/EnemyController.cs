@@ -13,6 +13,11 @@ public abstract class EnemyController : ActorController
         Debug.Assert(player != null, "Player reference is null in EnemyController!");
     }
 
+    protected void OnDestroy()
+    {
+        EnemyManager.Instance.UnregisterEnemy(this);
+    }
+
 
     // --- Collision Handling ---
     protected virtual void OnCollisionEnter2D(Collision2D collision)

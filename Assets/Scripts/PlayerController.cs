@@ -31,6 +31,7 @@ public class PlayerController : ActorController
             ProjectileController projectile = projectileGO.GetComponent<ProjectileController>();
             if (projectile != null) {
                 projectile.direction = shootDirection.normalized;
+                projectile.thrower = this;
             }
         }
     }
@@ -94,6 +95,17 @@ public class PlayerController : ActorController
         else if (context.canceled) {
             //Debug.Log("Attack input canceled.");
             m_attackInput = false;
+        }
+    }
+
+    // NOTE: The design is flawed. There should be an InputManager that handles
+    // all input and then calls methods on the PlayerController.
+    // This is a quick and dirty solution to trigger an action in the GameManager
+    // when the space key is pressed.
+    public void OnTriggerAction(InputAction.CallbackContext context)
+    {
+        if (context.performed) {
+            GameManager.Instance.TriggerAction();
         }
     }
 }

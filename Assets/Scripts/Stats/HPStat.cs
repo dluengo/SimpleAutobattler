@@ -4,19 +4,26 @@ using UnityEngine;
 public class HPStat : StatBase
 {
     // --- Members ---
+    //[SerializeField] string hpName = "Hit Points";
+    //[SerializeField] float minHP = 0f;
+    //[SerializeField] float maxHP;
+    //[SerializeField] float initialHP;
     [SerializeField] float invulnerabilityDuration = 0.5f;
 
     private bool m_isInvulnerable = false;
     private SpriteRenderer m_spriteRenderer;
 
     // --- Methods ---
-    private void Awake()
+    protected override void Awake()
     {
-        statName = "Hit Points";
-        maxValue = 100f;
-        minValue = 0f;
-        currentValue = initialValue;
+        // NOTE: I don't like the fact that we StatBase needs this
+        // data to be initialized.
+        //statName = hpName;
+        //maxValue = maxHP;
+        //minValue = minHP;
+        //initialValue = initialHP;
         m_spriteRenderer = GetComponent<SpriteRenderer>();
+        base.Awake();
     }
 
     public void TakeDamage(float damage)
@@ -34,7 +41,7 @@ public class HPStat : StatBase
 
         currentValue = newValue > minValue ? newValue : minValue;
 
-        if (isTakingDamage) {
+        if (isTakingDamage && invulnerabilityDuration > 0f) {
             StartCoroutine(InvulnerabilityCR());
         }
     }

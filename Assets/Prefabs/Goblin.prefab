@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2978953492743243325}
   - component: {fileID: 6274060369642544883}
   - component: {fileID: 5517400260761712650}
+  - component: {fileID: 8363818465955748952}
   m_Layer: 7
   m_Name: Goblin
   m_TagString: Enemy
@@ -193,7 +194,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c9ad0150832b849b435b86a026eb7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoblinController
+  m_enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
   m_moveSpeed: 3
-  m_attackCooldown: 1
+  m_attackSpeed: 1
   m_animAttackParamName: isAttacking
   m_animMoveParamName: isMoving
+  m_attackAnimClipName: Archer-Attack
+  m_attackSpeedMultiplierParamName: AttackSpeedMultiplier
+  m_contactDamage: 1
+--- !u!114 &8363818465955748952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8956263321373483646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HPStat
+  m_statName: Hit Points
+  m_maxValue: 1
+  m_minValue: 0
+  invulnerabilityDuration: 0

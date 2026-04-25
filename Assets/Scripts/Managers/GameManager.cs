@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -20,5 +21,12 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+    }
+
+    // Simple method to trigger an action. For now it is bound to the space key
+    // in the input system.
+    public void TriggerAction()
+    {
+        EnemyManager.Instance.GenerateEnemy();
     }
 }

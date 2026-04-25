@@ -4,10 +4,15 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
     // --- Members ---
+    public float damage = 1f;
+
+    [HideInInspector]
+    public ActorController thrower;
+
     [HideInInspector]
     public Vector3 direction = Vector3.right;
 
-    [SerializeField] float speed = 10f;
+    [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float expireTime = 5f;
 
 
@@ -26,7 +31,7 @@ public class ProjectileController : MonoBehaviour
     private void FixedUpdate()
     {
         // Move in the m_moveDir the projectile is facing (its up vector)
-        transform.position += direction * speed * Time.fixedDeltaTime;
+        transform.position += direction * projectileSpeed * Time.fixedDeltaTime;
 
         // Rotate to face the m_moveDir of movement
         if (direction != Vector3.zero) {
@@ -39,6 +44,16 @@ public class ProjectileController : MonoBehaviour
     // --- Collision Handling ---
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log($"Projectile collided with {collision.gameObject.name}");
+
+        // Check if the collided object's layer is in the enemyLayer mask
+        if ((thrower.enemyLayer.value & (1 << collision.gameObject.layer)) != 0) {
+            HPStat enemyHp = collision.gameObject.GetComponent<HPStat>();
+            if (enemyHp != null) {
+                enemyHp.TakeDamage(damage);
+            }
+        }
+
         Destroy(gameObject);
     }
 }

@@ -19,9 +19,14 @@ public abstract class ActorController : MonoBehaviour
             }
         }
     }
+    [SerializeField] LayerMask m_enemyLayer;
+    public LayerMask enemyLayer
+    {
+        get => m_enemyLayer;
+        private set => m_enemyLayer = value;
+    }
 
     [SerializeField] protected float m_moveSpeed = 5f;
-    //[SerializeField] protected float m_attackCooldown = 2f;
     [SerializeField] protected float m_attackSpeed = 1f;
     [SerializeField] string m_animAttackParamName = "isAttacking";
     [SerializeField] string m_animMoveParamName = "isMoving";
@@ -82,6 +87,8 @@ public abstract class ActorController : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        enemyLayer = m_enemyLayer;
+
         // Subscribe to AttackEndSMB.OnAttackEnd
         if (m_animator != null) {
             foreach (var behaviour in m_animator.GetBehaviours<AttackEndSMB>()) {
@@ -147,7 +154,7 @@ public abstract class ActorController : MonoBehaviour
 
         m_allowFlip = false;
 
-        // Adjust animation speed if needed
+        // Adjust animation projectileSpeed if needed
         float cooldown = 1f / m_attackSpeed;
         float speedMultiplier = m_attackAnimDuration > cooldown ? m_attackAnimDuration / cooldown : 1f;
         m_animator.SetFloat(m_attackSpeedMultiplierParamName, speedMultiplier);
@@ -197,6 +204,7 @@ public abstract class ActorController : MonoBehaviour
     {
         Debug.Log("ActorController: OnAttackPerformedEventHandler called.");
     }
+
 
     // --- Gizmos ---
     private void OnDrawGizmosSelected()
