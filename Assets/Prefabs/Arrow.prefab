@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3222312485216679455}
   - component: {fileID: 846173178341953628}
   - component: {fileID: 9087971767683586260}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,6 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48e70f5798cce849bc4d0d2a8a78e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  damage: 1
+  thrower: {fileID: 0}
   direction: {x: 1, y: 0, z: 0}
-  speed: 10
+  projectileSpeed: 10
   expireTime: 3

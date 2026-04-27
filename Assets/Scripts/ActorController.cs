@@ -200,10 +200,7 @@ public abstract class ActorController : MonoBehaviour
         }
     }
 
-    protected virtual void OnAttackPerformedEventHandler()
-    {
-        Debug.Log("ActorController: OnAttackPerformedEventHandler called.");
-    }
+    protected abstract void OnAttackPerformedEventHandler();
 
 
     // --- Gizmos ---

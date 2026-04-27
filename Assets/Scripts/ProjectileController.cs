@@ -17,8 +17,23 @@ public class ProjectileController : MonoBehaviour
 
 
     // --- Methods ---
+    //private void Awake()
+    //{
+    //    // Set projectile layer to match thrower's layer
+    //    if (thrower != null) {
+    //        gameObject.layer = thrower.gameObject.layer;
+    //    } else {
+    //        Debug.LogError("Projectile has no thrower assigned in Awake!");
+    //    }
+    //}
+
     private void Start()
     {
+        if (thrower != null) {
+            gameObject.layer = thrower.gameObject.layer;
+        } else {
+            Debug.LogError("Projectile has no thrower assigned in Start!");
+        }
         StartCoroutine(DestroyAfterTime(expireTime));
     }
 
@@ -30,10 +45,10 @@ public class ProjectileController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Move in the m_moveDir the projectile is facing (its up vector)
+        // Move in the direction the projectile is facing
         transform.position += direction * projectileSpeed * Time.fixedDeltaTime;
 
-        // Rotate to face the m_moveDir of movement
+        // Rotate to face the direction of movement
         if (direction != Vector3.zero) {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
@@ -46,12 +61,41 @@ public class ProjectileController : MonoBehaviour
     {
         Debug.Log($"Projectile collided with {collision.gameObject.name}");
 
-        // Check if the collided object's layer is in the enemyLayer mask
-        if ((thrower.enemyLayer.value & (1 << collision.gameObject.layer)) != 0) {
-            HPStat enemyHp = collision.gameObject.GetComponent<HPStat>();
-            if (enemyHp != null) {
-                enemyHp.TakeDamage(damage);
-            }
+        if (thrower == null) {
+            Debug.LogError("Projectile has no thrower assigned!");
+            Destroy(gameObject);
+            return;
+        }
+
+        // Check if the collided object is an ActorController
+        ActorController hitActor = collision.gameObject.GetComponent<ActorController>();
+        if (hitActor == null) {
+            Debug.Log("Projectile hit a non-actor object, destroying projectile.");
+            Destroy(gameObject);
+            return;
+        }
+
+        bool throwerIsPlayer = thrower.CompareTag("Player");
+        bool hitIsPlayer = hitActor.CompareTag("Player");
+        bool throwerIsEnemy = thrower.CompareTag("Enemy");
+        bool hitIsEnemy = hitActor.CompareTag("Enemy");
+
+        // Player projectiles should not hit the player, only enemies
+        if (throwerIsPlayer && hitIsPlayer) {
+            // Ignore collision with self
+            return;
+        }
+
+        // Enemy projectiles should not hit other enemies
+        if (throwerIsEnemy && hitIsEnemy) {
+            // Ignore collision with other enemies
+            return;
+        }
+
+        // Apply damage if valid target
+        HPStat hp = collision.gameObject.GetComponent<HPStat>();
+        if (hp != null) {
+            hp.TakeDamage(damage);
         }
 
         Destroy(gameObject);

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GoblinController : EnemyController
@@ -36,6 +37,12 @@ public class GoblinController : EnemyController
         if (player != null) {
             m_moveDir = (player.transform.position - transform.position).normalized;
         }
+    }
+
+    // NOTE: Goblins don't attack, they just move towards the player.
+    protected override void OnAttackPerformedEventHandler()
+    {
+        ;
     }
 
 
