@@ -245,8 +245,8 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 347695609
+  m_SortingLayer: -1
   m_SortingOrder: -5
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -21664,7 +21664,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 61dfdb4019030a94caa5e607e7e74859, type: 2}
+  - {fileID: 2100000, guid: 6ee3dd8b6545f0647b0045384219177d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21683,8 +21683,8 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 347695609
+  m_SortingLayer: -1
   m_SortingOrder: -1
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -30529,7 +30529,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000fd6f06faf969b914
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -30703,11 +30703,11 @@ MonoBehaviour:
   spawnArea: {fileID: 1742315000}
   enemyPrefabs:
   - {fileID: 8956263321373483646, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
+  spawnEnemies: 0
   spawnInterval: 5
   maxEnemies: 10
   numEnemiesSpawnAtOnce: 5
   enemiesOnStart: 5
-  enemies: []
 --- !u!1 &857706431
 GameObject:
   m_ObjectHideFlags: 0
@@ -31026,7 +31026,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7257567913506708742, guid: f206a50299e1fe34ca179412f2d8f2de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -31436,22 +31436,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2978953492743243325, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
-      propertyPath: m_Size.x
-      value: 0.5650859
-      objectReference: {fileID: 0}
-    - target: {fileID: 2978953492743243325, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
-      propertyPath: m_Size.y
-      value: 0.6918237
-      objectReference: {fileID: 0}
-    - target: {fileID: 2978953492743243325, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.026860952
-      objectReference: {fileID: 0}
-    - target: {fileID: 2978953492743243325, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.041552424
-      objectReference: {fileID: 0}
     - target: {fileID: 6747190411491398400, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.3023357
@@ -31492,29 +31476,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8583917202256149248, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: aa287031aa8c11440b7520abd5c70dda, type: 2}
-    - target: {fileID: 8710667360662887648, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 1723869735436879832, guid: 0473cd4b491f38e429777ae3a8fd3178, type: 3}
     - target: {fileID: 8956263321373483646, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
       propertyPath: m_Name
       value: TNTGoblin
       objectReference: {fileID: 0}
-    - target: {fileID: 8956263321373483646, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8956263321373483646, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1604896774}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
 --- !u!1 &1342255648
 GameObject:
@@ -31679,34 +31648,6 @@ Transform:
   - {fileID: 1905157500}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1604896767 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8956263321373483646, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
-  m_PrefabInstance: {fileID: 1235802104}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1604896774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1604896767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80214b036682e304a9da58eb6dc1e0f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  m_enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  m_moveSpeed: 2
-  m_attackSpeed: 1
-  m_animAttackParamName: isAttacking
-  m_animMoveParamName: isMoving
-  m_attackAnimClipName: Archer-Attack
-  m_attackSpeedMultiplierParamName: AttackSpeedMultiplier
-  m_range: 5
-  m_dynamitePrefab: {fileID: 4966302532219181152, guid: 6f17cf35f30e1e3439d9e9d5c477125e, type: 3}
 --- !u!1 &1742315000
 GameObject:
   m_ObjectHideFlags: 0
@@ -34238,8 +34179,8 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 347695609
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}

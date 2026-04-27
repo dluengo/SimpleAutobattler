@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour
     // --- Members ---
     [SerializeField] GameObject spawnArea;
     [SerializeField] GameObject[] enemyPrefabs;
+    [SerializeField] bool spawnEnemies = true;
     [SerializeField] float spawnInterval = 5f;
     [SerializeField] int maxEnemies = 10;
     [SerializeField] int numEnemiesSpawnAtOnce = 5;
@@ -38,9 +39,10 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"EnemyManager: Spawning {enemiesOnStart} initial enemies...");
-        for (int i = 0; i < enemiesOnStart; i++) {
-            GenerateEnemy();
+        if (spawnEnemies) {
+            for (int i = 0; i < enemiesOnStart; i++) {
+                GenerateEnemy();
+            }
         }
 
         StartCoroutine(SpawnEnemiesCR());
@@ -52,15 +54,16 @@ public class EnemyManager : MonoBehaviour
         while (true) {
             yield return new WaitForSeconds(spawnInterval);
 
-            Debug.Log($"Total enemies in scene: {enemies.Count}, max enemies {maxEnemies}");
-            if (enemies.Count < maxEnemies) {
-                int numEnemiesToSpawn = Mathf.Min(numEnemiesSpawnAtOnce, maxEnemies - enemies.Count);
-                Debug.Log($"EnemyManager: Spawning {numEnemiesToSpawn} enemies...");
-                for (int i = 0; i < numEnemiesToSpawn; i++) {
-                    if (enemies.Count < maxEnemies) {
-                        GenerateEnemy();
-                    } else {
-                        break;
+            if (spawnEnemies) {
+                if (enemies.Count < maxEnemies) {
+                    int numEnemiesToSpawn = Mathf.Min(numEnemiesSpawnAtOnce, maxEnemies - enemies.Count);
+                    for (int i = 0; i < numEnemiesToSpawn; i++) {
+                        if (enemies.Count < maxEnemies) {
+                            GenerateEnemy();
+                        }
+                        else {
+                            break;
+                        }
                     }
                 }
             }

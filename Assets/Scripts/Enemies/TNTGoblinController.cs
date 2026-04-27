@@ -5,7 +5,9 @@ public class TNTGoblinController : EnemyController
 {
     // --- Members ---
     [SerializeField] float m_range = 5;
+    [SerializeField] float m_fleeRange = 3;
     [SerializeField] GameObject m_dynamitePrefab;
+    [SerializeField] Transform projectileSpawnPoint;
 
 
     // --- Methods ---
@@ -13,14 +15,44 @@ public class TNTGoblinController : EnemyController
     {
         // Move towards the player if outside the range.
         if (player != null) {
-            if (Vector2.Distance(transform.position, player.transform.position) <= m_range) {
-                // Stop moving towards the player and throw dynamite.
-                m_moveDir = Vector2.zero;
+            float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
-                StartAttack();
+            // If the attack is still on cooldown we move either towards the
+            // player if they are further than range, or away from the player
+            // if they are within flee range.
+            if (m_attackOnCooldown) {
+                if (distanceToPlayer <= m_fleeRange) {
+                    // Move away from the player.
+                    m_moveDir = (transform.position - player.transform.position).normalized;
+                }
+                else if (distanceToPlayer <= m_range) {
+                    // Stay still.
+                    m_moveDir = Vector2.zero;
+                } else { 
+                    // Move towards the player
+                    m_moveDir = (player.transform.position - transform.position).normalized;
+                }
             }
             else {
-                m_moveDir = (player.transform.position - transform.position).normalized;
+                // Attack is not on cooldown, check if player is at range and attack if so.
+                if (distanceToPlayer <= m_range) {
+                    Debug.Log($"Player is within range {distanceToPlayer}, starting attack.");
+                    StartAttack();
+
+                    // If the player is within flee range, move away from the player.
+                    if (distanceToPlayer <= m_fleeRange) {
+                        Debug.Log($"Player is within flee range {distanceToPlayer}, fleeing.");
+                        m_moveDir = (transform.position - player.transform.position).normalized;
+                    }
+                    else {
+                        // Otherwise, stay still.
+                        m_moveDir = Vector2.zero;
+                    }
+                }
+                else {
+                    // Move towards the player.
+                    m_moveDir = (player.transform.position - transform.position).normalized;
+                }
             }
         }
     }
@@ -30,7 +62,7 @@ public class TNTGoblinController : EnemyController
         // Instantiate dynamite
         GameObject dynamiteGO = Instantiate(
             m_dynamitePrefab,
-            transform.position,
+            projectileSpawnPoint.position,
             Quaternion.identity);
 
         if (dynamiteGO == null) {
