@@ -17,7 +17,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] int numEnemiesSpawnAtOnce = 5;
     [SerializeField] int enemiesOnStart = 5;
 
-    private List<EnemyController> enemies;
+    private List<EnemyMove> enemies;
 
 
     // --- Methods ---
@@ -30,7 +30,7 @@ public class EnemyManager : MonoBehaviour
 
         Instance = this;
 
-        enemies = new List<EnemyController>();
+        enemies = new List<EnemyMove>();
         Debug.Assert(enemies != null, "EnemyManager: Failed to initialize enemy list.");
 
         Debug.Assert(spawnArea != null, "EnemyManager: Spawn area is not assigned.");
@@ -92,12 +92,12 @@ public class EnemyManager : MonoBehaviour
                     Quaternion.identity);
 
                 if (enemyGO != null) {
-                    EnemyController enemyController = enemyGO.GetComponent<EnemyController>();
+                    EnemyMove enemyController = enemyGO.GetComponent<EnemyMove>();
                     if (enemyController != null) {
                         enemies.Add(enemyController);
                     }
                     else {
-                        Debug.LogError("EnemyManager: Spawned enemy does not have an EnemyController component.");
+                        Debug.LogError("EnemyManager: Spawned enemy does not have an EnemyMove component.");
                     }
                 }
                 else {
@@ -107,7 +107,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void UnregisterEnemy(EnemyController enemy)
+    public void UnregisterEnemy(EnemyMove enemy)
     {
         enemies.Remove(enemy);
     }

@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class GoblinController : EnemyController
+public class GoblinController : EnemyMove
 {
     // --- Members ---
     [SerializeField] int m_contactDamage = 1;
@@ -20,9 +20,9 @@ public class GoblinController : EnemyController
         }
     }
 
-    protected override void OnDisable()
+    protected void OnDisable()
     {
-        base.OnDisable();
+        //base.OnDisable();
 
         // Unsubscribe from the OnValueChanged event to prevent memory leaks.
         HPStat hpStat = GetComponent<HPStat>();
@@ -31,19 +31,19 @@ public class GoblinController : EnemyController
         }
     }
 
-    protected void Update()
+    protected override void Update()
     {
         // Move towards the player
         if (player != null) {
-            m_moveDir = (player.transform.position - transform.position).normalized;
+            moveDir = (player.transform.position - transform.position).normalized;
         }
     }
 
     // NOTE: Goblins don't attack, they just move towards the player.
-    protected override void OnAttackPerformedEventHandler()
-    {
-        ;
-    }
+    //protected override void OnAttackPerformedEventHandler()
+    //{
+    //    ;
+    //}
 
 
     // --- Collision Handling ---

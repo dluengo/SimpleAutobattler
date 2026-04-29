@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public abstract class EnemyController : ActorController
+public abstract class EnemyMove : ActorMove
 {
     // --- Members ---
     protected PlayerController player;
 
 
     // --- Methods ---
-    protected void Start()
+    protected override void Start()
     {
+        base.Start();
+
         player = GameManager.Instance.Player;
-        Debug.Assert(player != null, "Player reference is null in EnemyController!");
+        Debug.Assert(player != null, "Player reference is null in EnemyMove!");
     }
 
     protected void OnDestroy()
