@@ -30870,7 +30870,7 @@ MonoBehaviour:
   spawnArea: {fileID: 1742315000}
   enemyPrefabs:
   - {fileID: 8956263321373483646, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
-  spawnEnemies: 1
+  spawnEnemies: 0
   spawnInterval: 5
   maxEnemies: 13
   numEnemiesSpawnAtOnce: 3

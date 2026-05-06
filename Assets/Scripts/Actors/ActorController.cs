@@ -104,11 +104,26 @@ public class ActorController : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (move != null) {
+        // Actions take precedence over movement when it comes to determining lookDir.
+        // If we're performing an action, look in the direction of the action.
+        bool lookDirUpdated = false;
+
+        if (enableActions) {
+            foreach (var action in actions) {
+                if (action.isBeingPerformed) {
+                    lookDir = action.actionDir;
+                    lookDirUpdated = true;
+                    break;
+                }
+            }
+        }
+        
+        if (!lookDirUpdated && move != null) {
             // If moving this frame, update lookDir to match moveDir. Otherwise
             // just keepGoing looking in the same direction when idle.
             if (move.moveDir != Vector2.zero) {
                 lookDir = move.moveDir;
+                lookDirUpdated = true;
             }
         }
 

@@ -17,62 +17,81 @@ public class PlayerController : MonoBehaviour
         Debug.Assert(actor != null, "PlayerController requires an ActorController component.");
     }
 
-    ////protected override void OnAttackPerformedEventHandler()
-    ////{
-    ////    if (m_projectilePrefab != null && projectileSpawnPoint != null) {
-    ////        // Shoot in the moveDir the player is looking.
+    private void Update()
+    {
+        //NOTE: We have to check every frame for the attack button being held down.
+        // This is to allow for changing the attack direction while holding more
+        // than one button.
+        if (actor.actions.Count > 0 && actor.actions[0].keepGoing) {
+            Vector2 attackDirection = PollAttackDirection();
 
-    ////        // NOTE: This shouldn't occur, but control it anyway.
-    ////        Vector2 shootDirection = m_attackDir;
-    ////        if (shootDirection == Vector2.zero) {
-    ////            shootDirection = Vector2.right;
-    ////        }
+            // StartAction updates the attack direction even if the action is
+            // being performed.
+            actor.actions[0].StartAction(attackDirection);
+        }
+    }
 
-    ////        // Instantiate the projectile with the calculated rotation
-    ////        GameObject projectileGO = Instantiate(
-    ////            m_projectilePrefab,
-    ////            projectileSpawnPoint.position,
-    ////            Quaternion.identity
-    ////        );
+    // --- Helper Methods ---
+    private Vector2 GetAttackDirection(InputAction.CallbackContext context)
+    {
+        // NOTE: This is a terrible design, but it works for now.
+        //var control = context.control;
+        var activeControl = context.action.activeControl;
 
-    ////        ProjectileController projectile = projectileGO.GetComponent<ProjectileController>();
-    ////        if (projectile != null) {
-    ////            projectile.direction = shootDirection.normalized;
-    ////            projectile.thrower = this;
-    ////        }
-    ////    }
-    ////}
+        if (activeControl != null) {
+            switch (activeControl.name) {
+                case "upArrow":
+                case "buttonNorth":
+                    return Vector2.up;
 
-    //protected void UpdateAttackDirectionFromInput()
-    //{
-    //    Vector2? attackDirection = null;
+                case "downArrow":
+                case "buttonSouth":
+                    return Vector2.down;
 
-    //    // Keyboard arrows
-    //    if (Keyboard.current != null) {
-    //        if (Keyboard.current.upArrowKey.isPressed) {
-    //            attackDirection = Vector2.up;
-    //        } else if (Keyboard.current.downArrowKey.isPressed) {
-    //            attackDirection = Vector2.down;
-    //        } else if (Keyboard.current.leftArrowKey.isPressed) {
-    //            attackDirection = Vector2.left;
-    //        } else if (Keyboard.current.rightArrowKey.isPressed) {
-    //            attackDirection = Vector2.right;
-    //        }
-    //    }
+                case "leftArrow":
+                case "buttonWest":
+                    return Vector2.left;
 
-    //    // Gamepad face buttons
-    //    if (attackDirection == null && Gamepad.current != null) {
-    //        if (Gamepad.current.buttonNorth.isPressed) {
-    //            attackDirection = Vector2.up;
-    //        } else if (Gamepad.current.buttonSouth.isPressed) {
-    //            attackDirection = Vector2.down;
-    //        } else if (Gamepad.current.buttonWest.isPressed) {
-    //            attackDirection = Vector2.left;
-    //        } else if (Gamepad.current.buttonEast.isPressed) {
-    //            attackDirection = Vector2.right;
-    //        }
-    //    }
-    //}
+                case "rightArrow":
+                case "buttonEast":
+                    return Vector2.right;
+            }
+        }
+
+        // Fallback to movement direction or right
+        if (actor.move != null && actor.move.moveDir != Vector2.zero) {
+            return actor.move.moveDir;
+        }
+
+        return Vector2.right;
+    }
+
+    private Vector2 PollAttackDirection()
+    {
+        // Keyboard arrows
+        if (Keyboard.current != null)
+        {
+            if (Keyboard.current.upArrowKey.isPressed) return Vector2.up;
+            if (Keyboard.current.downArrowKey.isPressed) return Vector2.down;
+            if (Keyboard.current.leftArrowKey.isPressed) return Vector2.left;
+            if (Keyboard.current.rightArrowKey.isPressed) return Vector2.right;
+        }
+
+        // Gamepad face buttons
+        if (Gamepad.current != null)
+        {
+            if (Gamepad.current.buttonNorth.isPressed) return Vector2.up;
+            if (Gamepad.current.buttonSouth.isPressed) return Vector2.down;
+            if (Gamepad.current.buttonWest.isPressed) return Vector2.left;
+            if (Gamepad.current.buttonEast.isPressed) return Vector2.right;
+        }
+
+        // Fallback to movement direction or right
+        if (actor.move != null && actor.move.moveDir != Vector2.zero)
+            return actor.move.moveDir;
+
+        return Vector2.right;
+    }
 
 
     // --- Input System Handlers ---
@@ -94,16 +113,17 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttackInput(InputAction.CallbackContext context)
     {
+        if (actor.actions.Count == 0) {
+            return;
+        }
+
         if (context.performed) {
-            if (actor.actions.Count > 0) {
-                actor.actions[0].keepGoing = true;
-                actor.actions[0].StartAction();
-            }
+            Vector2 attackDirection = GetAttackDirection(context);
+            actor.actions[0].keepGoing = true;
+            actor.actions[0].StartAction(attackDirection);
         }
         else if (context.canceled) {
-            if (actor.actions.Count > 0) {
-                actor.actions[0].keepGoing = false;
-            }
+            actor.actions[0].keepGoing = false;
         }
     }
 

@@ -12,8 +12,12 @@ public abstract class ActorAction : MonoBehaviour
 
     // NOTE: keepGoing is used to determine if the action should automatically
     // repeat after it finishes its animation and/or its cooldown.
+    // It allows for holding the attack button and continuously performing
+    // the action without needing to press the button again.
     [HideInInspector] public bool keepGoing = false;
     [HideInInspector] public bool onCooldown { get; protected set; } = false;
+    [HideInInspector] public Vector2 actionDir { get; protected set; } = Vector2.zero;
+    [HideInInspector] public bool isBeingPerformed => m_animRunning;
 
     [SerializeField] protected AnimationClip m_animClip;
 
@@ -75,11 +79,16 @@ public abstract class ActorAction : MonoBehaviour
         }
     }
 
-    public virtual void StartAction()
+    public virtual void StartAction(Vector2 direction)
     {
         if (!m_actor.enableActions) {
             return;
         }
+
+        // We update the direction even if the action is on cooldown or already
+        // being performed, so that the next time the action is performed it will
+        // use the most up-to-date direction.
+        actionDir = direction;
 
         if (!onCooldown && !m_animRunning) {
             onCooldown = true;
@@ -109,7 +118,7 @@ public abstract class ActorAction : MonoBehaviour
         onCooldown = false;
 
         if (keepGoing) {
-            StartAction();
+            StartAction(actionDir);
         }
     }
 
@@ -122,7 +131,7 @@ public abstract class ActorAction : MonoBehaviour
         OnActionEnd?.Invoke();
 
         if (keepGoing) {
-            StartAction();
+            StartAction(actionDir);
         }
     }
 

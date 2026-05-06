@@ -19,7 +19,7 @@ public class RangedAttackAction : ActorAction
         if (projectileGO != null) {
             ProjectileController projectile = projectileGO.GetComponent<ProjectileController>();
             if (projectile != null) {
-                projectile.direction = m_actor.lookDir;
+                projectile.direction = actionDir;
                 projectile.thrower = m_actor;
             }
         }

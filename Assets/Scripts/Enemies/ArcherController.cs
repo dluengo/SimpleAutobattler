@@ -27,7 +27,7 @@ public class ArcherController : EnemyController
         // When close enought to the player, perform the first action in the list
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
         if (distanceToPlayer <= m_range && actions.Count > 0) {
-            actions[0].StartAction();
+            actions[0].StartAction(lookDir);
         }
     }
 
