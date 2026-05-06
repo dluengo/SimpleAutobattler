@@ -9,6 +9,13 @@ public class GameManager : MonoBehaviour
 
     // --- Members ---
     public PlayerController Player;
+    public float ElapsedTime { get; private set; } = 0f;
+
+    private int m_lastElapsedSeconds = 0;
+
+
+    // --- Events ---
+    public event Action OnSecondElapsed;
 
 
     // --- Methods ---
@@ -21,12 +28,30 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+        //DontDestroyOnLoad(gameObject);
+    }
+
+    private void Update()
+    {
+        CountTime();
+    }
+
+    private void CountTime()
+    {
+        ElapsedTime += Time.deltaTime;
+        int currentSeconds = Mathf.FloorToInt(ElapsedTime);
+
+        if (currentSeconds > m_lastElapsedSeconds) {
+            m_lastElapsedSeconds = currentSeconds;
+            OnSecondElapsed?.Invoke();
+        }
     }
 
     // Simple method to trigger an action. For now it is bound to the space key
     // in the input system.
     public void TriggerAction()
     {
-        EnemyManager.Instance.GenerateEnemy();
+        // Press space to kill the player for testing purposes
+        Player.actor.Die();
     }
 }

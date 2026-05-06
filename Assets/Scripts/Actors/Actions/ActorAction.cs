@@ -77,6 +77,10 @@ public abstract class ActorAction : MonoBehaviour
 
     public virtual void StartAction()
     {
+        if (!m_actor.enableActions) {
+            return;
+        }
+
         if (!onCooldown && !m_animRunning) {
             onCooldown = true;
             OnActionStart?.Invoke();

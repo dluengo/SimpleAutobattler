@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 4721513062030555901}
   - component: {fileID: 6774826620070914019}
   - component: {fileID: 7503504114938148759}
-  - component: {fileID: 5459935716462190847}
+  - component: {fileID: 7738706290175748298}
+  - component: {fileID: 6933154718479952818}
+  - component: {fileID: 1871018565467762551}
   m_Layer: 7
-  m_Name: Enemy Archer
+  m_Name: Red Archer
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,8 +35,7 @@ Transform:
   m_LocalPosition: {x: 7.27, y: -1.68559, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2275825406011499955}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1284070283414236365
@@ -170,7 +171,7 @@ Animator:
   m_GameObject: {fileID: 5028512033808512551}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c6cfab4c647f3e94ab1c20c87843b7eb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 56e343b97fcb2c14788b7ab6e40bc137, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -182,7 +183,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5459935716462190847
+--- !u!114 &7738706290175748298
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,47 +194,42 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64cbb51102023ca44adb69263342c219, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::ArcherController
   m_enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  m_moveSpeed: 5
-  m_attackSpeed: 0.5
-  m_animAttackParamName: isAttacking
-  m_animMoveParamName: isMoving
-  m_attackAnimClipName: Red-Archer-Attack
-  m_attackSpeedMultiplierParamName: AttackSpeedMultiplier
+  m_idleClip: {fileID: 7400000, guid: 6793b66217bb613418e2407792754734, type: 2}
+  m_deadClip: {fileID: 7400000, guid: 480128e3a32242f499a376a5cca50558, type: 2}
+  m_contactDamage: 1
   m_range: 5
-  projectilePrefab: {fileID: 2432679671526927853, guid: ab8c8a1e12d25a940b13832db6224138, type: 3}
-  projectileSpawnPoint: {fileID: 2275825406011499955}
---- !u!1 &5340143706844654579
-GameObject:
+--- !u!114 &6933154718479952818
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2275825406011499955}
-  m_Layer: 7
-  m_Name: Projectile Spawn Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2275825406011499955
-Transform:
+  m_GameObject: {fileID: 5028512033808512551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8282d17c5268c41afd3ff7d64d350c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ArcherMove
+  enableMovement: 1
+  m_moveSpeed: 3
+  m_moveAnimClip: {fileID: 7400000, guid: c87148161c507fc40bee281280ad8d75, type: 2}
+--- !u!114 &1871018565467762551
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5340143706844654579}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.609, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5625921070850799848}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 5028512033808512551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c7f0dcd116341489148edc5d8d78fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedAttackAction
+  actionsPerSecond: 1
+  keepGoing: 0
+  m_animClip: {fileID: 7400000, guid: 7c3ef945fd3649a45b068fbf646c1abb, type: 2}
+  m_projectilePrefab: {fileID: 2432679671526927853, guid: ab8c8a1e12d25a940b13832db6224138, type: 3}

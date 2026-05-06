@@ -1,14 +1,12 @@
 using UnityEngine;
 using System;
 
+[RequireComponent(typeof(ActorController))]
 public abstract class StatBase : MonoBehaviour
 {
     // --- Members ---
-    [SerializeField] string m_statName;
-    public string statName {
-        get => m_statName;
-        protected set => m_statName = value;
-    }
+    [Header("--- StatBase Settings ---")]
+    protected string m_statName;
     [SerializeField] float m_maxValue = 100f;
     public float maxValue {
         get => m_maxValue;
@@ -19,11 +17,6 @@ public abstract class StatBase : MonoBehaviour
         get => m_minValue;
         protected set => m_minValue = value;
     }
-    //[SerializeField] float m_initialValue;
-    //public float initialValue {
-    //    get => m_initialValue;
-    //    protected set => m_initialValue = value;
-    //}
 
     private float m_currentValue;
     public float currentValue
@@ -49,6 +42,8 @@ public abstract class StatBase : MonoBehaviour
         }
     }
 
+    protected ActorController m_actor;
+
 
     // --- Events ---
     public event Action OnValueChanged;
@@ -58,6 +53,12 @@ public abstract class StatBase : MonoBehaviour
 
     // --- Methods ---
     protected virtual void Awake()
+    {
+        m_actor = GetComponent<ActorController>();
+        Debug.Assert(m_actor != null, "StatBase: ActorController component is missing.");
+    }
+
+    protected virtual void Start()
     {
         currentValue = maxValue;
     }

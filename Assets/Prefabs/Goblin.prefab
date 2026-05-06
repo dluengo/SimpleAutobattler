@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 8583917202256149248}
   - component: {fileID: 2978953492743243325}
   - component: {fileID: 6274060369642544883}
-  - component: {fileID: 5517400260761712650}
-  - component: {fileID: 8363818465955748952}
-  - component: {fileID: 8505069896719015731}
+  - component: {fileID: 6430667937749143558}
+  - component: {fileID: 2551702254023544876}
+  - component: {fileID: 7532837718850027630}
   m_Layer: 7
   m_Name: Goblin
   m_TagString: Enemy
@@ -119,7 +119,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1723869735436879832, guid: 0473cd4b491f38e429777ae3a8fd3178, type: 3}
+  m_Sprite: {fileID: -4230181108591323607, guid: 9a22f121cdd9a1c46a707aaaeca4e36f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -139,7 +139,7 @@ Animator:
   m_GameObject: {fileID: 8956263321373483646}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aa287031aa8c11440b7520abd5c70dda, type: 2}
+  m_Controller: {fileID: 9100000, guid: 56e343b97fcb2c14788b7ab6e40bc137, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -215,7 +215,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5517400260761712650
+--- !u!114 &6430667937749143558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,17 +227,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c9ad0150832b849b435b86a026eb7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoblinController
+  enableActions: 1
   m_enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  m_moveSpeed: 3
-  m_attackSpeed: 1
-  m_animAttackParamName: isAttacking
-  m_animMoveParamName: isMoving
-  m_attackAnimClipName: Archer-Attack
-  m_attackSpeedMultiplierParamName: AttackSpeedMultiplier
+  m_idleClip: {fileID: 7400000, guid: fa7d366528303374bb1ec1b385d0a267, type: 2}
+  m_deadClip: {fileID: 7400000, guid: 480128e3a32242f499a376a5cca50558, type: 2}
   m_contactDamage: 1
---- !u!114 &8363818465955748952
+--- !u!114 &2551702254023544876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8956263321373483646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3afae01521541448f3476a0ae8c6e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoblinMove
+  m_enableMovement: 1
+  m_moveSpeed: 3
+  m_moveAnimClip: {fileID: 7400000, guid: e5e5f83edb5e5524cb87fef69a03571a, type: 2}
+--- !u!114 &7532837718850027630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,32 +261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HPStat
-  m_statName: Hit Points
   m_maxValue: 1
   m_minValue: 0
   invulnerabilityDuration: 0
---- !u!114 &8505069896719015731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8956263321373483646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80214b036682e304a9da58eb6dc1e0f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  m_enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  m_moveSpeed: 2
-  m_attackSpeed: 0.5
-  m_animAttackParamName: isAttacking
-  m_animMoveParamName: isMoving
-  m_attackAnimClipName: TNTGoblin-Throw
-  m_attackSpeedMultiplierParamName: AttackSpeedMultiplier
-  m_range: 5
-  m_fleeRange: 3
-  m_dynamitePrefab: {fileID: 4966302532219181152, guid: 6f17cf35f30e1e3439d9e9d5c477125e, type: 3}
-  projectileSpawnPoint: {fileID: 1428429372603924028}

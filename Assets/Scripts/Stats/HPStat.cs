@@ -1,10 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(ActorController))]
 public class HPStat : StatBase
 {
     // --- Members ---
-    //[SerializeField] string hpName = "Hit Points";
+    [Header("--- HP Settings ---")]
     //[SerializeField] float minHP = 0f;
     //[SerializeField] float maxHP;
     //[SerializeField] float initialHP;
@@ -12,18 +13,27 @@ public class HPStat : StatBase
 
     private bool m_isInvulnerable = false;
     private SpriteRenderer m_spriteRenderer;
+    private string m_hpStatName = "Hit Points";
+
 
     // --- Methods ---
-    protected override void Awake()
+    protected void OnEnable()
     {
-        // NOTE: I don't like the fact that we StatBase needs this
-        // data to be initialized.
-        //statName = hpName;
-        //maxValue = maxHP;
-        //minValue = minHP;
-        //initialValue = initialHP;
+        // Subscribe to the OnValueMin event to trigger the death animation when health reaches 0.
+        OnValueMin += OnHPZeroHandler;
+    }
+
+    protected void OnDisable() 
+    {
+        OnValueMin -= OnHPZeroHandler;
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        m_statName = m_hpStatName;
         m_spriteRenderer = GetComponent<SpriteRenderer>();
-        base.Awake();
     }
 
     public void TakeDamage(float damage)
@@ -32,9 +42,8 @@ public class HPStat : StatBase
             return;
         }
 
-        float newValue = currentValue - damage;
         bool isTakingDamage = false;
-
+        float newValue = currentValue - damage;
         if (newValue != currentValue) {
             isTakingDamage = true;
         }
@@ -42,14 +51,13 @@ public class HPStat : StatBase
         currentValue = newValue > minValue ? newValue : minValue;
 
         if (isTakingDamage && invulnerabilityDuration > 0f) {
+            m_isInvulnerable = true;
             StartCoroutine(InvulnerabilityCR());
         }
     }
 
     private IEnumerator InvulnerabilityCR()
     {
-        m_isInvulnerable = true;
-
         // Make the sprite 50% transparent
         if (m_spriteRenderer != null)
         {
@@ -67,5 +75,12 @@ public class HPStat : StatBase
         }
 
         m_isInvulnerable = false;
+    }
+
+    // --- Event Handlers ---
+    private void OnHPZeroHandler()
+    {
+        //Debug.Log($"{m_actor.gameObject.name} has reached 0 HP and will die.");
+        m_actor.Die();
     }
 }

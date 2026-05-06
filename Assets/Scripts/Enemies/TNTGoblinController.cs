@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class TNTGoblinController : EnemyMove
+public class TNTGoblinController : EnemyController
 {
     // --- Members ---
     [SerializeField] float m_range = 5;
@@ -23,14 +23,14 @@ public class TNTGoblinController : EnemyMove
             //if (m_attackOnCooldown) {
                 if (distanceToPlayer <= m_fleeRange) {
                     // Move away from the player.
-                    moveDir = (transform.position - player.transform.position).normalized;
+                    move.moveDir = (transform.position - player.transform.position).normalized;
                 }
                 else if (distanceToPlayer <= m_range) {
                     // Stay still.
-                    moveDir = Vector2.zero;
+                    move.moveDir = Vector2.zero;
                 } else { 
                     // Move towards the player
-                    moveDir = (player.transform.position - transform.position).normalized;
+                    move.moveDir = (player.transform.position - transform.position).normalized;
                 }
             //}
             //else {

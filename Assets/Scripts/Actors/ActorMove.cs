@@ -6,8 +6,22 @@ public class ActorMove : MonoBehaviour
 {
     // --- Members ---
     [Header("--- Movement Settings ---")]
-    public bool enableMovement = true;
-    public bool isMoving => moveDir != Vector2.zero;
+    [SerializeField] bool m_enableMovement = true;
+    public bool enableMovement
+    {
+        get => m_enableMovement;
+        set {
+            // BUG: Not called when setting enableMovement to false in the inspector
+            // NOTE: moveDir needs to be set to zero before disabling movement
+            if (!value) {
+                moveDir = Vector2.zero;
+            }
+
+            //Debug.Log($"Setting enableMovement to {value} for {name}");
+            m_enableMovement = value;
+        }
+    }
+    public bool isMoving => enableMovement && moveDir != Vector2.zero;
 
     [SerializeField] protected float m_moveSpeed = 5f;
     public float moveSpeed     {
@@ -23,6 +37,12 @@ public class ActorMove : MonoBehaviour
     public Vector2 moveDir {
         get => m_moveDir;
         set {
+            if (!enableMovement) {
+                m_moveDir = Vector2.zero;
+                m_actor.animator.SetBool(animParamName, false);
+                return;
+            }
+
             // Check if we are stopping movement.
             if (m_moveDir != Vector2.zero && value == Vector2.zero) {
                 OnMoveEnd?.Invoke();
@@ -32,17 +52,16 @@ public class ActorMove : MonoBehaviour
                 OnMoveStart?.Invoke();
             }
 
-            m_moveDir = value;
+            m_moveDir = value.normalized;
 
             // Deal with the animator.
-            if (m_animator != null) {
-                m_animator.SetBool(animParamName, m_moveDir != Vector2.zero);
+            if (m_actor != null && m_actor.animator != null) {
+                m_actor.animator.SetBool(animParamName, m_moveDir != Vector2.zero);
             }
         }
     }
 
     protected ActorController m_actor;
-    protected Animator m_animator;
 
     private string m_moveAnimClipName = "Actor-Move";
 
@@ -60,17 +79,13 @@ public class ActorMove : MonoBehaviour
         if (m_actor == null) {
             Debug.LogError("ActorMove requires an ActorController component.");
         }
-
-        m_animator = GetComponent<Animator>();
-        if (m_animator == null) {
-            Debug.LogError("ActorMove requires an Animator component.");
-        }
     }
 
     protected virtual void OnEnable()
     {
         moveSpeed = m_moveSpeed;
         moveAnimClip = m_moveAnimClip;
+        enableMovement = m_enableMovement;
     }
 
     protected virtual void Start()

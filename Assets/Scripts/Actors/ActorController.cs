@@ -8,9 +8,18 @@ public class ActorController : MonoBehaviour
 {
     // --- Members ---
     [Header("--- Actor Settings ---")]
-    public Vector2 lookDir { get; protected set; } = Vector2.right;
+    public bool enableActions = true;
+    private Vector2 m_lookDir = Vector2.right;
+    public Vector2 lookDir
+    {
+        get => m_lookDir;
+        protected set => m_lookDir = value.normalized;
+    }
+
     public ActorMove move { get; protected set; }
     public List<ActorAction> actions { get; protected set; }
+    public Animator animator { get; protected set; }
+
     [SerializeField] LayerMask m_enemyLayer;
     public LayerMask enemyLayer
     {
@@ -22,16 +31,14 @@ public class ActorController : MonoBehaviour
     [SerializeField] AnimationClip m_deadClip;
 
     protected Rigidbody2D m_rb;
-    protected Animator m_animator;
-
     protected AnimatorOverrideController m_animOverrideController;
 
+    private string m_idleAnimClipName = "Actor-Idle";
+    private string m_deadAnimParamName = "isDead";
+    private string m_deadAnimClipName = "Actor-Dead";
     private DeadEndSMB m_deadEndSMB;
     private bool m_allowFlip = true;
-    private string m_idleAnimClipName = "Actor-Idle";
-    private string m_deadAnimClipName = "Actor-Dead";
-    private string m_deadAnimParamName = "Dead";
-
+    
 
     // --- Methods ---
     protected virtual void Awake()
@@ -39,17 +46,17 @@ public class ActorController : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
         Debug.Assert(m_rb != null, "ActorController: Rigidbody2D component is missing.");
 
-        m_animator = GetComponent<Animator>();
-        Debug.Assert(m_animator != null, "ActorController: Animator component is missing.");
+        animator = GetComponent<Animator>();
+        Debug.Assert(animator != null, "ActorController: Animator component is missing.");
 
         // NOTE: It's ok if an actor cannot move.
         move = GetComponent<ActorMove>();
 
         // NOTE: AnimationClips are changeable at runtime, so we need to use an
         // AnimatorOverrideController to override the clips in the animator controller.
-        m_animOverrideController = new AnimatorOverrideController(m_animator.runtimeAnimatorController);
-        if (m_animator != null) {
-            m_animator.runtimeAnimatorController = m_animOverrideController;
+        m_animOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+        if (animator != null) {
+            animator.runtimeAnimatorController = m_animOverrideController;
         }
 
         // Initialize the list of actions with the actions attached to this actor.
@@ -61,8 +68,8 @@ public class ActorController : MonoBehaviour
         enemyLayer = m_enemyLayer;
 
         // Susbcribe to DeadEndSMB.OnDeadAnimEnd
-        if (m_animator != null) {
-            foreach (var behaviour in m_animator.GetBehaviours<DeadEndSMB>()) {
+        if (animator != null) {
+            foreach (var behaviour in animator.GetBehaviours<DeadEndSMB>()) {
                 m_deadEndSMB = behaviour;
                 m_deadEndSMB.OnDeadAnimEnd += DeadAnimEndHandler;
             }
@@ -74,20 +81,21 @@ public class ActorController : MonoBehaviour
         // Unsubscribe from DeadEndSMB.OnDeadAnimEnd
         if (m_deadEndSMB != null) {
             m_deadEndSMB.OnDeadAnimEnd -= DeadAnimEndHandler;
+            m_deadEndSMB = null;
         }
     }
 
     protected virtual void Start()
     {
         // Set idle animation clip if we have an animator and an idle clip
-        if (m_animator != null && m_idleClip != null) {
+        if (animator != null && m_idleClip != null) {
             if (!UpdateAnimClip(m_idleAnimClipName, m_idleClip)) {
                 Debug.LogWarning($"Failed to set idle animation clip for {gameObject.name}. Make sure the animator has a state named '{m_idleAnimClipName}' with an AnimationClip assigned.");
             }
         }
 
         // Set dead animation clip if we have an animator and a dead clip
-        if (m_animator != null && m_deadClip != null) {
+        if (animator != null && m_deadClip != null) {
             if (!UpdateAnimClip(m_deadAnimClipName, m_deadClip)) {
                 Debug.LogWarning($"Failed to set dead animation clip for {gameObject.name}. Make sure the animator has a state named '{m_deadAnimClipName}' with an AnimationClip assigned.");
             }
@@ -149,14 +157,10 @@ public class ActorController : MonoBehaviour
         bool ret = false;
 
         if (m_animOverrideController != null) {
-            // We need to override the animator controller with a new one with our
-            // move animation clip in the "Move" state.
 
-            // Search for the "Move" state
             foreach (var pair in m_animOverrideController.animationClips) {
                 if (pair != null && pair.name == animClipName) {
 
-                    // Override the "Move" state with our move animation clip
                     m_animOverrideController[pair.name] = newAnimClip;
                     ret = true;
                     break;
@@ -169,7 +173,21 @@ public class ActorController : MonoBehaviour
 
     public void Die()
     {
-        m_animator.SetTrigger(m_deadAnimParamName);
+        // Disable the collider to prevent further interactions
+        Collider2D collider = GetComponent<Collider2D>();
+        if (collider != null) {
+            collider.enabled = false;
+        }
+
+        // Disable movement and actions
+        if (move != null) {
+            move.enableMovement = false;
+        }
+
+        enableActions = false;
+
+        animator.SetBool(m_deadAnimParamName, true);
+        //animator.Play(m_deadStateName);
     }
 
 

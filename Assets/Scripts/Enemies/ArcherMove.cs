@@ -1,63 +1,26 @@
 using UnityEngine;
 
-public class ArcherMove : EnemyMove
+[RequireComponent(typeof(ArcherController))]
+public class ArcherMove : ActorMove
 {
     // --- Members ---
-    [SerializeField] float m_range = 5f;
-    [SerializeField] GameObject projectilePrefab;
-    [SerializeField] Transform projectileSpawnPoint;
-
+    private ArcherController m_archerController { get => m_actor as ArcherController; }
 
     // --- Methods ---
     protected override void Update()
     {
-        // Archers move close to the player, and when they are in range
-        // they attack.
-        Vector2 dirPlayer = player.transform.position - transform.position;
-        float distanceToPlayer = dirPlayer.magnitude;
+        base.Update();
 
-        if (distanceToPlayer > m_range) {
+        // Archers move within range of the player
+        Vector2 dirPlayer = m_archerController.player.transform.position - transform.position;
+        float distanceToPlayer = dirPlayer.magnitude;
+        if (distanceToPlayer > m_archerController.range) {
             // Move towards player
-            moveDir = dirPlayer;
+            m_actor.move.moveDir = dirPlayer;
         }
         else {
-            // Attack player
-            moveDir = Vector2.zero;
-            //StartAttack();
+            // Stop moving
+            m_actor.move.moveDir = Vector2.zero;
         }
-    }
-
-    //protected override void OnAttackPerformedEventHandler()
-    //{
-    //    // Instantiate projectile
-    //    if (m_projectilePrefab != null) {
-    //        GameObject projectileGO =Instantiate(
-    //            m_projectilePrefab,
-    //            projectileSpawnPoint.position,
-    //            Quaternion.identity);
-
-    //        if (projectileGO == null) {
-    //            Debug.LogError("Failed to instantiate projectile prefab!");
-    //            return;
-    //        }
-
-    //        // Set projectile direction
-    //        ProjectileController projectile = projectileGO.GetComponent<ProjectileController>();
-    //        if (projectile == null) {
-    //            Debug.LogError("Projectile prefab does not have a ProjectileController component!");
-    //            return;
-    //        }
-
-    //        projectile.direction = (player.transform.position - projectileSpawnPoint.position).normalized;
-    //        projectile.thrower = this;
-    //    }
-    //}
-
-    // --- Gizmos ---
-    private void OnDrawGizmosSelected()
-    {
-        // Draw attack range
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, m_range);
     }
 }

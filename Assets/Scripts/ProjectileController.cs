@@ -59,8 +59,6 @@ public class ProjectileController : MonoBehaviour
     // --- Collision Handling ---
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log($"Projectile collided with {collision.gameObject.name}");
-
         if (thrower == null) {
             Debug.LogError("Projectile has no thrower assigned!");
             Destroy(gameObject);
