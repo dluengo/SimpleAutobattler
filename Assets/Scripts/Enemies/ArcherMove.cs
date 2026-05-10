@@ -9,7 +9,11 @@ public class ArcherMove : ActorMove
     // --- Methods ---
     protected override void Update()
     {
-        base.Update();
+        // If we don't have a player, just stop moving.
+        if (m_archerController.player == null) {
+            m_actor.move.moveDir = Vector2.zero;
+            return;
+        }
 
         // Archers move within range of the player
         Vector2 dirPlayer = m_archerController.player.transform.position - transform.position;
@@ -22,5 +26,7 @@ public class ArcherMove : ActorMove
             // Stop moving
             m_actor.move.moveDir = Vector2.zero;
         }
+
+        base.Update();
     }
 }

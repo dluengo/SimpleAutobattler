@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7738706290175748298}
   - component: {fileID: 6933154718479952818}
   - component: {fileID: 1871018565467762551}
+  - component: {fileID: 6554166610872012705}
   m_Layer: 7
   m_Name: Red Archer
   m_TagString: Enemy
@@ -195,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64cbb51102023ca44adb69263342c219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArcherController
+  enableActions: 1
   m_enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -214,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c8282d17c5268c41afd3ff7d64d350c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArcherMove
-  enableMovement: 1
+  m_enableMovement: 1
   m_moveSpeed: 3
   m_moveAnimClip: {fileID: 7400000, guid: c87148161c507fc40bee281280ad8d75, type: 2}
 --- !u!114 &1871018565467762551
@@ -229,7 +231,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c7f0dcd116341489148edc5d8d78fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedAttackAction
+  castStops: 1
   actionsPerSecond: 1
   keepGoing: 0
   m_animClip: {fileID: 7400000, guid: 7c3ef945fd3649a45b068fbf646c1abb, type: 2}
   m_projectilePrefab: {fileID: 2432679671526927853, guid: ab8c8a1e12d25a940b13832db6224138, type: 3}
+--- !u!114 &6554166610872012705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5028512033808512551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HPStat
+  m_maxValue: 1
+  m_minValue: 0
+  invulnerabilityDuration: 0

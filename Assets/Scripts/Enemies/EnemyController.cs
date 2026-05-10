@@ -38,6 +38,7 @@ public abstract class EnemyController : ActorController
     protected override void Start()
     {
         base.Start();
+
         player = GameManager.Instance.Player;
         enemyLayer = LayerMask.NameToLayer(playerLayerName);
     }

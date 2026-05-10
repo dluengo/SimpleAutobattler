@@ -20,12 +20,12 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         //NOTE: We have to check every frame for the attack button being held down.
-        // This is to allow for changing the attack direction while holding more
+        // This is to allow for changing the attack target while holding more
         // than one button.
         if (actor.actions.Count > 0 && actor.actions[0].keepGoing) {
             Vector2 attackDirection = PollAttackDirection();
 
-            // StartAction updates the attack direction even if the action is
+            // StartAction updates the attack target even if the action is
             // being performed.
             actor.actions[0].StartAction(attackDirection);
         }
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // Fallback to movement direction or right
+        // Fallback to movement target or right
         if (actor.move != null && actor.move.moveDir != Vector2.zero) {
             return actor.move.moveDir;
         }
@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
             if (Gamepad.current.buttonEast.isPressed) return Vector2.right;
         }
 
-        // Fallback to movement direction or right
+        // Fallback to movement target or right
         if (actor.move != null && actor.move.moveDir != Vector2.zero)
             return actor.move.moveDir;
 

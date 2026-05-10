@@ -8,7 +8,18 @@ public class ActorController : MonoBehaviour
 {
     // --- Members ---
     [Header("--- Actor Settings ---")]
-    public bool enableActions = true;
+    public bool actionsEnabled = true;
+    public bool movementEnabled {
+        get => move != null && move.movementEnabled;
+        set {
+            if (move != null) {
+                move.movementEnabled = value;
+            }
+            else {
+                Debug.LogWarning($"ActorController: Attempting to set movementEnabled but no ActorMove component found on {gameObject.name}.");
+            }
+        }
+    }
     private Vector2 m_lookDir = Vector2.right;
     public Vector2 lookDir
     {
@@ -36,7 +47,7 @@ public class ActorController : MonoBehaviour
     private string m_idleAnimClipName = "Actor-Idle";
     private string m_deadAnimParamName = "isDead";
     private string m_deadAnimClipName = "Actor-Dead";
-    private DeadEndSMB m_deadEndSMB;
+    private DeadAnimSMB m_deadEndSMB;
     private bool m_allowFlip = true;
     
 
@@ -67,9 +78,9 @@ public class ActorController : MonoBehaviour
     {
         enemyLayer = m_enemyLayer;
 
-        // Susbcribe to DeadEndSMB.OnDeadAnimEnd
+        // Susbcribe to DeadAnimSMB.OnDeadAnimEnd
         if (animator != null) {
-            foreach (var behaviour in animator.GetBehaviours<DeadEndSMB>()) {
+            foreach (var behaviour in animator.GetBehaviours<DeadAnimSMB>()) {
                 m_deadEndSMB = behaviour;
                 m_deadEndSMB.OnDeadAnimEnd += DeadAnimEndHandler;
             }
@@ -78,7 +89,7 @@ public class ActorController : MonoBehaviour
 
     protected virtual void OnDisable()
     {
-        // Unsubscribe from DeadEndSMB.OnDeadAnimEnd
+        // Unsubscribe from DeadAnimSMB.OnDeadAnimEnd
         if (m_deadEndSMB != null) {
             m_deadEndSMB.OnDeadAnimEnd -= DeadAnimEndHandler;
             m_deadEndSMB = null;
@@ -89,14 +100,14 @@ public class ActorController : MonoBehaviour
     {
         // Set idle animation clip if we have an animator and an idle clip
         if (animator != null && m_idleClip != null) {
-            if (!UpdateAnimClip(m_idleAnimClipName, m_idleClip)) {
+            if (!GameManager.UpdateAnimClip(m_animOverrideController, m_idleAnimClipName, m_idleClip)) {
                 Debug.LogWarning($"Failed to set idle animation clip for {gameObject.name}. Make sure the animator has a state named '{m_idleAnimClipName}' with an AnimationClip assigned.");
             }
         }
 
         // Set dead animation clip if we have an animator and a dead clip
         if (animator != null && m_deadClip != null) {
-            if (!UpdateAnimClip(m_deadAnimClipName, m_deadClip)) {
+            if (!GameManager.UpdateAnimClip(m_animOverrideController, m_deadAnimClipName, m_deadClip)) {
                 Debug.LogWarning($"Failed to set dead animation clip for {gameObject.name}. Make sure the animator has a state named '{m_deadAnimClipName}' with an AnimationClip assigned.");
             }
         }
@@ -105,10 +116,11 @@ public class ActorController : MonoBehaviour
     protected virtual void Update()
     {
         // Actions take precedence over movement when it comes to determining lookDir.
-        // If we're performing an action, look in the direction of the action.
+        // If we're performing an action, look in the target of the action.
         bool lookDirUpdated = false;
+        if (actionsEnabled) {
 
-        if (enableActions) {
+            //TODO: We should look at the last action performed, not just the first action.
             foreach (var action in actions) {
                 if (action.isBeingPerformed) {
                     lookDir = action.actionDir;
@@ -119,8 +131,9 @@ public class ActorController : MonoBehaviour
         }
         
         if (!lookDirUpdated && move != null) {
+
             // If moving this frame, update lookDir to match moveDir. Otherwise
-            // just keepGoing looking in the same direction when idle.
+            // just keepGoing looking in the same target when idle.
             if (move.moveDir != Vector2.zero) {
                 lookDir = move.moveDir;
                 lookDirUpdated = true;
@@ -134,7 +147,7 @@ public class ActorController : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if (move != null && move.enableMovement) {
+        if (move != null && move.movementEnabled && move.moveDir != Vector2.zero) {
             m_rb.MovePosition(
                 (Vector2)transform.position + move.moveDir.normalized * move.moveSpeed * Time.fixedDeltaTime);
         }
@@ -169,21 +182,7 @@ public class ActorController : MonoBehaviour
     // An easy way for other modules to update the animation clips.
     public bool UpdateAnimClip(string animClipName, AnimationClip newAnimClip)
     {
-        bool ret = false;
-
-        if (m_animOverrideController != null) {
-
-            foreach (var pair in m_animOverrideController.animationClips) {
-                if (pair != null && pair.name == animClipName) {
-
-                    m_animOverrideController[pair.name] = newAnimClip;
-                    ret = true;
-                    break;
-                }
-            }
-        }
-
-        return ret;
+        return GameManager.UpdateAnimClip(m_animOverrideController, animClipName, newAnimClip);
     }
 
     public void Die()
@@ -196,10 +195,10 @@ public class ActorController : MonoBehaviour
 
         // Disable movement and actions
         if (move != null) {
-            move.enableMovement = false;
+            move.movementEnabled = false;
         }
 
-        enableActions = false;
+        actionsEnabled = false;
 
         animator.SetBool(m_deadAnimParamName, true);
         //animator.Play(m_deadStateName);

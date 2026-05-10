@@ -10,7 +10,7 @@ public class RangedAttackAction : ActorAction
     // --- Methods ---
     protected override void PerformAction()
     {
-        // Create projectile and set its direction towards the target
+        // Create projectile and set its target towards the target
         GameObject projectileGO = Instantiate(
             m_projectilePrefab,
             transform.position,
@@ -19,7 +19,8 @@ public class RangedAttackAction : ActorAction
         if (projectileGO != null) {
             ProjectileController projectile = projectileGO.GetComponent<ProjectileController>();
             if (projectile != null) {
-                projectile.direction = actionDir;
+                projectile.target = Vector2.zero;
+                projectile.moveDir = actionDir;
                 projectile.thrower = m_actor;
             }
         }

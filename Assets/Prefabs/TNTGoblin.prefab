@@ -44,9 +44,10 @@ GameObject:
   - component: {fileID: 4129915714662146537}
   - component: {fileID: 7395253739628791394}
   - component: {fileID: 1467548968485818761}
-  - component: {fileID: 186923348512556268}
   - component: {fileID: 8554183680161340730}
   - component: {fileID: 7890767598670965802}
+  - component: {fileID: 1648137900844889331}
+  - component: {fileID: 4925146582326606734}
   m_Layer: 7
   m_Name: TNTGoblin
   m_TagString: Enemy
@@ -139,7 +140,7 @@ Animator:
   m_GameObject: {fileID: 8494490834174860631}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aa287031aa8c11440b7520abd5c70dda, type: 2}
+  m_Controller: {fileID: 9100000, guid: 56e343b97fcb2c14788b7ab6e40bc137, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -215,28 +216,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &186923348512556268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8494490834174860631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c9ad0150832b849b435b86a026eb7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GoblinController
-  m_enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  m_moveSpeed: 3
-  m_attackSpeed: 1
-  m_animAttackParamName: isAttacking
-  m_animMoveParamName: isMoving
-  m_attackAnimClipName: Archer-Attack
-  m_attackSpeedMultiplierParamName: AttackSpeedMultiplier
-  m_contactDamage: 1
 --- !u!114 &8554183680161340730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HPStat
-  m_statName: Hit Points
   m_maxValue: 1
   m_minValue: 0
   invulnerabilityDuration: 0
@@ -265,16 +243,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80214b036682e304a9da58eb6dc1e0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  actionsEnabled: 1
   m_enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  m_moveSpeed: 2
-  m_attackSpeed: 0.5
-  m_animAttackParamName: isAttacking
-  m_animMoveParamName: isMoving
-  m_attackAnimClipName: TNTGoblin-Throw
-  m_attackSpeedMultiplierParamName: AttackSpeedMultiplier
+  m_idleClip: {fileID: 7400000, guid: b016469bbe07a33468a47cc341fe8529, type: 2}
+  m_deadClip: {fileID: 7400000, guid: 480128e3a32242f499a376a5cca50558, type: 2}
+  m_contactDamage: 1
+  m_dynamitePrefab: {fileID: 4966302532219181152, guid: 6f17cf35f30e1e3439d9e9d5c477125e, type: 3}
+--- !u!114 &1648137900844889331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8494490834174860631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e19def3530f394c861e294bb88eb52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  m_movementEnabled: 1
+  m_moveSpeed: 3
+  m_moveAnimClip: {fileID: 7400000, guid: e1af5e88f60c94548af37dfc1be10f51, type: 2}
   m_range: 5
   m_fleeRange: 3
-  m_dynamitePrefab: {fileID: 4966302532219181152, guid: 6f17cf35f30e1e3439d9e9d5c477125e, type: 3}
-  projectileSpawnPoint: {fileID: 5217028661312667255}
+--- !u!114 &4925146582326606734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8494490834174860631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17516e307d2ea904a82e0f6fa092b959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ThrowAttackAction
+  castStops: 0
+  actionsPerSecond: 0.3
+  keepGoing: 0
+  m_animClip: {fileID: 7400000, guid: f079b65d77bb204499639e09d8a06450, type: 2}
+  target: {x: 0, y: 0}
+  m_projectilePrefab: {fileID: 4966302532219181152, guid: 6f17cf35f30e1e3439d9e9d5c477125e, type: 3}

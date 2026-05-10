@@ -15,9 +15,9 @@ public class TestController : MonoBehaviour
 
     private void OnEnable()
     {
-        // Susbcribe to DeadEndSMB.OnDeadAnimEnd
+        // Susbcribe to DeadAnimSMB.OnDeadAnimEnd
         if (m_animator != null) {
-            foreach (var behaviour in m_animator.GetBehaviours<DeadEndSMB>()) {
+            foreach (var behaviour in m_animator.GetBehaviours<DeadAnimSMB>()) {
                 behaviour.OnDeadAnimEnd += DeadAnimEndHandler;
             }
         }

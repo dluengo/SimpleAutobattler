@@ -6,22 +6,22 @@ public class ActorMove : MonoBehaviour
 {
     // --- Members ---
     [Header("--- Movement Settings ---")]
-    [SerializeField] bool m_enableMovement = true;
-    public bool enableMovement
+    [SerializeField] bool m_movementEnabled = true;
+    public bool movementEnabled
     {
-        get => m_enableMovement;
+        get => m_movementEnabled;
         set {
-            // BUG: Not called when setting enableMovement to false in the inspector
+            // BUG: Not called when setting movementEnabled to false in the inspector
             // NOTE: moveDir needs to be set to zero before disabling movement
             if (!value) {
                 moveDir = Vector2.zero;
             }
 
-            //Debug.Log($"Setting enableMovement to {value} for {name}");
-            m_enableMovement = value;
+            //Debug.Log($"Setting movementEnabled to {value} for {name}");
+            m_movementEnabled = value;
         }
     }
-    public bool isMoving => enableMovement && moveDir != Vector2.zero;
+    public bool isMoving => movementEnabled && moveDir != Vector2.zero;
 
     [SerializeField] protected float m_moveSpeed = 5f;
     public float moveSpeed     {
@@ -37,7 +37,7 @@ public class ActorMove : MonoBehaviour
     public Vector2 moveDir {
         get => m_moveDir;
         set {
-            if (!enableMovement) {
+            if (!movementEnabled) {
                 m_moveDir = Vector2.zero;
                 m_actor.animator.SetBool(animParamName, false);
                 return;
@@ -85,7 +85,7 @@ public class ActorMove : MonoBehaviour
     {
         moveSpeed = m_moveSpeed;
         moveAnimClip = m_moveAnimClip;
-        enableMovement = m_enableMovement;
+        movementEnabled = m_movementEnabled;
     }
 
     protected virtual void Start()
@@ -93,10 +93,13 @@ public class ActorMove : MonoBehaviour
         m_actor.UpdateAnimClip(m_moveAnimClipName, m_moveAnimClip);
     }
 
+    // NOTE: When called from children, do it at the end of the overridden
+    // Update(), so invoking OnMove actually matches with this frame and not
+    // the previous one.
     protected virtual void Update()
     {
         // Check every frame if we are moving and if so , invoke the OnMove event.
-        if (enableMovement && isMoving) {
+        if (movementEnabled && isMoving) {
             OnMove?.Invoke();
         }
     }

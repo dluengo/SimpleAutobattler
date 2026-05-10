@@ -21,6 +21,11 @@ public class ArcherController : EnemyController
     {
         base.Update();
 
+        // If we don't have a player, just stop
+        if (player == null) {
+            return;
+        }
+
         // Always look towards the player
         lookDir = (player.transform.position - transform.position).normalized;
 

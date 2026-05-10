@@ -10,9 +10,7 @@ public class GoblinMove : ActorMove
     // --- Methods ---
     protected override void Update()
     {
-        base.Update();
-
-        // Move in the direction of the player.
+        // Move in the target of the player.
         if (m_enemyController.player != null) {
             Vector2 playerDir = m_enemyController.player.transform.position - transform.position;
 
@@ -22,5 +20,7 @@ public class GoblinMove : ActorMove
         else {
             m_actor.move.moveDir = Vector2.zero;
         }
+
+        base.Update();
     }
 }

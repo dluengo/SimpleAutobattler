@@ -11,13 +11,13 @@ public class PlayerMove : ActorMove
     // --- Methods ---
     protected override void Update()
     {
-        // Just let the OnMove handler update the move direction
+        // Just let the OnMove handler update the move target
     }
 
     // --- Input System Handlers ---
     public void OnMoveInputHandler(InputAction.CallbackContext context)
     {
-        if (enableMovement) {
+        if (movementEnabled) {
             if (context.performed) {
                 Vector2 input = context.ReadValue<Vector2>();
                 if (input.magnitude < m_minInputThreshold) {

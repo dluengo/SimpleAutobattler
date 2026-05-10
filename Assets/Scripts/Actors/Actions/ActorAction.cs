@@ -8,6 +8,7 @@ public abstract class ActorAction : MonoBehaviour
 {
     // --- Members ---
     [Header("--- Action Settings ---")]
+    public bool castStops = false;
     public float actionsPerSecond = 1f;
 
     // NOTE: keepGoing is used to determine if the action should automatically
@@ -25,7 +26,7 @@ public abstract class ActorAction : MonoBehaviour
     protected ActorController m_actor;
     protected Animator m_animator;
 
-    private ActionEndSMB m_actionEndSMB;
+    private ActionAnimSMB m_actionEndSMB;
     private string m_animClipName = "Actor-Action";
     private string m_animParamName = "Action";
     private float m_attackAnimDuration => m_animClip != null ? m_animClip.length : 0f;
@@ -51,19 +52,18 @@ public abstract class ActorAction : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        // Subscribe to ActionEndSMB's event
+        // Subscribe to ActionAnimSMB's event
         if (m_animator != null) {
-            foreach (var behaviour in m_animator.GetBehaviours<ActionEndSMB>()) {
+            foreach (var behaviour in m_animator.GetBehaviours<ActionAnimSMB>()) {
                 m_actionEndSMB = behaviour;
                 m_actionEndSMB.OnActionAnimEnd += ActionAnimEndHandler;
             }
         }
-
     }
 
     protected virtual void OnDisable()
     {
-        // Unsubscribe from ActionEndSMB's event
+        // Unsubscribe from ActionAnimSMB's event
         if (m_actionEndSMB != null) {
             m_actionEndSMB.OnActionAnimEnd -= ActionAnimEndHandler;
         }
@@ -81,14 +81,14 @@ public abstract class ActorAction : MonoBehaviour
 
     public virtual void StartAction(Vector2 direction)
     {
-        if (!m_actor.enableActions) {
+        if (!m_actor.actionsEnabled) {
             return;
         }
 
-        // We update the direction even if the action is on cooldown or already
+        // We update the target even if the action is on cooldown or already
         // being performed, so that the next time the action is performed it will
-        // use the most up-to-date direction.
-        actionDir = direction;
+        // use the most up-to-date target.
+        actionDir = direction.normalized;
 
         if (!onCooldown && !m_animRunning) {
             onCooldown = true;
@@ -99,6 +99,11 @@ public abstract class ActorAction : MonoBehaviour
             float speedMultiplier = m_attackAnimDuration > cooldown ? m_attackAnimDuration / cooldown : 1f;
             m_animator.SetFloat(m_speedMultiplierParamName, speedMultiplier);
 
+            // Check if the action should stop the actor's movement
+            if (castStops) {
+                m_actor.movementEnabled = false;
+            }
+
             m_animRunning = true;
             m_animator.SetTrigger(m_animParamName);
 
@@ -108,7 +113,7 @@ public abstract class ActorAction : MonoBehaviour
 
     protected abstract void PerformAction();
 
-    protected virtual IEnumerator CooldownCR(float cooldown)
+    private IEnumerator CooldownCR(float cooldown)
     {
         if (cooldown > 0f) {
             yield return new WaitForSeconds(cooldown);
@@ -127,6 +132,9 @@ public abstract class ActorAction : MonoBehaviour
     protected virtual void ActionAnimEndHandler()
     {
         m_animRunning = false;
+        if (castStops) {
+            m_actor.movementEnabled = true;
+        }
 
         OnActionEnd?.Invoke();
 
