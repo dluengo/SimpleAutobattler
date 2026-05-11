@@ -90,5 +90,14 @@ public class GameManager : MonoBehaviour
         //EditorCurveBinding binding = EditorCurveBinding.FloatCurve(string.Empty, typeof(UnityEngine.Animator), "ThisIsAnEmptyAnimationClip"); // Just dummy data
         //AnimationUtility.SetEditorCurve(clip, binding, curve);
         //AssetDatabase.CreateAsset(clip, "Assets/" + animClipName + ".anim");
+
+        // Set player sprite to 50% transparency for testing purposes
+        Debug.Log("TriggerAction called: setting player sprite to 50% transparency.");
+        SpriteRenderer spriteRenderer = Player.gameObject.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null) {
+            Color currColor = spriteRenderer.color;
+            Color newColor = new Color(currColor.r, currColor.g, currColor.b, 0.5f);
+            spriteRenderer.color = newColor;
+        }
     }
 }

@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 4a407391736cf49478959b5590de88cd
+guid: 58b1153dc29750047ae772e42826dce1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1545379965880211911
-    second: Icon_09_0
+      213: -4293973886983445537
+    second: Hearts-edited_0
+  - first:
+      213: 5975953711108681328
+    second: Hearts-edited_1
+  - first:
+      213: -5679372001833002034
+    second: Hearts-edited_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +106,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Icon_09_0
+      name: Hearts-edited_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 3
-        width: 53
-        height: 57
+        x: 25
+        y: 7
+        width: 211
+        height: 191
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 93664badb15bd8ae0800000000000000
-      internalID: -1545379965880211911
+      spriteID: fd36c8f008db864c0800000000000000
+      internalID: -4293973886983445537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hearts-edited_1
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 6
+        width: 213
+        height: 193
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07e6fc00d3adee250800000000000000
+      internalID: 5975953711108681328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hearts-edited_2
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 7
+        width: 211
+        height: 191
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecbd1734141de21b0800000000000000
+      internalID: -5679372001833002034
       vertices: []
       indices: 
       edges: []
@@ -125,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: bc701503d2f7a9841b1e77cd14554e79
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Icon_09_0: -1545379965880211911
+      Hearts-edited_0: -4293973886983445537
+      Hearts-edited_1: 5975953711108681328
+      Hearts-edited_2: -5679372001833002034
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

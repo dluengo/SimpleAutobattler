@@ -1,28 +1,53 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class HPUI : StatUIBase
 {
     // --- Members ---
     [SerializeField] HPStat hpStat;
-    [SerializeField] Image image;
-    [SerializeField] TextMeshProUGUI text;
+    [SerializeField] Sprite emptyHeartSprite;
+    [SerializeField] Sprite fullHeartSprite;
+    [SerializeField] GridLayoutGroup heartSlots;
 
 
     // --- Methods ---
     protected override void Awake()
     {
         Debug.Assert(hpStat != null, "HPStat is not assigned.");
-        Debug.Assert(image != null, "Image component is not assigned.");
-        Debug.Assert(text != null, "Text component is not assigned.");
 
         stat = hpStat;
         base.Awake();
     }
 
+    protected override void Start()
+    {
+        base.Start();
+
+        // Populate the heartImages list and set the initial heart sprites.
+        for (int i = 0; i < heartSlots.transform.childCount; i++) {
+            Image heartImage = heartSlots.transform.GetChild(i).GetComponent<Image>();
+            //heartImages.Add(heartImage);
+            heartImage.sprite = fullHeartSprite;
+        }
+    }
+
     protected override void UpdateUI()
     {
-        text.text = hpStat.currentValue.ToString();
+        float current = Mathf.Clamp(
+            hpStat.currentValue,
+            hpStat.minValue,
+            heartSlots.transform.childCount);
+
+        // Update the transparency of the heart images based on the current HP value.
+        for (int i = 0; i < heartSlots.transform.childCount; i++)
+        {
+            Image heartImage = heartSlots.transform.GetChild(i).GetComponent<Image>();
+            Color color = heartImage.color;
+
+            color.a = (i < current) ? 1f : 0f;
+            heartImage.color = color;
+        }
     }
 }

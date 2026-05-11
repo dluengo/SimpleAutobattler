@@ -6,9 +6,6 @@ public class HPStat : StatBase
 {
     // --- Members ---
     [Header("--- HP Settings ---")]
-    //[SerializeField] float minHP = 0f;
-    //[SerializeField] float maxHP;
-    //[SerializeField] float initialHP;
     [SerializeField] float invulnerabilityDuration = 0.5f;
 
     private bool m_isInvulnerable = false;
@@ -59,8 +56,7 @@ public class HPStat : StatBase
     private IEnumerator InvulnerabilityCR()
     {
         // Make the sprite 50% transparent
-        if (m_spriteRenderer != null)
-        {
+        if (m_spriteRenderer != null) {
             Color c = m_spriteRenderer.color;
             m_spriteRenderer.color = new Color(c.r, c.g, c.b, 0.5f);
         }
@@ -68,8 +64,7 @@ public class HPStat : StatBase
         yield return new WaitForSeconds(invulnerabilityDuration);
 
         // Restore sprite alpha
-        if (m_spriteRenderer != null)
-        {
+        if (m_spriteRenderer != null) {
             Color c = m_spriteRenderer.color;
             m_spriteRenderer.color = new Color(c.r, c.g, c.b, 1f);
         }
