@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,7 +50,11 @@ public class ActorController : MonoBehaviour
     private string m_deadAnimClipName = "Actor-Dead";
     private DeadAnimSMB m_deadEndSMB;
     private bool m_allowFlip = true;
-    
+
+
+    // --- Events ---
+    public event Action OnDeath;
+
 
     // --- Methods ---
     protected virtual void Awake()
@@ -208,6 +213,7 @@ public class ActorController : MonoBehaviour
     // --- Event Handlers ---
     private void DeadAnimEndHandler()
     {
+        OnDeath?.Invoke();
         Destroy(gameObject);
     }
 

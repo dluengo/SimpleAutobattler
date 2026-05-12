@@ -2,7 +2,7 @@
 - Project name: SimpleAutobattler
 - Unity version: Unity 6000.4.0f1
 - Active game object:
-  - Name: GameManager
+  - Name: Menu
   - Tag: Untagged
-  - Layer: Default
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

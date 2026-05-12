@@ -7,13 +7,12 @@ public class GameManager : MonoBehaviour
     // --- Singleton Instance ---
     public static GameManager Instance { get; private set; }
 
-    // To create an empty animation clip.
-    //[SerializeField] private string animClipName;
-
 
     // --- Members ---
     public PlayerController Player;
     public float ElapsedTime { get; private set; } = 0f;
+
+    [SerializeField] GameObject gameOverScreen;
 
     private int m_lastElapsedSeconds = 0;
 
@@ -33,6 +32,22 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         //DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        // Disable game over screen.
+        if (gameOverScreen != null) {
+            gameOverScreen.SetActive(false);
+        }
+
+        // Subscribe to the player's OnDeath event to trigger the game over screen.
+        if (Player != null) {
+            Player.actor.OnDeath += EndGame;
+        }
+        else {
+            Debug.LogWarning("GameManager: Player reference is not set. Game over screen will not be triggered on player death.");
+        }
     }
 
     private void Update()
@@ -73,6 +88,40 @@ public class GameManager : MonoBehaviour
         }
 
         return ret;
+    }
+
+    public static void PauseGame(bool pause) {
+        Time.timeScale = pause ? 0f : 1f;
+    }
+
+    public static void EndGame() {
+        Debug.Log("Game Over!");
+        PauseGame(true);
+
+        if (Instance.gameOverScreen != null) {
+            Instance.gameOverScreen.SetActive(true);
+        }
+    }
+
+
+    // --- Button Handlers ---
+    public void OnClickRetryButton()
+    {
+        Debug.Log("Retry button clicked: reloading the current scene.");
+        PauseGame(false);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void OnClickQuitButton()
+    {
+#if UNITY_EDITOR
+        // Stop play mode in the editor
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        // Quit the application in a build
+        Application.Quit();
+#endif
     }
 
 
