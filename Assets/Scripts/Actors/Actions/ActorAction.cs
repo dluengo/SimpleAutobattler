@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [RequireComponent(typeof(ActorController), typeof(Animator))]
@@ -11,13 +12,14 @@ public abstract class ActorAction : MonoBehaviour
     public bool castStops = false;
     public float actionsPerSecond = 1f;
 
-    // NOTE: keepGoing is used to determine if the action should automatically
+    // NOTE: keepCasting is used to determine if the action should automatically
     // repeat after it finishes its animation and/or its cooldown.
     // It allows for holding the attack button and continuously performing
     // the action without needing to press the button again.
-    [HideInInspector] public bool keepGoing = false;
+    [HideInInspector] public bool keepCasting = false;
     [HideInInspector] public bool onCooldown { get; protected set; } = false;
     [HideInInspector] public Vector2 actionDir { get; protected set; } = Vector2.zero;
+    [HideInInspector] public Vector2 target { get; protected set; } = Vector2.zero;
     [HideInInspector] public bool isBeingPerformed => m_animRunning;
 
     [SerializeField] protected AnimationClip m_animClip;
@@ -79,16 +81,23 @@ public abstract class ActorAction : MonoBehaviour
         }
     }
 
-    public virtual void StartAction(Vector2 direction)
+    public virtual void StartActionTarget(Vector2 target)
+    {
+        Vector2 direction = (target - (Vector2)transform.position).normalized;
+        this.target = target;
+        StartActionDirection(direction);
+    }
+
+    public virtual void StartActionDirection(Vector2 direction)
     {
         if (!m_actor.actionsEnabled) {
             return;
         }
 
-        // We update the target even if the action is on cooldown or already
+        // We update the direction even if the action is on cooldown or already
         // being performed, so that the next time the action is performed it will
-        // use the most up-to-date target.
-        actionDir = direction.normalized;
+        // use the most up-to-date direction.
+        actionDir = direction;
 
         if (!onCooldown && !m_animRunning) {
             onCooldown = true;
@@ -111,6 +120,10 @@ public abstract class ActorAction : MonoBehaviour
         }
     }
 
+    // ------------------------------------------------------------------------
+    // NOTE: This method should be called by an Animation Event in the frame
+    // where the action should be performed.
+    // ------------------------------------------------------------------------
     protected abstract void PerformAction();
 
     private IEnumerator CooldownCR(float cooldown)
@@ -122,8 +135,8 @@ public abstract class ActorAction : MonoBehaviour
 
         onCooldown = false;
 
-        if (keepGoing) {
-            StartAction(actionDir);
+        if (keepCasting) {
+            StartActionDirection(actionDir);
         }
     }
 
@@ -138,8 +151,8 @@ public abstract class ActorAction : MonoBehaviour
 
         OnActionEnd?.Invoke();
 
-        if (keepGoing) {
-            StartAction(actionDir);
+        if (keepCasting) {
+            StartActionDirection(actionDir);
         }
     }
 

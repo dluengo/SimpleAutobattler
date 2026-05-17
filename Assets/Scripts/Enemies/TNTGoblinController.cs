@@ -33,17 +33,17 @@ public class TNTGoblinController : EnemyController
 
 
     // --- Event Handlers ---
-    private void PlayerInRangeHandler()
+    private void PlayerInRangeHandler(GameObject playerGO)
     {
-        // If the player is in range, throw a dynamite at the player's position.
+        Debug.Log("Player in range of TNTGoblin!");
+        // If the enemyPlayer is in range, throw a dynamite at the enemyPlayer's position.
         if (actions.Count > 0) {
-            ThrowAttackAction throwAttackAction = actions[0] as ThrowAttackAction;
+            ThrowAttack throwAttackAction = actions[0] as ThrowAttack;
 
-            // In theory this enemy has a ThrowAttackAction component attached to it,
-            // if so we set the target to the player.
+            // In theory this enemy has a ThrowAttack component attached to it,
+            // if so we set the target to the enemyPlayer.
             if (throwAttackAction != null) {
-                throwAttackAction.target = player.transform.position;
-                throwAttackAction.StartAction(player.transform.position - transform.position);
+                throwAttackAction.StartActionTarget(playerGO.transform.position);
             }
         }
     }

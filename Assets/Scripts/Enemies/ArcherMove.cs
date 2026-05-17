@@ -9,24 +9,24 @@ public class ArcherMove : ActorMove
     // --- Methods ---
     protected override void Update()
     {
-        // If we don't have a player, just stop moving.
-        if (m_archerController.player == null) {
+        base.Update();
+
+        // If we don't have a enemyPlayer, just stop moving.
+        if (m_archerController.enemyPlayer == null) {
             m_actor.move.moveDir = Vector2.zero;
             return;
         }
 
-        // Archers move within range of the player
-        Vector2 dirPlayer = m_archerController.player.transform.position - transform.position;
+        // Archers move within range of the enemyPlayer
+        Vector2 dirPlayer = m_archerController.enemyPlayer.transform.position - transform.position;
         float distanceToPlayer = dirPlayer.magnitude;
         if (distanceToPlayer > m_archerController.range) {
-            // Move towards player
+            // Move towards enemyPlayer
             m_actor.move.moveDir = dirPlayer;
         }
         else {
             // Stop moving
             m_actor.move.moveDir = Vector2.zero;
         }
-
-        base.Update();
     }
 }

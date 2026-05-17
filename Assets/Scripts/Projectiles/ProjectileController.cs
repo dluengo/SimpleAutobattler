@@ -24,16 +24,65 @@ public class ProjectileController : MonoBehaviour
             }
         }
     }
-
-    [HideInInspector]
-    public Vector2 target = Vector2.zero;
+    [HideInInspector] public float moveSpeed
+    {
+        get => m_move != null ? m_move.moveSpeed : 0f;
+        set
+        {
+            if (m_move != null) {
+                m_move.moveSpeed = value;
+            }
+            else {
+                Debug.LogWarning("ProjectileController: Attempting to set moveSpeed but no ProjectileMove component found.");
+            }
+        }
+    }
+    [HideInInspector] public float rotationSpeed
+    {
+        get => m_move != null ? m_move.rotationSpeed : 0f;
+        set
+        {
+            if (m_move != null) {
+                m_move.rotationSpeed = value;
+            }
+            else {
+                Debug.LogWarning("ProjectileController: Attempting to set rotationSpeed but no ProjectileMove component found.");
+            }
+        }
+    }
+    [HideInInspector] public float arcHeight
+    {
+        get => m_move is ThrowMove throwMove ? throwMove.arcHeight : 0f;
+        set
+        {
+            if (m_move is ThrowMove throwMove) {
+                throwMove.arcHeight = value;
+            }
+            else {
+                Debug.LogWarning("ProjectileController: Attempting to set arcHeight but ProjectileMove component is not a ThrowMove.");
+            }
+        }
+    }
+    //[HideInInspector] public Vector2? target = null;
+    [HideInInspector] public Vector2? target
+    {
+        get => m_move != null ? m_move.target : null;
+        set
+        {
+            if (m_move != null) {
+                m_move.target = value;
+            }
+            else {
+                Debug.LogWarning("ProjectileController: Attempting to set target but no ProjectileMove component found.");
+            }
+        }
+    }
 
     [SerializeField] protected float expireTime = 5f;
     [SerializeField] protected AnimationClip m_idleClip;
     [SerializeField] protected AnimationClip m_endClip;
     [SerializeField] protected float m_gizmoRadius = 0.1f;
 
-    protected Rigidbody2D m_rb { get; private set; }
     protected ProjectileMove m_move { get; private set; }
     protected Animator m_animator { get; private set; }
     protected ProjectileEndAnimSMB m_projectileEndSMB { get; private set; }
@@ -49,16 +98,24 @@ public class ProjectileController : MonoBehaviour
 
 
     // --- Methods ---
+    // NOTE: This method should be called right after instatiating a new m_projectile.
+    // Due to the nature of the member moveDir (a reference to the m_move member), if
+    // the creator of the m_projectile wants to set the moveDir immediately after 
+    // instantiate the m_projectile (i.e. most likely scenario), the m_move member
+    // must be initialized before moveDir is set from the outside.
+    public void Init()
+    {
+        m_move = GetComponent<ProjectileMove>();
+        
+        SubscribeOnTargetReached();
+    }
+
     protected virtual void Awake()
     {
-        m_rb = GetComponent<Rigidbody2D>();
-        //Debug.Assert(m_rb != null, "ProjectileController: Rigidbody2D component is missing.");
-
         // NOTE: Projectile may not have a movement component. Weird but possible.
         m_move = GetComponent<ProjectileMove>();
 
         m_animator = GetComponent<Animator>();
-        Debug.Assert(m_animator != null, "ProjectileController: Animator component is missing.");
         if (m_animator != null) {
             m_animOverrideController = new AnimatorOverrideController(m_animator.runtimeAnimatorController);
             m_animator.runtimeAnimatorController = m_animOverrideController;
@@ -68,7 +125,7 @@ public class ProjectileController : MonoBehaviour
     // NOTE: The handler of the OnExit event will Destroy the gameObject.
     // Extenders of this class should call base.OnEnable() at the end of their
     // OnEnable() method to ensure their handlers run before this handler
-    // finishes the projectile.
+    // finishes the m_projectile.
     protected virtual void OnEnable()
     {
         // Susbcribe to the StateExistSMB OnDeadAnimEnd event to know when the explosion animation finishes
@@ -78,6 +135,8 @@ public class ProjectileController : MonoBehaviour
                 m_projectileEndSMB.OnExit += DestroyProjectile;
             }
         }
+
+        SubscribeOnTargetReached();
     }
 
     protected virtual void OnDisable()
@@ -87,14 +146,16 @@ public class ProjectileController : MonoBehaviour
             m_projectileEndSMB.OnExit -= DestroyProjectile;
             m_projectileEndSMB = null;
         }
+
+        UnsubscribeOnTargetReached();
     }
 
     protected virtual void Start()
     {
-        // Set the projectile into the same layer as the thrower.
+        // Set the m_projectile into the same layer as the thrower.
         // We've configured the collision matrix so that Player and Enemy layers
         // don't collide with themselves, so enemy projectiles can't collide with
-        // enemies and player projectiles can't collide with the player.
+        // enemies and enemyPlayer projectiles can't collide with the enemyPlayer.
         if (thrower != null) {
             gameObject.layer = thrower.gameObject.layer;
         }
@@ -122,34 +183,11 @@ public class ProjectileController : MonoBehaviour
     private IEnumerator DestroyAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
+
+        // NOTE: When a projectile expires we are not triggering any ending effect.
+        // We just destroy the projectile.
         OnProjectileExpired?.Invoke();
         Destroy(gameObject);
-    }
-
-    protected virtual void Update()
-    {
-        // Rotate to face move direction if we have a movement component and are moving
-        if (m_move != null && m_move.moveDir != Vector2.zero) {
-            float angle = Mathf.Atan2(m_move.moveDir.y, m_move.moveDir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, 0f, angle);
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (m_move != null && m_move.moveDir != Vector2.zero) {
-
-            // There's a rigidbody in this projectile.
-            if (m_rb != null) {
-                m_rb.MovePosition(
-                    (Vector2)transform.position + m_move.moveDir.normalized * m_move.projectileSpeed * Time.fixedDeltaTime);
-            }
-            // No rigidbody, just move the transform.
-            else {
-                //transform.position += (Vector3)(m_move.moveDir.normalized * m_move.projectileSpeed * Time.fixedDeltaTime);
-                transform.Translate(m_move.moveDir.normalized * m_move.projectileSpeed * Time.fixedDeltaTime, Space.World);
-            }
-        }
     }
 
     private void End()
@@ -157,12 +195,33 @@ public class ProjectileController : MonoBehaviour
         // Trigger end effect if any.
         if (m_animator != null) {
             m_animator.SetTrigger(m_endTriggerParamName);
+
+            // NOTE: Here we set the collider to trigger so it can play its end
+            // animation and may change the collider size without colliding with
+            // other objects (and displacing them) while still being able to check
+            // for overlaps with other objects.
+            Collider2D collider = GetComponent<Collider2D>();
+            if (collider != null) {
+                collider.isTrigger = true;
+            }
         }
         else {
             DestroyProjectile();
         }
 
         // We are subscribed to the OnExit event of the End State of the AnimatorController.
+    }
+
+    private void SubscribeOnTargetReached() {
+        if (m_move != null) {
+            m_move.OnTargetReached += End;
+        }
+    }
+
+    private void UnsubscribeOnTargetReached() {
+        if (m_move != null) {
+            m_move.OnTargetReached -= End;
+        }
     }
 
 
@@ -189,7 +248,7 @@ public class ProjectileController : MonoBehaviour
             bool throwerIsEnemy = thrower.CompareTag("Enemy");
             bool hitIsEnemy = hitActor.CompareTag("Enemy");
 
-            // Player projectiles should not hit the player, only enemies
+            // Player projectiles should not hit the enemyPlayer, only enemies
             if (throwerIsPlayer && hitIsPlayer) {
                 // Ignore collision with self
                 return;
@@ -209,16 +268,5 @@ public class ProjectileController : MonoBehaviour
         }
 
         End();
-    }
-
-
-    // --- Gizmos ---
-    private void OnDrawGizmos()
-    {
-        // Draw a red line in the direction of moveDir for debugging
-        if (m_move != null) {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(target, m_gizmoRadius);
-        }
     }
 }

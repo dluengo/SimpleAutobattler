@@ -41,12 +41,12 @@ public class GameManager : MonoBehaviour
             gameOverScreen.SetActive(false);
         }
 
-        // Subscribe to the player's OnDeath event to trigger the game over screen.
+        // Subscribe to the enemyPlayer's OnDeath event to trigger the game over screen.
         if (Player != null) {
             Player.actor.OnDeath += EndGame;
         }
         else {
-            Debug.LogWarning("GameManager: Player reference is not set. Game over screen will not be triggered on player death.");
+            Debug.LogWarning("GameManager: Player reference is not set. Game over screen will not be triggered on enemyPlayer death.");
         }
     }
 
@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
     // in the input system.
     public void TriggerAction()
     {
-        // Press space to kill the player for testing purposes
+        // Press space to kill the enemyPlayer for testing purposes
         //Player.actor.Die();
 
         // To create an empty animation clip.
@@ -140,8 +140,8 @@ public class GameManager : MonoBehaviour
         //AnimationUtility.SetEditorCurve(clip, binding, curve);
         //AssetDatabase.CreateAsset(clip, "Assets/" + animClipName + ".anim");
 
-        // Set player sprite to 50% transparency for testing purposes
-        Debug.Log("TriggerAction called: setting player sprite to 50% transparency.");
+        // Set enemyPlayer sprite to 50% transparency for testing purposes
+        Debug.Log("TriggerAction called: setting enemyPlayer sprite to 50% transparency.");
         SpriteRenderer spriteRenderer = Player.gameObject.GetComponent<SpriteRenderer>();
         if (spriteRenderer != null) {
             Color currColor = spriteRenderer.color;

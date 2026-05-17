@@ -75,7 +75,7 @@ public class HPStat : StatBase
     // --- Event Handlers ---
     private void OnHPZeroHandler()
     {
-        //Debug.Log($"{m_actor.gameObject.name} has reached 0 HP and will die.");
+        //Debug.Log($"{m_enemyActor.gameObject.name} has reached 0 HP and will die.");
         m_actor.Die();
     }
 }

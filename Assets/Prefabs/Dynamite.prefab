@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8848761403639062638}
   - component: {fileID: 2584166513043487560}
   - component: {fileID: 4979153003040173999}
-  - component: {fileID: 1904895078906662605}
+  - component: {fileID: 6206611510683920926}
   m_Layer: 0
   m_Name: Dynamite
   m_TagString: Untagged
@@ -129,7 +129,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.056559026}
+  m_Offset: {x: -0.012237072, y: -0.037954092}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -139,7 +139,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.33869553, y: 0.48661864}
+  m_Size: {x: 0.36316204, y: 0.57276845}
   m_EdgeRadius: 0
 --- !u!95 &2584166513043487560
 Animator:
@@ -177,23 +177,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileController
   damage: 1
   thrower: {fileID: 0}
-  target: {x: 0, y: 0}
   expireTime: 5
   m_idleClip: {fileID: 7400000, guid: 6a3b8a735a84e7f4daa18d030e7d3dba, type: 2}
   m_endClip: {fileID: 7400000, guid: e3f25ae2c86623944855ec79b94c456a, type: 2}
   m_gizmoRadius: 0.5
---- !u!114 &1904895078906662605
-MonoBehaviour:
+--- !u!50 &6206611510683920926
+Rigidbody2D:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4966302532219181152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d58b833387ebf0e4f9a1fbbca39e90c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  moveDir: {x: 0, y: 0}
-  projectileSpeed: 10
-  arcHeight: 1
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

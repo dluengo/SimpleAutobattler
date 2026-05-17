@@ -10,17 +10,17 @@ public class GoblinMove : ActorMove
     // --- Methods ---
     protected override void Update()
     {
-        // Move in the target of the player.
-        if (m_enemyController.player != null) {
-            Vector2 playerDir = m_enemyController.player.transform.position - transform.position;
+        base.Update();
 
-            // Goblins just run towards the player.
+        // Move in the target of the enemyPlayer.
+        if (m_enemyController.enemyPlayer != null) {
+            Vector2 playerDir = m_enemyController.enemyPlayer.transform.position - transform.position;
+
+            // Goblins just run towards the enemyPlayer.
             m_actor.move.moveDir = playerDir.normalized;
         }
         else {
             m_actor.move.moveDir = Vector2.zero;
         }
-
-        base.Update();
     }
 }

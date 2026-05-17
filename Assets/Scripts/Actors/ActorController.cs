@@ -28,7 +28,12 @@ public class ActorController : MonoBehaviour
         protected set => m_lookDir = value.normalized;
     }
 
-    public ActorMove move { get; protected set; }
+    protected ActorMove m_move;
+    public ActorMove move
+    {
+        get => m_move;
+        protected set => m_move = value;
+    }
     public List<ActorAction> actions { get; protected set; }
     public Animator animator { get; protected set; }
 
@@ -39,10 +44,12 @@ public class ActorController : MonoBehaviour
         protected set => m_enemyLayer = value;
     }
 
+    [SerializeField] bool enableLookDirGizmo = true;
     [SerializeField] AnimationClip m_idleClip;
     [SerializeField] AnimationClip m_deadClip;
 
     protected Rigidbody2D m_rb;
+    protected HPStat m_hpStat;
     protected AnimatorOverrideController m_animOverrideController;
 
     private string m_idleAnimClipName = "Actor-Idle";
@@ -65,8 +72,9 @@ public class ActorController : MonoBehaviour
         animator = GetComponent<Animator>();
         Debug.Assert(animator != null, "ActorController: Animator component is missing.");
 
-        // NOTE: It's ok if an actor cannot move.
+        // NOTE: It's ok if an actor cannot move or doesn't have hp (cannot take damage).
         move = GetComponent<ActorMove>();
+        m_hpStat = GetComponent<HPStat>();
 
         // NOTE: AnimationClips are changeable at runtime, so we need to use an
         // AnimatorOverrideController to override the clips in the animator controller.
@@ -138,7 +146,7 @@ public class ActorController : MonoBehaviour
         if (!lookDirUpdated && move != null) {
 
             // If moving this frame, update lookDir to match moveDir. Otherwise
-            // just keepGoing looking in the same target when idle.
+            // just keepCasting looking in the same target when idle.
             if (move.moveDir != Vector2.zero) {
                 lookDir = move.moveDir;
                 lookDirUpdated = true;
@@ -206,7 +214,19 @@ public class ActorController : MonoBehaviour
         actionsEnabled = false;
 
         animator.SetBool(m_deadAnimParamName, true);
-        //animator.Play(m_deadStateName);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (m_hpStat != null) {
+            m_hpStat.TakeDamage(damage);
+        }
+    }
+
+    public bool ActorIsEnemy(ActorController actor)
+    {
+        // Check if the actor is on the enemy layer
+        return (enemyLayer.value & (1 << actor.gameObject.layer)) > 0;
     }
 
 
@@ -222,8 +242,10 @@ public class ActorController : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         // Draw a line indicating the look moveDir
-        Gizmos.color = Color.blue;
-        Vector3 lookDirection = new Vector3(lookDir.x, lookDir.y, 0f);
-        Gizmos.DrawLine(transform.position, transform.position + lookDirection);
+        if (enableLookDirGizmo) {
+            Gizmos.color = Color.blue;
+            Vector3 lookDirection = new Vector3(lookDir.x, lookDir.y, 0f);
+            Gizmos.DrawLine(transform.position, transform.position + lookDirection);
+        }
     }
 }

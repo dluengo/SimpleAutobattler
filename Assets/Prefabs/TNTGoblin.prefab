@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 1467548968485818761}
   - component: {fileID: 8554183680161340730}
   - component: {fileID: 7890767598670965802}
-  - component: {fileID: 1648137900844889331}
+  - component: {fileID: 8516675031916318852}
   - component: {fileID: 4925146582326606734}
   m_Layer: 7
   m_Name: TNTGoblin
@@ -247,11 +247,12 @@ MonoBehaviour:
   m_enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  enableLookDirGizmo: 1
   m_idleClip: {fileID: 7400000, guid: b016469bbe07a33468a47cc341fe8529, type: 2}
   m_deadClip: {fileID: 7400000, guid: 480128e3a32242f499a376a5cca50558, type: 2}
   m_contactDamage: 1
   m_dynamitePrefab: {fileID: 4966302532219181152, guid: 6f17cf35f30e1e3439d9e9d5c477125e, type: 3}
---- !u!114 &1648137900844889331
+--- !u!114 &8516675031916318852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -260,14 +261,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8494490834174860631}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07e19def3530f394c861e294bb88eb52, type: 3}
+  m_Script: {fileID: 11500000, guid: b7db5372c1a907e4083ffb4de75fbd27, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMove
   m_movementEnabled: 1
-  m_moveSpeed: 3
+  m_moveSpeed: 2
   m_moveAnimClip: {fileID: 7400000, guid: e1af5e88f60c94548af37dfc1be10f51, type: 2}
-  m_range: 5
-  m_fleeRange: 3
+  chaseRangeRadius: 10
+  fleeRangeRadius: 1.5
+  enableChaseRangeGizmo: 1
+  enableFleeRangeGizmo: 1
 --- !u!114 &4925146582326606734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +285,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ThrowAttackAction
   castStops: 0
   actionsPerSecond: 0.3
-  keepGoing: 0
+  keepCasting: 0
   m_animClip: {fileID: 7400000, guid: f079b65d77bb204499639e09d8a06450, type: 2}
-  target: {x: 0, y: 0}
+  damage: 1
+  enableSuggestedDistanceGizmo: 1
+  suggestedDistance: 0
+  m_projectileSpeed: 10
+  m_projectileRotationSpeed: 360
   m_projectilePrefab: {fileID: 4966302532219181152, guid: 6f17cf35f30e1e3439d9e9d5c477125e, type: 3}
+  m_projectileMoveCompPrefab: {fileID: 0}
+  throwArcHeight: 2

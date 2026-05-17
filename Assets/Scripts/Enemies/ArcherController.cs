@@ -21,18 +21,18 @@ public class ArcherController : EnemyController
     {
         base.Update();
 
-        // If we don't have a player, just stop
-        if (player == null) {
+        // If we don't have a enemyPlayer, just stop
+        if (enemyPlayer == null) {
             return;
         }
 
-        // Always look towards the player
-        lookDir = (player.transform.position - transform.position).normalized;
+        // Always look towards the enemyPlayer
+        lookDir = (enemyPlayer.transform.position - transform.position).normalized;
 
-        // When close enought to the player, perform the first action in the list
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        // When close enought to the enemyPlayer, perform the first action in the list
+        float distanceToPlayer = Vector2.Distance(transform.position, enemyPlayer.transform.position);
         if (distanceToPlayer <= m_range && actions.Count > 0) {
-            actions[0].StartAction(lookDir);
+            actions[0].StartActionDirection(lookDir);
         }
     }
 

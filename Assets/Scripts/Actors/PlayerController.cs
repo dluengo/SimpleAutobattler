@@ -22,12 +22,12 @@ public class PlayerController : MonoBehaviour
         //NOTE: We have to check every frame for the attack button being held down.
         // This is to allow for changing the attack target while holding more
         // than one button.
-        if (actor.actions.Count > 0 && actor.actions[0].keepGoing) {
+        if (actor.actions.Count > 0 && actor.actions[0].keepCasting) {
             Vector2 attackDirection = PollAttackDirection();
 
-            // StartAction updates the attack target even if the action is
+            // StartActionDirection updates the attack target even if the action is
             // being performed.
-            actor.actions[0].StartAction(attackDirection);
+            actor.actions[0].StartActionDirection(attackDirection);
         }
     }
 
@@ -119,11 +119,11 @@ public class PlayerController : MonoBehaviour
 
         if (context.performed) {
             Vector2 attackDirection = GetAttackDirection(context);
-            actor.actions[0].keepGoing = true;
-            actor.actions[0].StartAction(attackDirection);
+            actor.actions[0].keepCasting = true;
+            actor.actions[0].StartActionDirection(attackDirection);
         }
         else if (context.canceled) {
-            actor.actions[0].keepGoing = false;
+            actor.actions[0].keepCasting = false;
         }
     }
 

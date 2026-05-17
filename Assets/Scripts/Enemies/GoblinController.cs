@@ -48,10 +48,10 @@ public class GoblinController : EnemyController
 
     //private void CheckPlayerAndDamage(Collision2D collision)
     //{
-    //    // Check if the collision is with the player
+    //    // Check if the collision is with the enemyPlayer
     //    if (collision.gameObject.CompareTag("Player")) {
 
-    //        // Apply damage to the player
+    //        // Apply damage to the enemyPlayer
     //        HPStat playerHp = collision.gameObject.GetComponent<HPStat>();
     //        if (playerHp != null) {
     //            playerHp.TakeDamage(m_contactDamage);
