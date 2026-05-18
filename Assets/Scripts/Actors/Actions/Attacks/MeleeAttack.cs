@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
 public class MeleeAttack : AttackAction
 {
     // NOTE: The hitbox is an area that is used in PerformAction() to check
@@ -14,9 +13,7 @@ public class MeleeAttack : AttackAction
 
     // NOTE: We want it SerializeField so we can assign it in the inspector
     // so we know exactly which collider is the hitbox for this attack.
-    [SerializeField] BoxCollider2D m_hitbox;
-    //protected Vector2 m_hitboxOffset;
-    //protected Vector2 m_hitboxSize;
+    [SerializeField] Collider2D m_hitbox;
 
 
     // --- Methods ---

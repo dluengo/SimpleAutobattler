@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1498727963252786398}
   - component: {fileID: 4764750666542875719}
-  - component: {fileID: 8848761403639062638}
   - component: {fileID: 2584166513043487560}
-  - component: {fileID: 4979153003040173999}
+  - component: {fileID: 8848761403639062638}
   - component: {fileID: 6206611510683920926}
+  - component: {fileID: 4979153003040173999}
   m_Layer: 0
   m_Name: Dynamite
   m_TagString: Untagged
@@ -95,6 +95,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &2584166513043487560
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4966302532219181152}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fa2b8dc2a21c21f4ca83fb24a9c37463, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &8848761403639062638
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -141,46 +163,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.36316204, y: 0.57276845}
   m_EdgeRadius: 0
---- !u!95 &2584166513043487560
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4966302532219181152}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fa2b8dc2a21c21f4ca83fb24a9c37463, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4979153003040173999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4966302532219181152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c48e70f5798cce849bc4d0d2a8a78e91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectileController
-  damage: 1
-  thrower: {fileID: 0}
-  expireTime: 5
-  m_idleClip: {fileID: 7400000, guid: 6a3b8a735a84e7f4daa18d030e7d3dba, type: 2}
-  m_endClip: {fileID: 7400000, guid: e3f25ae2c86623944855ec79b94c456a, type: 2}
-  m_gizmoRadius: 0.5
 --- !u!50 &6206611510683920926
 Rigidbody2D:
   serializedVersion: 5
@@ -208,3 +190,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &4979153003040173999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4966302532219181152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c48e70f5798cce849bc4d0d2a8a78e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileController
+  damage: 1
+  thrower: {fileID: 0}
+  expireTime: 5
+  m_idleClip: {fileID: 7400000, guid: 6a3b8a735a84e7f4daa18d030e7d3dba, type: 2}
+  m_endClip: {fileID: 7400000, guid: e3f25ae2c86623944855ec79b94c456a, type: 2}
+  m_gizmoRadius: 0.5
