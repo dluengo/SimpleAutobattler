@@ -9,8 +9,6 @@ public class EnemyController : ActorController
     [SerializeField] float m_contactDamage = 1f;
 
     protected EnemyMove enemyMove;
-    // NOTE: It is returning null, something may be off.
-    //protected new EnemyMove move { get => m_move as EnemyMove; }
 
 
     // --- Methods ---

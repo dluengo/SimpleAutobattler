@@ -84,6 +84,11 @@ public class PlayerController : MonoBehaviour
             if (Gamepad.current.buttonSouth.isPressed) return Vector2.down;
             if (Gamepad.current.buttonWest.isPressed) return Vector2.left;
             if (Gamepad.current.buttonEast.isPressed) return Vector2.right;
+
+            Vector2 rightStickValue = Gamepad.current.rightStick.ReadValue();
+            if (rightStickValue.magnitude > m_minInputThreshold) {
+                return rightStickValue.normalized;
+            }
         }
 
         // Fallback to movement target or right

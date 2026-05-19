@@ -31,6 +31,8 @@ public abstract class ActorAction : MonoBehaviour
     private ActionAnimSMB m_actionEndSMB;
     private string m_animClipName = "Actor-Action";
     private string m_animParamName = "Action";
+    private string m_actionXParamName = "ActionX";
+    private string m_actionYParamName = "ActionY";
     private float m_attackAnimDuration => m_animClip != null ? m_animClip.length : 0f;
     private string m_speedMultiplierParamName = "ActionSpeedMultiplier";
     private bool m_animRunning = false;
@@ -114,6 +116,8 @@ public abstract class ActorAction : MonoBehaviour
             }
 
             m_animRunning = true;
+            m_animator.SetFloat(m_actionXParamName, actionDir.x);
+            m_animator.SetFloat(m_actionYParamName, actionDir.y);
             m_animator.SetTrigger(m_animParamName);
 
             StartCoroutine(CooldownCR(cooldown));
