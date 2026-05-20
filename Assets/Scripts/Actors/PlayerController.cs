@@ -69,17 +69,21 @@ public class PlayerController : MonoBehaviour
     private Vector2 PollAttackDirection()
     {
         // Keyboard arrows
-        if (Keyboard.current != null)
-        {
+        if (Keyboard.current != null) {
             if (Keyboard.current.upArrowKey.isPressed) return Vector2.up;
             if (Keyboard.current.downArrowKey.isPressed) return Vector2.down;
             if (Keyboard.current.leftArrowKey.isPressed) return Vector2.left;
             if (Keyboard.current.rightArrowKey.isPressed) return Vector2.right;
         }
 
-        // Gamepad face buttons
-        if (Gamepad.current != null)
-        {
+        if (Gamepad.current != null) {
+            // Gamepad right stick
+            Vector2 rightStick = Gamepad.current.rightStick.ReadValue();
+            if (rightStick.magnitude > m_minInputThreshold) {
+                return rightStick.normalized;
+            }
+
+            // Gamepad face buttons
             if (Gamepad.current.buttonNorth.isPressed) return Vector2.up;
             if (Gamepad.current.buttonSouth.isPressed) return Vector2.down;
             if (Gamepad.current.buttonWest.isPressed) return Vector2.left;
