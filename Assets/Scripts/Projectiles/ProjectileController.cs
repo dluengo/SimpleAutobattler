@@ -192,6 +192,9 @@ public class ProjectileController : MonoBehaviour
 
     private void End()
     {
+        // Stop moving immediately.
+        moveDir = Vector2.zero;
+
         // Trigger end effect if any.
         if (m_animator != null) {
             m_animator.SetTrigger(m_endTriggerParamName);

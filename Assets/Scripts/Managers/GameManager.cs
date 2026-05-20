@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
     public void TriggerAction()
     {
         // Press space to kill the enemyPlayer for testing purposes
-        //Player.actor.Die();
+        Player.actor.Die();
 
         // To create an empty animation clip.
         //AnimationClip clip = new AnimationClip();
@@ -141,12 +141,12 @@ public class GameManager : MonoBehaviour
         //AssetDatabase.CreateAsset(clip, "Assets/" + animClipName + ".anim");
 
         // Set enemyPlayer sprite to 50% transparency for testing purposes
-        Debug.Log("TriggerAction called: setting enemyPlayer sprite to 50% transparency.");
-        SpriteRenderer spriteRenderer = Player.gameObject.GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null) {
-            Color currColor = spriteRenderer.color;
-            Color newColor = new Color(currColor.r, currColor.g, currColor.b, 0.5f);
-            spriteRenderer.color = newColor;
-        }
+        //Debug.Log("TriggerAction called: setting enemyPlayer sprite to 50% transparency.");
+        //SpriteRenderer spriteRenderer = Player.gameObject.GetComponent<SpriteRenderer>();
+        //if (spriteRenderer != null) {
+        //    Color currColor = spriteRenderer.color;
+        //    Color newColor = new Color(currColor.r, currColor.g, currColor.b, 0.5f);
+        //    spriteRenderer.color = newColor;
+        //}
     }
 }

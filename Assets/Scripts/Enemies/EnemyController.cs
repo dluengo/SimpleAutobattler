@@ -6,11 +6,11 @@ public class EnemyController : ActorController
     public PlayerController enemyPlayer { get; protected set; }
 
     [Header("--- Enemy Settings ---")]
+    public bool neutral = false;
+
     [SerializeField] float m_contactDamage = 1f;
 
     protected EnemyMove enemyMove;
-    // NOTE: It is returning null, something may be off.
-    //protected new EnemyMove move { get => m_move as EnemyMove; }
 
 
     // --- Methods ---
@@ -66,7 +66,32 @@ public class EnemyController : ActorController
     {
         base.Update();
 
+        // If there is no move component, do nothing.
+        if (enemyMove == null) {
+            return;
+        }
+
+        // If there is no player, do nothing.
         if (enemyPlayer == null) {
+            enemyMove.moveDir = Vector2.zero;
+            return;
+        }
+
+        Vector2 directionToPlayer = enemyPlayer.transform.position - transform.position;
+        float distanceToPlayer = directionToPlayer.magnitude;
+
+        // If enemy is neutral and the player is inside enemy's flee range, flee.
+        if (neutral) {
+
+            // Player too close, flee.
+            if (enemyMove != null && distanceToPlayer < enemyMove.fleeRangeRadius) {
+                enemyMove.moveDir = -directionToPlayer.normalized;
+            }
+            // Player is far, do nothing.
+            else {
+                move.moveDir = Vector2.zero;
+            }
+
             return;
         }
 
@@ -74,9 +99,6 @@ public class EnemyController : ActorController
         lookDir = (enemyPlayer.transform.position - transform.position).normalized;
 
         if (enemyMove != null) {
-
-            // When close enought to the enemyPlayer, perform the first action in the list
-            float distanceToPlayer = Vector2.Distance(transform.position, enemyPlayer.transform.position);
             if (distanceToPlayer <= enemyMove.chaseRangeRadius && actions.Count > 0) {
                 //actions[0].StartActionDirection(lookDir);
                 actions[0].StartActionTarget(enemyPlayer.transform.position);

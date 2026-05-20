@@ -14,6 +14,13 @@ public abstract class RangedAttack : AttackAction
 
 
     // --- Methods ---
+    protected override void Awake()
+    {
+        base.Awake();
+
+        Debug.Assert(m_projectileMoveCompPrefab != null, "RangedAttack: m_projectileMoveCompPrefab is not assigned.");
+    }
+
     protected GameObject CreateProjectile()
     {
         // Create m_projectile and add the move component to it.

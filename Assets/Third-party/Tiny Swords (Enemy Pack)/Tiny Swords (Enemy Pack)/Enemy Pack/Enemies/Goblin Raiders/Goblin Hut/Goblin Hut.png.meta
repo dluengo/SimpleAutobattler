@@ -211,7 +211,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -225,7 +225,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -248,7 +248,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -277,12 +277,12 @@ TextureImporter:
       name: Goblin Hut_0
       rect:
         serializedVersion: 2
-        x: 121
-        y: 221
-        width: 8
-        height: 7
+        x: 0
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -299,12 +299,12 @@ TextureImporter:
       name: Goblin Hut_1
       rect:
         serializedVersion: 2
-        x: 314
-        y: 222
-        width: 6
-        height: 6
+        x: 192
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -321,12 +321,12 @@ TextureImporter:
       name: Goblin Hut_2
       rect:
         serializedVersion: 2
-        x: 498
-        y: 216
-        width: 12
-        height: 10
+        x: 384
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -343,12 +343,12 @@ TextureImporter:
       name: Goblin Hut_3
       rect:
         serializedVersion: 2
-        x: 690
-        y: 220
-        width: 11
-        height: 9
+        x: 576
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -365,12 +365,12 @@ TextureImporter:
       name: Goblin Hut_4
       rect:
         serializedVersion: 2
-        x: 882
-        y: 224
-        width: 8
-        height: 7
+        x: 768
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -387,12 +387,12 @@ TextureImporter:
       name: Goblin Hut_5
       rect:
         serializedVersion: 2
-        x: 1074
-        y: 225
-        width: 7
-        height: 6
+        x: 960
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -409,12 +409,12 @@ TextureImporter:
       name: Goblin Hut_6
       rect:
         serializedVersion: 2
-        x: 1090
-        y: 218
-        width: 9
-        height: 8
+        x: 1152
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -431,12 +431,12 @@ TextureImporter:
       name: Goblin Hut_7
       rect:
         serializedVersion: 2
-        x: 1268
-        y: 221
-        width: 23
-        height: 10
+        x: 1344
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -453,12 +453,12 @@ TextureImporter:
       name: Goblin Hut_8
       rect:
         serializedVersion: 2
-        x: 1457
-        y: 183
-        width: 34
-        height: 43
+        x: 1536
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -475,12 +475,12 @@ TextureImporter:
       name: Goblin Hut_9
       rect:
         serializedVersion: 2
-        x: 2808
-        y: 216
-        width: 13
-        height: 9
+        x: 1728
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -497,12 +497,12 @@ TextureImporter:
       name: Goblin Hut_10
       rect:
         serializedVersion: 2
-        x: 3000
-        y: 219
-        width: 10
-        height: 8
+        x: 1920
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -519,12 +519,12 @@ TextureImporter:
       name: Goblin Hut_11
       rect:
         serializedVersion: 2
-        x: 116
-        y: 203
-        width: 22
-        height: 18
+        x: 2112
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -541,12 +541,12 @@ TextureImporter:
       name: Goblin Hut_12
       rect:
         serializedVersion: 2
-        x: 307
-        y: 213
-        width: 13
-        height: 10
+        x: 2304
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -563,12 +563,12 @@ TextureImporter:
       name: Goblin Hut_13
       rect:
         serializedVersion: 2
-        x: 318
-        y: 206
-        width: 11
-        height: 10
+        x: 2496
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -585,12 +585,12 @@ TextureImporter:
       name: Goblin Hut_14
       rect:
         serializedVersion: 2
-        x: 510
-        y: 210
-        width: 10
-        height: 9
+        x: 2688
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -607,12 +607,12 @@ TextureImporter:
       name: Goblin Hut_15
       rect:
         serializedVersion: 2
-        x: 704
-        y: 215
-        width: 8
-        height: 7
+        x: 2880
+        y: 0
+        width: 192
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -625,957 +625,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_16
-      rect:
-        serializedVersion: 2
-        x: 897
-        y: 216
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f2c47a9b75d178120800000000000000
-      internalID: 2415931987721669679
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_17
-      rect:
-        serializedVersion: 2
-        x: 2034
-        y: 202
-        width: 21
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fdaf99f16913ffc10800000000000000
-      internalID: 2089443272968239839
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_18
-      rect:
-        serializedVersion: 2
-        x: 2228
-        y: 205
-        width: 23
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e8c2c50e83e364520800000000000000
-      internalID: 2685902641776307342
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_19
-      rect:
-        serializedVersion: 2
-        x: 2421
-        y: 210
-        width: 16
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 80f9cd51257d498d0800000000000000
-      internalID: -2840408717409870072
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_20
-      rect:
-        serializedVersion: 2
-        x: 2615
-        y: 213
-        width: 14
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cc627ce2abcc28f40800000000000000
-      internalID: 5729366775989479116
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_21
-      rect:
-        serializedVersion: 2
-        x: 2991
-        y: 198
-        width: 26
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2d1317166c0eb36a0800000000000000
-      internalID: -6468329297144630830
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_22
-      rect:
-        serializedVersion: 2
-        x: 1286
-        y: 200
-        width: 12
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3c98fea4a1fcffb80800000000000000
-      internalID: -8358734671543039549
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_23
-      rect:
-        serializedVersion: 2
-        x: 1650
-        y: 192
-        width: 29
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 79668cc8216e13290800000000000000
-      internalID: -7912290102967507305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_24
-      rect:
-        serializedVersion: 2
-        x: 1843
-        y: 197
-        width: 26
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 94d1a2036e7e31690800000000000000
-      internalID: -7632501967626298039
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_25
-      rect:
-        serializedVersion: 2
-        x: 2054
-        y: 208
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 69c1ad8eac30cebf0800000000000000
-      internalID: -293855705661039466
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_26
-      rect:
-        serializedVersion: 2
-        x: 2598
-        y: 195
-        width: 21
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0b4a9cc005ffaf830800000000000000
-      internalID: 4105874729578636464
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_27
-      rect:
-        serializedVersion: 2
-        x: 2793
-        y: 200
-        width: 22
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: faeb71a9da45a1e30800000000000000
-      internalID: 4474982284337331887
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_28
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 188
-        width: 14
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c6d99816ffbdbd800800000000000000
-      internalID: 638345662102609260
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_29
-      rect:
-        serializedVersion: 2
-        x: 703
-        y: 187
-        width: 20
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6e0f8737f7d916bd0800000000000000
-      internalID: -2638654735938686746
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_30
-      rect:
-        serializedVersion: 2
-        x: 898
-        y: 192
-        width: 18
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 624892a7c07204cc0800000000000000
-      internalID: -3728937556920138714
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_31
-      rect:
-        serializedVersion: 2
-        x: 1093
-        y: 196
-        width: 14
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 593ed977ee9583510800000000000000
-      internalID: 1529070954236208021
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_32
-      rect:
-        serializedVersion: 2
-        x: 1262
-        y: 180
-        width: 38
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e3702fd4c1e9b5d0800000000000000
-      internalID: -3046155437266144281
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_33
-      rect:
-        serializedVersion: 2
-        x: 2137
-        y: 14
-        width: 142
-        height: 182
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 363db32b15024cf10800000000000000
-      internalID: 2288990045865759587
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_34
-      rect:
-        serializedVersion: 2
-        x: 2406
-        y: 181
-        width: 43
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1dc4f37fc02eafe80800000000000000
-      internalID: -8143948430830514991
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_35
-      rect:
-        serializedVersion: 2
-        x: 2615
-        y: 183
-        width: 26
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a6dec8b2ce553f3a0800000000000000
-      internalID: -6632863353355309718
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_36
-      rect:
-        serializedVersion: 2
-        x: 2806
-        y: 189
-        width: 9
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3dba58d6c2d4b6b70800000000000000
-      internalID: 8893286742384552915
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_37
-      rect:
-        serializedVersion: 2
-        x: 2814
-        y: 195
-        width: 17
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e10830041d6526cb0800000000000000
-      internalID: -4872236390139330530
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_38
-      rect:
-        serializedVersion: 2
-        x: 2999
-        y: 190
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 24e7f12f1a7440800800000000000000
-      internalID: 577665413087723074
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_39
-      rect:
-        serializedVersion: 2
-        x: 217
-        y: 14
-        width: 142
-        height: 181
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a57ba8ebfc0dd3da0800000000000000
-      internalID: -5963380740895099046
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_40
-      rect:
-        serializedVersion: 2
-        x: 409
-        y: 14
-        width: 142
-        height: 181
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 502f52ce5fa698eb0800000000000000
-      internalID: -4717121530232442363
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_41
-      rect:
-        serializedVersion: 2
-        x: 601
-        y: 14
-        width: 142
-        height: 173
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3cf658ae84fa9e890800000000000000
-      internalID: -7428213382663802941
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_42
-      rect:
-        serializedVersion: 2
-        x: 793
-        y: 14
-        width: 142
-        height: 177
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 04405c80682d080c0800000000000000
-      internalID: -4575425748293843904
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_43
-      rect:
-        serializedVersion: 2
-        x: 985
-        y: 14
-        width: 142
-        height: 181
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f6c877f894094e300800000000000000
-      internalID: 280507722417802351
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_44
-      rect:
-        serializedVersion: 2
-        x: 1658
-        y: 184
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: acec71f51df1a1f30800000000000000
-      internalID: 4546981757887958730
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_45
-      rect:
-        serializedVersion: 2
-        x: 1753
-        y: 14
-        width: 142
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 491bde5d235ca4f10800000000000000
-      internalID: 2254831385580515732
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_46
-      rect:
-        serializedVersion: 2
-        x: 1945
-        y: 14
-        width: 142
-        height: 181
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ba9a5ad44eccea780800000000000000
-      internalID: -8669766951714313813
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_47
-      rect:
-        serializedVersion: 2
-        x: 2814
-        y: 185
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5c0fd0d52e7309370800000000000000
-      internalID: 8327217156371378373
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_48
-      rect:
-        serializedVersion: 2
-        x: 3007
-        y: 187
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 27406b222e7f3bf60800000000000000
-      internalID: 8049049509658231922
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_49
-      rect:
-        serializedVersion: 2
-        x: 25
-        y: 14
-        width: 142
-        height: 154
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cda30811d65397850800000000000000
-      internalID: 6375185490080971484
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_50
-      rect:
-        serializedVersion: 2
-        x: 103
-        y: 162
-        width: 38
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 22caac11d167a03b0800000000000000
-      internalID: -5545490123928720350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_51
-      rect:
-        serializedVersion: 2
-        x: 1177
-        y: 14
-        width: 142
-        height: 165
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bfb65c726e4442280800000000000000
-      internalID: -9069047994316919813
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_52
-      rect:
-        serializedVersion: 2
-        x: 1369
-        y: 14
-        width: 142
-        height: 168
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 28071762b6ba379e0800000000000000
-      internalID: -1624766563855798142
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_53
-      rect:
-        serializedVersion: 2
-        x: 1561
-        y: 14
-        width: 142
-        height: 171
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ac5fc1a25418587c0800000000000000
-      internalID: -4069704554200107574
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_54
-      rect:
-        serializedVersion: 2
-        x: 2329
-        y: 14
-        width: 142
-        height: 154
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 925d4012b568c4850800000000000000
-      internalID: 6362608099521778985
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_55
-      rect:
-        serializedVersion: 2
-        x: 2420
-        y: 163
-        width: 19
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5decddbbb3ab48310800000000000000
-      internalID: 1406453749364149973
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_56
-      rect:
-        serializedVersion: 2
-        x: 2521
-        y: 14
-        width: 142
-        height: 164
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fd0481d3ad712d590800000000000000
-      internalID: -7651026590853742369
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_57
-      rect:
-        serializedVersion: 2
-        x: 2713
-        y: 14
-        width: 142
-        height: 167
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cb0cfd470cfb67790800000000000000
-      internalID: -7532622493415128900
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin Hut_58
-      rect:
-        serializedVersion: 2
-        x: 2905
-        y: 14
-        width: 142
-        height: 169
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c899276222b47db60800000000000000
-      internalID: 7770762292097096076
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c5e3df01003521f43858f42be623c1eb
     internalID: 0
     vertices: []
     indices: 
@@ -1583,7 +637,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":192.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Goblin Hut_0: 8111058758565245505
       Goblin Hut_1: 1173044709077959734
@@ -1593,53 +649,10 @@ TextureImporter:
       Goblin Hut_13: -2715309558071906052
       Goblin Hut_14: -1296967373268232052
       Goblin Hut_15: -1330499158527740665
-      Goblin Hut_16: 2415931987721669679
-      Goblin Hut_17: 2089443272968239839
-      Goblin Hut_18: 2685902641776307342
-      Goblin Hut_19: -2840408717409870072
       Goblin Hut_2: -9007378322280711491
-      Goblin Hut_20: 5729366775989479116
-      Goblin Hut_21: -6468329297144630830
-      Goblin Hut_22: -8358734671543039549
-      Goblin Hut_23: -7912290102967507305
-      Goblin Hut_24: -7632501967626298039
-      Goblin Hut_25: -293855705661039466
-      Goblin Hut_26: 4105874729578636464
-      Goblin Hut_27: 4474982284337331887
-      Goblin Hut_28: 638345662102609260
-      Goblin Hut_29: -2638654735938686746
       Goblin Hut_3: -8542306016025379522
-      Goblin Hut_30: -3728937556920138714
-      Goblin Hut_31: 1529070954236208021
-      Goblin Hut_32: -3046155437266144281
-      Goblin Hut_33: 2288990045865759587
-      Goblin Hut_34: -8143948430830514991
-      Goblin Hut_35: -6632863353355309718
-      Goblin Hut_36: 8893286742384552915
-      Goblin Hut_37: -4872236390139330530
-      Goblin Hut_38: 577665413087723074
-      Goblin Hut_39: -5963380740895099046
       Goblin Hut_4: 1643463918342055372
-      Goblin Hut_40: -4717121530232442363
-      Goblin Hut_41: -7428213382663802941
-      Goblin Hut_42: -4575425748293843904
-      Goblin Hut_43: 280507722417802351
-      Goblin Hut_44: 4546981757887958730
-      Goblin Hut_45: 2254831385580515732
-      Goblin Hut_46: -8669766951714313813
-      Goblin Hut_47: 8327217156371378373
-      Goblin Hut_48: 8049049509658231922
-      Goblin Hut_49: 6375185490080971484
       Goblin Hut_5: 7128202502397288949
-      Goblin Hut_50: -5545490123928720350
-      Goblin Hut_51: -9069047994316919813
-      Goblin Hut_52: -1624766563855798142
-      Goblin Hut_53: -4069704554200107574
-      Goblin Hut_54: 6362608099521778985
-      Goblin Hut_55: 1406453749364149973
-      Goblin Hut_56: -7651026590853742369
-      Goblin Hut_57: -7532622493415128900
-      Goblin Hut_58: 7770762292097096076
       Goblin Hut_6: -3116293975020912661
       Goblin Hut_7: -4343442190962938309
       Goblin Hut_8: 6225790648670359386

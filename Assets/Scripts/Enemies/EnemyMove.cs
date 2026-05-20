@@ -30,14 +30,14 @@ public class EnemyMove : ActorMove
 
             Vector2 directionToPlayer = player.transform.position - transform.position;
             float distanceToPlayer = directionToPlayer.magnitude;
-            if (distanceToPlayer > chaseRangeRadius) {
-                // Move towards the enemyPlayer
-                moveDir = directionToPlayer.normalized;
-            }
-            else if (distanceToPlayer < fleeRangeRadius) {
+            if (distanceToPlayer < fleeRangeRadius) {
                 // Move away from the enemyPlayer if too close
                 moveDir = -directionToPlayer.normalized;
                 OnPlayerInRange?.Invoke(player.gameObject);
+            }
+            else if (distanceToPlayer > chaseRangeRadius) {
+                // Move towards the enemyPlayer
+                moveDir = directionToPlayer.normalized;
             }
             else {
                 // Stop moving if within chase range but not too close

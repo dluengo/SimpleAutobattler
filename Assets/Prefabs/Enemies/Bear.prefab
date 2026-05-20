@@ -203,6 +203,7 @@ MonoBehaviour:
   enableLookDirGizmo: 0
   m_idleClip: {fileID: 7400000, guid: aa66186e7e664d04f8dc61e715e1c8e8, type: 2}
   m_deadClip: {fileID: 0}
+  neutral: 0
   m_contactDamage: 1
 --- !u!114 &5489263965843536596
 MonoBehaviour:
@@ -306,7 +307,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

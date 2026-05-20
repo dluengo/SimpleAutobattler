@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 5366599465020616836}
   - component: {fileID: 2850301677080385363}
   - component: {fileID: 1153422830027987879}
+  - component: {fileID: 806074577623365802}
   m_Layer: 7
   m_Name: GenericEnemy
   m_TagString: Enemy
@@ -300,3 +301,24 @@ MonoBehaviour:
   fleeRangeRadius: 0
   enableChaseRangeGizmo: 0
   enableFleeRangeGizmo: 0
+--- !u!114 &806074577623365802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5328842750133645059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2144921e3c8be584e94a679dbf306cbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeAttack
+  castStops: 1
+  actionsPerSecond: 1
+  keepCasting: 0
+  m_animClip: {fileID: 0}
+  damage: 1
+  enableSuggestedDistanceGizmo: 1
+  suggestedDistance: 0
+  enableAttackHitBoxGizmo: 1
+  m_hitbox: {fileID: 451845929072602504}
