@@ -247,14 +247,16 @@ public class ProjectileController : MonoBehaviour
     // --- Collision Handling ---
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-         // Check if the collided object is an ActorController
-        ActorController hitActor = collision.gameObject.GetComponent<ActorController>();
-        if (hitActor == null) {
-            End();
+        // Check if we are colliding against another projectile.
+        // For now we don't want projectiles to interact with each other.
+        ProjectileController otherProjectile = collision.gameObject.GetComponent<ProjectileController>();
+        if (otherProjectile != null) {
             return;
         }
 
-        if (thrower != null) {
+        // Check if the collided object is an actor.
+        ActorController hitActor = collision.gameObject.GetComponent<ActorController>();
+        if (hitActor != null && thrower != null) {
             bool throwerIsPlayer = thrower.CompareTag("Player");
             bool hitIsPlayer = hitActor.CompareTag("Player");
             bool throwerIsEnemy = thrower.CompareTag("Enemy");
@@ -279,6 +281,8 @@ public class ProjectileController : MonoBehaviour
             }
         }
 
+        // Here we know we hit something different than a projectile.
+        // End the projectile.
         End();
     }
 }
