@@ -3,7 +3,6 @@ using UnityEngine;
 public class ShotAttack : RangedAttack
 {
     // --- Members ---
-    protected ShotMove m_shotMoveCompPrefab => m_projectileMoveCompPrefab as ShotMove;
 
 
     // --- Methods ---
@@ -11,10 +10,10 @@ public class ShotAttack : RangedAttack
     {
         GameObject projectileGO = CreateProjectile();
 
-        if (projectileGO != null && m_shotMoveCompPrefab != null) {
+        if (projectileGO != null) {
+            ProjectileController projectile = projectileGO.GetComponent<ProjectileController>();
 
             // Set the direction of the projectile.
-            ProjectileController projectile = projectileGO.GetComponent<ProjectileController>();
             if (projectile != null) {
                 projectile.moveDir = actionDir;
             }

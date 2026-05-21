@@ -103,10 +103,17 @@ public class ProjectileController : MonoBehaviour
     // the creator of the m_projectile wants to set the moveDir immediately after 
     // instantiate the m_projectile (i.e. most likely scenario), the m_move member
     // must be initialized before moveDir is set from the outside.
-    public void Init()
+    public void Init(ActorController thrower, float damage, float moveSpeed, float rotationSpeed)
     {
         m_move = GetComponent<ProjectileMove>();
-        
+
+        this.thrower = thrower;
+        this.damage = damage;
+        if (m_move != null) {
+            m_move.moveSpeed = moveSpeed;
+            m_move.rotationSpeed = rotationSpeed;
+        }
+
         SubscribeOnTargetReached();
     }
 
@@ -129,11 +136,13 @@ public class ProjectileController : MonoBehaviour
     protected virtual void OnEnable()
     {
         // Susbcribe to the StateExistSMB OnDeadAnimEnd event to know when the explosion animation finishes
+        // NOTE: Assuming just one StateExistSMB.
         if (m_animator != null) {
-            foreach (var behaviour in m_animator.GetBehaviours<ProjectileEndAnimSMB>()) {
-                m_projectileEndSMB = behaviour;
+            m_projectileEndSMB = m_animator.GetBehaviour<ProjectileEndAnimSMB>();
+
+            if (m_projectileEndSMB != null) {
                 m_projectileEndSMB.OnExit += DestroyProjectile;
-            }
+            }            
         }
 
         SubscribeOnTargetReached();

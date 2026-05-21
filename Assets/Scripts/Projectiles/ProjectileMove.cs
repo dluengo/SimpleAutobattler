@@ -16,7 +16,6 @@ public class ProjectileMove : MonoBehaviour
 
     protected Rigidbody2D m_rb;
     protected ProjectileController m_projectile;
-    //protected Vector2? m_target => m_projectile.target;
 
 
     // --- Events ---
@@ -61,7 +60,11 @@ public class ProjectileMove : MonoBehaviour
     private void FixedUpdate()
     {
         // Projectiles moves in two ways:
-        // 1. If there is a target, it moves towards the target.
+        // 1. If there is a target:
+        //    a. If we are close enough to the target, snap to it and trigger OnTargetReached.
+        //    b. If we are still far from the target, keep moving in the moveDir direction.
+        //       This direction should be set by extenders of the class (e.g. ShotMove).
+        //
         // 2. If there is no target but there is a moveDir, it keeps moving in that direction.
 
         if (target.HasValue) {
@@ -85,39 +88,6 @@ public class ProjectileMove : MonoBehaviour
         else {
             MoveAndRotate();
         }
-
-        //if (moveDir != Vector2.zero) {
-        //    Vector2 currentPosition = transform.position;
-        //    Vector2 targetPosition = m_projectile.target.HasValue ? m_projectile.target.Value : currentPosition;
-        //    Vector2 toTarget = targetPosition - currentPosition;
-        //    float distanceToTarget = toTarget.magnitude;
-        //    float step = moveSpeed * Time.fixedDeltaTime;
-
-        //    // Close enought to the target, snap to it.
-        //    if (distanceToTarget <= step) {
-        //        transform.position = targetPosition;
-        //        moveDir = Vector2.zero;
-        //        OnTargetReachedInvoke();
-        //    }
-        //    // Target still far, move using moveDir.
-        //    else {
-
-        //        // There's a rigidbody in this m_projectile.
-        //        if (m_rb != null) {
-        //            Vector2 newPos = (Vector2)transform.position + moveDir.normalized * moveSpeed * Time.fixedDeltaTime;
-        //            m_rb.MovePosition(newPos);
-        //        }
-        //        // No rigidbody, just move the transform.
-        //        else {
-        //            transform.Translate(moveDir.normalized * moveSpeed * Time.fixedDeltaTime, Space.World);
-        //        }
-
-        //        // Make the projectile rotate if there is rotationSpeed.
-        //        if (rotationSpeed != 0f) {
-        //            transform.Rotate(Vector3.forward, rotationSpeed * Time.fixedDeltaTime);
-        //        }
-        //    }
-        //}
     }
 
     protected void OnTargetReachedInvoke()
@@ -127,6 +97,9 @@ public class ProjectileMove : MonoBehaviour
 
     private void MoveAndRotate()
     {
+        // NOTE: Projectiles are allowed to have no rigidbody, but is highly desirable.
+
+        // There's a rigidbody, use MovePosition for better physics interactions.
         if (m_rb != null) {
             Vector2 newPos = (Vector2)transform.position + moveDir.normalized * moveSpeed * Time.fixedDeltaTime;
             m_rb.MovePosition(newPos);

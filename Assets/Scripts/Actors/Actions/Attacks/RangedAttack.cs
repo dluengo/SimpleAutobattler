@@ -10,39 +10,34 @@ public abstract class RangedAttack : AttackAction
     [SerializeField] protected float m_projectileSpeed = 10f;
     [SerializeField] protected float m_projectileRotationSpeed = 360f;
     [SerializeField] protected GameObject m_projectilePrefab;
-    [SerializeField] protected ProjectileMove m_projectileMoveCompPrefab;
+    [SerializeField] protected ProjectileMoveSO m_projectileMoveSOPrefab;
 
 
     // --- Methods ---
     protected override void Awake()
     {
         base.Awake();
-
-        Debug.Assert(m_projectileMoveCompPrefab != null, "RangedAttack: m_projectileMoveCompPrefab is not assigned.");
+        
+        Debug.Assert(m_projectilePrefab != null, "RangedAttack: m_projectilePrefab is not assigned.");
+        Debug.Assert(m_projectileMoveSOPrefab != null, "RangedAttack: m_projectileMoveSOPrefab is not assigned.");
     }
 
     protected GameObject CreateProjectile()
     {
-        // Create m_projectile and add the move component to it.
+        // Create the new projectile and add the move component to it.
         GameObject projectileGO = Instantiate(
             m_projectilePrefab,
             transform.position,
             Quaternion.identity);
 
         if (projectileGO != null) {
+            // Add the move component to the projectile.
+            m_projectileMoveSOPrefab.CreateMoveComponent(projectileGO);
 
-            // Copy the component type from m_projectileMoveCompPrefab and add it to the projectileGO
-            // NOTE: AddComponent() calls Awake().
-            Type moveType = m_projectileMoveCompPrefab.GetType();
-            ProjectileMove newMoveComponent = projectileGO.AddComponent(moveType) as ProjectileMove;
-
+            // Initialize the projectile's controller.
             ProjectileController projectile = projectileGO.GetComponent<ProjectileController>();
             if (projectile != null) {
-                projectile.Init();
-                projectile.thrower = m_actor;
-                projectile.damage = damage;
-                projectile.moveSpeed = m_projectileSpeed;
-                projectile.rotationSpeed = m_projectileRotationSpeed;
+                projectile.Init(m_actor, damage, m_projectileSpeed, m_projectileRotationSpeed);
                 return projectileGO;
             }
         }

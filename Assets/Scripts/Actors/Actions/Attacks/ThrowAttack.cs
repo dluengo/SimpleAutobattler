@@ -5,7 +5,6 @@ public class ThrowAttack : RangedAttack
     // --- Members ---
     [Header("--- Throw Attack Settings ---")]
     public float throwArcHeight = 2f;
-    protected ThrowMove m_throwMoveCompPrefab => m_projectileMoveCompPrefab as ThrowMove;
 
 
     // --- Methods ---
@@ -13,10 +12,10 @@ public class ThrowAttack : RangedAttack
     {
         GameObject projectileGO = CreateProjectile();
 
-        if (projectileGO != null && m_throwMoveCompPrefab != null) {
+        if (projectileGO != null) {
+            ProjectileController projectile = projectileGO.GetComponent<ProjectileController>();
 
             // Set the target of the projectile
-            ProjectileController projectile = projectileGO.GetComponent<ProjectileController>();
             if (projectile != null) {
                 projectile.target = target;
                 projectile.arcHeight = throwArcHeight;

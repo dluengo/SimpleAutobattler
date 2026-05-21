@@ -250,6 +250,7 @@ MonoBehaviour:
   enableLookDirGizmo: 1
   m_idleClip: {fileID: 7400000, guid: b016469bbe07a33468a47cc341fe8529, type: 2}
   m_deadClip: {fileID: 7400000, guid: 480128e3a32242f499a376a5cca50558, type: 2}
+  neutral: 0
   m_contactDamage: 1
   m_dynamitePrefab: {fileID: 4966302532219181152, guid: 6f17cf35f30e1e3439d9e9d5c477125e, type: 3}
 --- !u!114 &8516675031916318852
@@ -284,14 +285,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThrowAttackAction
   castStops: 0
-  actionsPerSecond: 0.3
+  actionsPerSecond: 1
   keepCasting: 0
   m_animClip: {fileID: 7400000, guid: f079b65d77bb204499639e09d8a06450, type: 2}
   damage: 1
   enableSuggestedDistanceGizmo: 1
   suggestedDistance: 0
   m_projectileSpeed: 10
-  m_projectileRotationSpeed: 360
+  m_projectileRotationSpeed: 720
   m_projectilePrefab: {fileID: 4966302532219181152, guid: 6f17cf35f30e1e3439d9e9d5c477125e, type: 3}
-  m_projectileMoveCompPrefab: {fileID: 0}
+  m_projectileMoveSOPrefab: {fileID: 11400000, guid: d0887d45b2a44ac44bd432908db0bad3, type: 2}
   throwArcHeight: 2
