@@ -227,12 +227,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c9ad0150832b849b435b86a026eb7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoblinController
-  enableActions: 1
+  actionsEnabled: 1
   m_enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  enableLookDirGizmo: 1
   m_idleClip: {fileID: 7400000, guid: fa7d366528303374bb1ec1b385d0a267, type: 2}
-  m_deadClip: {fileID: 7400000, guid: 480128e3a32242f499a376a5cca50558, type: 2}
+  m_deadClip: {fileID: 0}
+  neutral: 0
   m_contactDamage: 1
 --- !u!114 &2551702254023544876
 MonoBehaviour:
@@ -246,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3afae01521541448f3476a0ae8c6e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoblinMove
-  m_enableMovement: 1
+  m_movementEnabled: 1
   m_moveSpeed: 3
   m_moveAnimClip: {fileID: 7400000, guid: e5e5f83edb5e5524cb87fef69a03571a, type: 2}
 --- !u!114 &7532837718850027630

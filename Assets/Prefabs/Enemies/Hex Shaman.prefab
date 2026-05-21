@@ -246,7 +246,7 @@ MonoBehaviour:
   m_projectileSpeed: 7
   m_projectileRotationSpeed: 0
   m_projectilePrefab: {fileID: 6586963412292735399, guid: 4eb863d9181f6af4699a4fbe93bd25ba, type: 3}
-  m_projectileMoveSOPrefab: {fileID: 0}
+  m_projectileMoveSOPrefab: {fileID: 11400000, guid: 9127d9150a18d594487c3bdfa01d133d, type: 2}
 --- !u!114 &-3036645897512086381
 MonoBehaviour:
   m_ObjectHideFlags: 0

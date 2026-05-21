@@ -31469,8 +31469,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   spawnArea: {fileID: 1742315000}
   enemyPrefabs:
+  - {fileID: 264471587154887185, guid: e3041a409c4528e4a98bea17f66dfe54, type: 3}
+  - {fileID: 5079339178474498420, guid: 318ed8991db837341a97aa5da6f6a9e8, type: 3}
+  - {fileID: 4491987891339133005, guid: f85d9fa68af7db544aa6b8a500dd7867, type: 3}
   - {fileID: 8956263321373483646, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
-  spawnEnemies: 0
+  - {fileID: 7481643995911882667, guid: 0af3b941bf7a99d41862a472d2a74c95, type: 3}
+  - {fileID: 7712407233117804192, guid: c10bb560bc0fba14c904646318f667c0, type: 3}
+  - {fileID: 5028512033808512551, guid: fef3ebc75c7c3034da788543b3293251, type: 3}
+  - {fileID: 704242643554750122, guid: 1701058f37dbac14f92bab3cb08415af, type: 3}
+  - {fileID: 1190292240306382050, guid: 8aecb5b10c9d17242917c2cdcf9e9a46, type: 3}
+  - {fileID: 4620361365094860188, guid: 8ae1af9ef53705d4eb531e424f095164, type: 3}
+  - {fileID: 8494490834174860631, guid: b925da43f9554e74181c28903215560d, type: 3}
+  - {fileID: 280658299221495744, guid: 27dc0264f2fb9ec4e8b1c77ad11ed3cd, type: 3}
+  - {fileID: 3184666909697925892, guid: e90ce1357634a104ea75453f2802fb89, type: 3}
+  spawnEnemies: 1
   spawnInterval: 5
   maxEnemies: 13
   numEnemiesSpawnAtOnce: 3
@@ -32157,7 +32169,7 @@ MonoBehaviour:
   m_projectileSpeed: 10
   m_projectileRotationSpeed: 0
   m_projectilePrefab: {fileID: 2432679671526927853, guid: ab8c8a1e12d25a940b13832db6224138, type: 3}
-  m_projectileMoveCompPrefab: {fileID: 1116267839}
+  m_projectileMoveSOPrefab: {fileID: 11400000, guid: 9127d9150a18d594487c3bdfa01d133d, type: 2}
 --- !u!1 &1088835802
 GameObject:
   m_ObjectHideFlags: 0
