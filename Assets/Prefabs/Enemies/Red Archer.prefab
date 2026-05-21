@@ -241,7 +241,7 @@ MonoBehaviour:
   enableSuggestedDistanceGizmo: 1
   suggestedDistance: 0
   m_projectileSpeed: 10
-  m_projectileRotationSpeed: 360
+  m_projectileRotationSpeed: 0
   m_projectilePrefab: {fileID: 2432679671526927853, guid: ab8c8a1e12d25a940b13832db6224138, type: 3}
   m_projectileMoveSOPrefab: {fileID: 11400000, guid: 9127d9150a18d594487c3bdfa01d133d, type: 2}
 --- !u!114 &6554166610872012705
