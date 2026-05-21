@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 2850301677080385363}
   - component: {fileID: 1153422830027987879}
   - component: {fileID: 806074577623365802}
+  - component: {fileID: -5104738908713494799}
   m_Layer: 7
   m_Name: GenericEnemy
   m_TagString: Enemy
@@ -281,6 +282,7 @@ MonoBehaviour:
   enableLookDirGizmo: 0
   m_idleClip: {fileID: 0}
   m_deadClip: {fileID: 0}
+  neutral: 0
   m_contactDamage: 1
 --- !u!114 &1153422830027987879
 MonoBehaviour:
@@ -322,3 +324,18 @@ MonoBehaviour:
   suggestedDistance: 0
   enableAttackHitBoxGizmo: 1
   m_hitbox: {fileID: 451845929072602504}
+--- !u!114 &-5104738908713494799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5328842750133645059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HPStat
+  m_maxValue: 1
+  m_minValue: 0
+  invulnerabilityDuration: 0

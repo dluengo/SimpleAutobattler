@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7108936865670305562}
   - component: {fileID: 353340191523966945}
   - component: {fileID: 1913563421375974983}
+  - component: {fileID: 1278443041751168300}
   m_Layer: 7
   m_Name: Pig
   m_TagString: Enemy
@@ -222,3 +223,18 @@ MonoBehaviour:
   fleeRangeRadius: 5
   enableChaseRangeGizmo: 1
   enableFleeRangeGizmo: 1
+--- !u!114 &1278443041751168300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081572240625200111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HPStat
+  m_maxValue: 1
+  m_minValue: 0
+  invulnerabilityDuration: 0

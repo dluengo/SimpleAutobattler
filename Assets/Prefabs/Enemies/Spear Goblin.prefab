@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 3375140857128708202}
   - component: {fileID: 5582867260304038097}
   - component: {fileID: 4548116108913040176}
+  - component: {fileID: 29741317866035700}
   m_Layer: 7
   m_Name: Spear Goblin
   m_TagString: Enemy
@@ -314,3 +315,18 @@ MonoBehaviour:
   suggestedDistance: 1.7
   enableAttackHitBoxGizmo: 0
   m_hitbox: {fileID: 6975631998610757784}
+--- !u!114 &29741317866035700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4620361365094860188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HPStat
+  m_maxValue: 1
+  m_minValue: 0
+  invulnerabilityDuration: 0

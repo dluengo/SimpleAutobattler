@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9089324922633859253}
   - component: {fileID: 5489263965843536596}
   - component: {fileID: 4184284282449704973}
+  - component: {fileID: -625228643710014903}
   m_Layer: 7
   m_Name: Bear
   m_TagString: Enemy
@@ -245,6 +246,21 @@ MonoBehaviour:
   suggestedDistance: 0
   enableAttackHitBoxGizmo: 0
   m_hitbox: {fileID: 1537033719250856076}
+--- !u!114 &-625228643710014903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264471587154887185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HPStat
+  m_maxValue: 1
+  m_minValue: 0
+  invulnerabilityDuration: 0
 --- !u!1 &853916885811661562
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6308317452529118331}
   - component: {fileID: 1952834067509480766}
   - component: {fileID: 7603331616122051181}
+  - component: {fileID: -3036645897512086381}
   m_Layer: 7
   m_Name: Hex Shaman
   m_TagString: Enemy
@@ -202,6 +203,7 @@ MonoBehaviour:
   enableLookDirGizmo: 0
   m_idleClip: {fileID: 7400000, guid: 35994ceed9472f343a9a49770261045e, type: 2}
   m_deadClip: {fileID: 0}
+  neutral: 0
   m_contactDamage: 1
 --- !u!114 &1952834067509480766
 MonoBehaviour:
@@ -244,4 +246,19 @@ MonoBehaviour:
   m_projectileSpeed: 7
   m_projectileRotationSpeed: 0
   m_projectilePrefab: {fileID: 6586963412292735399, guid: 4eb863d9181f6af4699a4fbe93bd25ba, type: 3}
-  m_projectileMoveCompPrefab: {fileID: 0}
+  m_projectileMoveSOPrefab: {fileID: 0}
+--- !u!114 &-3036645897512086381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7481643995911882667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HPStat
+  m_maxValue: 1
+  m_minValue: 0
+  invulnerabilityDuration: 0

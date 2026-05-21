@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4918113400911109296}
   - component: {fileID: 7091407437918470131}
   - component: {fileID: 7998406370537377275}
+  - component: {fileID: -5622885154370557179}
   m_Layer: 7
   m_Name: Gnoll
   m_TagString: Enemy
@@ -203,6 +204,7 @@ MonoBehaviour:
   enableLookDirGizmo: 0
   m_idleClip: {fileID: 7400000, guid: 94df887bbf9024d439670100dfbb7087, type: 2}
   m_deadClip: {fileID: 0}
+  neutral: 0
   m_contactDamage: 1
 --- !u!114 &7091407437918470131
 MonoBehaviour:
@@ -245,8 +247,23 @@ MonoBehaviour:
   m_projectileSpeed: 10
   m_projectileRotationSpeed: 360
   m_projectilePrefab: {fileID: 3355810703059381141, guid: 49ab243c8a3ff6b4fa3f8932d3312046, type: 3}
-  m_projectileMoveCompPrefab: {fileID: 0}
+  m_projectileMoveSOPrefab: {fileID: 0}
   throwArcHeight: 2
+--- !u!114 &-5622885154370557179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5079339178474498420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HPStat
+  m_maxValue: 1
+  m_minValue: 0
+  invulnerabilityDuration: 0
 --- !u!1 &6536918148369378857
 GameObject:
   m_ObjectHideFlags: 0
