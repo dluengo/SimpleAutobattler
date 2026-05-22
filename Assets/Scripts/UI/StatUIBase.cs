@@ -5,7 +5,8 @@ public abstract class StatUIBase : MonoBehaviour
     // --- Members ---
     // NOTE: This member must be assigned in the derived class's Awake() method,
     // after the specific StatBase component is validated.
-    protected StatBase stat;
+    [Header("--- Stat UI Settings ---")]
+    [SerializeField] protected StatBase stat;
 
 
     // --- Methods ---

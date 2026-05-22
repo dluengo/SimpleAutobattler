@@ -20,7 +20,7 @@ public class HPStat : StatBase
         OnValueMin += OnHPZeroHandler;
     }
 
-    protected void OnDisable() 
+    protected void OnDisable()
     {
         OnValueMin -= OnHPZeroHandler;
     }
@@ -35,17 +35,29 @@ public class HPStat : StatBase
 
     public void TakeDamage(float damage)
     {
-        if (m_isInvulnerable) {
+        // If the actor is invulnerable or damage is zero or less, do nothing.
+        if (m_isInvulnerable || damage <= 0) {
             return;
         }
 
+        // Damage is float but HP is int, we need to handle this.
         bool isTakingDamage = false;
-        float newValue = currentValue - damage;
-        if (newValue != currentValue) {
+        int newHP = Mathf.RoundToInt(currentValue - damage);
+        if (newHP != currentValue) {
             isTakingDamage = true;
         }
 
-        currentValue = newValue > minValue ? newValue : minValue;
+        // Update the current value.
+        currentValue = newHP > minValue ? newHP : minValue;
+
+        //float newValue = currentValue - damage;
+        //if (newValue != currentValue) {
+        //    isTakingDamage = true;
+        //}
+
+        //int roundedNewValue = Mathf.RoundToInt(newValue);
+
+        //currentValue = roundedNewValue > minValue ? roundedNewValue : minValue;
 
         if (isTakingDamage && invulnerabilityDuration > 0f) {
             m_isInvulnerable = true;

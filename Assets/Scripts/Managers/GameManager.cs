@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public float ElapsedTime { get; private set; } = 0f;
 
     [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject UICanvas;
 
     private int m_lastElapsedSeconds = 0;
 
@@ -32,6 +33,10 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         //DontDestroyOnLoad(gameObject);
+
+        Debug.Assert(Player != null, "GameManager: Player reference is not assigned.");
+        Debug.Assert(gameOverScreen != null, "GameManager: gameOverScreen reference is not assigned.");
+        Debug.Assert(UICanvas != null, "GameManager: UICanvas reference is not assigned.");
     }
 
     private void Start()
@@ -39,6 +44,11 @@ public class GameManager : MonoBehaviour
         // Disable game over screen.
         if (gameOverScreen != null) {
             gameOverScreen.SetActive(false);
+        }
+
+        // Enable the UI canvas and make it visible.
+        if (UICanvas != null) {
+            UICanvas.SetActive(true);
         }
 
         // Subscribe to the enemyPlayer's OnDeath event to trigger the game over screen.

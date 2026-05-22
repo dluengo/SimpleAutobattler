@@ -7,19 +7,19 @@ public abstract class StatBase : MonoBehaviour
     // --- Members ---
     [Header("--- StatBase Settings ---")]
     protected string m_statName;
-    [SerializeField] float m_maxValue = 100f;
-    public float maxValue {
+    [SerializeField] int m_maxValue = 100;
+    public int maxValue {
         get => m_maxValue;
         protected set => m_maxValue = value;
     }
-    [SerializeField] float m_minValue = 0f;
-    public float minValue {
+    [SerializeField] int m_minValue = 0;
+    public int minValue {
         get => m_minValue;
         protected set => m_minValue = value;
     }
 
-    private float m_currentValue;
-    public float currentValue
+    private int m_currentValue;
+    public int currentValue
     {
         get => m_currentValue;
         protected set {
