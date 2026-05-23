@@ -30875,7 +30875,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4.0091023
+  orthographic size: 5.65
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -30973,7 +30973,7 @@ RectTransform:
   m_Father: {fileID: 1190100416}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.173, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -31497,23 +31497,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3254a41889daae42896bc23a7880391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  spawnEnemies: 1
   spawnArea: {fileID: 1742315000}
   enemyPrefabs:
-  - {fileID: 8956263321373483646, guid: f5b25c4577d163a478284d3305d7fe1a, type: 3}
-  - {fileID: 8494490834174860631, guid: b925da43f9554e74181c28903215560d, type: 3}
-  - {fileID: 280658299221495744, guid: 27dc0264f2fb9ec4e8b1c77ad11ed3cd, type: 3}
-  - {fileID: 264471587154887185, guid: e3041a409c4528e4a98bea17f66dfe54, type: 3}
-  - {fileID: 5079339178474498420, guid: 318ed8991db837341a97aa5da6f6a9e8, type: 3}
-  - {fileID: 4491987891339133005, guid: f85d9fa68af7db544aa6b8a500dd7867, type: 3}
-  - {fileID: 7481643995911882667, guid: 0af3b941bf7a99d41862a472d2a74c95, type: 3}
-  - {fileID: 7712407233117804192, guid: c10bb560bc0fba14c904646318f667c0, type: 3}
-  - {fileID: 2081572240625200111, guid: 8d13ffe14dc4b3942b6522d8f5999b90, type: 3}
-  - {fileID: 5028512033808512551, guid: fef3ebc75c7c3034da788543b3293251, type: 3}
-  - {fileID: 704242643554750122, guid: 1701058f37dbac14f92bab3cb08415af, type: 3}
-  - {fileID: 1190292240306382050, guid: 8aecb5b10c9d17242917c2cdcf9e9a46, type: 3}
-  - {fileID: 4620361365094860188, guid: 8ae1af9ef53705d4eb531e424f095164, type: 3}
-  - {fileID: 3184666909697925892, guid: e90ce1357634a104ea75453f2802fb89, type: 3}
-  spawnEnemies: 0
+    list:
+    - item: {fileID: 280658299221495744, guid: 27dc0264f2fb9ec4e8b1c77ad11ed3cd, type: 3}
+      weight: 1
+    - item: {fileID: 8494490834174860631, guid: b925da43f9554e74181c28903215560d, type: 3}
+      weight: 1
+    - item: {fileID: 5028512033808512551, guid: fef3ebc75c7c3034da788543b3293251, type: 3}
+      weight: 1
   spawnInterval: 5
   maxEnemies: 13
   numEnemiesSpawnAtOnce: 3
@@ -31558,7 +31551,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1072582216}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 4.0091023
+    OrthographicSize: 5.65
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -35837,7 +35830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2144862607
 RectTransform:
   m_ObjectHideFlags: 0

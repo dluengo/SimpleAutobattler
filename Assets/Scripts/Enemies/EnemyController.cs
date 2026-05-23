@@ -60,7 +60,7 @@ public class EnemyController : ActorController
         }
     }
 
-    // NOTE: By default enemies move towards the enemyPlayer until they are in range
+    // NOTE: By default enemiesInScene move towards the enemyPlayer until they are in range
     // then they attack continuously.
     protected override void Update()
     {

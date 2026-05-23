@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8898178681991947247}
   - component: {fileID: 377563659092580248}
   - component: {fileID: 6547960123046632869}
+  - component: {fileID: 2961303789024332644}
   m_Layer: 7
   m_Name: Torch Goblin
   m_TagString: Enemy
@@ -245,6 +246,21 @@ MonoBehaviour:
   suggestedDistance: 1.1
   enableAttackHitBoxGizmo: 1
   m_hitbox: {fileID: 2186869850340669604}
+--- !u!114 &2961303789024332644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280658299221495744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HPStat
+  m_maxValue: 1
+  m_minValue: 0
+  invulnerabilityDuration: 0
 --- !u!1 &9172825267918409757
 GameObject:
   m_ObjectHideFlags: 0

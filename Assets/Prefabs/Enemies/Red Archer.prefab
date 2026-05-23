@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 7503504114938148759}
   - component: {fileID: 7738706290175748298}
   - component: {fileID: 6933154718479952818}
-  - component: {fileID: 8159618471481523352}
   - component: {fileID: 6554166610872012705}
+  - component: {fileID: 6878986292292695495}
   m_Layer: 7
   m_Name: Red Archer
   m_TagString: Enemy
@@ -203,6 +203,7 @@ MonoBehaviour:
   enableLookDirGizmo: 1
   m_idleClip: {fileID: 7400000, guid: 6793b66217bb613418e2407792754734, type: 2}
   m_deadClip: {fileID: 7400000, guid: 480128e3a32242f499a376a5cca50558, type: 2}
+  neutral: 0
   m_contactDamage: 1
   m_range: 5
 --- !u!114 &6933154718479952818
@@ -220,30 +221,6 @@ MonoBehaviour:
   m_movementEnabled: 1
   m_moveSpeed: 3
   m_moveAnimClip: {fileID: 7400000, guid: c87148161c507fc40bee281280ad8d75, type: 2}
---- !u!114 &8159618471481523352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5028512033808512551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17516e307d2ea904a82e0f6fa092b959, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ThrowAttack
-  castStops: 1
-  actionsPerSecond: 1
-  keepCasting: 0
-  m_animClip: {fileID: 0}
-  damage: 1
-  enableSuggestedDistanceGizmo: 1
-  suggestedDistance: 0
-  m_projectileSpeed: 10
-  m_projectileRotationSpeed: 0
-  m_projectilePrefab: {fileID: 2432679671526927853, guid: ab8c8a1e12d25a940b13832db6224138, type: 3}
-  m_projectileMoveCompPrefab: {fileID: 0}
-  throwArcHeight: 2
 --- !u!114 &6554166610872012705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,3 +236,26 @@ MonoBehaviour:
   m_maxValue: 1
   m_minValue: 0
   invulnerabilityDuration: 0
+--- !u!114 &6878986292292695495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5028512033808512551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e5579498bc5b44185314071f32d160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShotAttack
+  castStops: 1
+  actionsPerSecond: 1
+  keepCasting: 0
+  m_animClip: {fileID: 7400000, guid: 7c3ef945fd3649a45b068fbf646c1abb, type: 2}
+  damage: 1
+  enableSuggestedDistanceGizmo: 1
+  suggestedDistance: 5
+  m_projectileSpeed: 10
+  m_projectileRotationSpeed: 0
+  m_projectilePrefab: {fileID: 2432679671526927853, guid: ab8c8a1e12d25a940b13832db6224138, type: 3}
+  m_projectileMoveSOPrefab: {fileID: 11400000, guid: 9127d9150a18d594487c3bdfa01d133d, type: 2}

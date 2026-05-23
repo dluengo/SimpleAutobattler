@@ -3,7 +3,7 @@ using UnityEngine;
 public class MeleeAttack : AttackAction
 {
     // NOTE: The hitbox is an area that is used in PerformAction() to check
-    // if there are enemies being hit by the attack.
+    // if there are enemiesInScene being hit by the attack.
     // NOTE: This hitbox is represented by a collider, however this collider
     // MUST be disabled. We need it to NOT generate collisions at all. We
     // just need its area. I found it easy using a collider for that matter.
@@ -36,7 +36,7 @@ public class MeleeAttack : AttackAction
     // configured in the attack animation clip.
     protected override void PerformAction()
     {
-        // Check enemies within the attack hitbox.
+        // Check enemiesInScene within the attack hitbox.
         // NOTE: When the hitbox is disabled its size is 0, we need to enable
         // it to get the correct size for the OverlapBoxAll method.
         m_hitbox.enabled = true;

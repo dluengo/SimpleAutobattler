@@ -63,7 +63,6 @@ public class ProjectileController : MonoBehaviour
             }
         }
     }
-    //[HideInInspector] public Vector2? target = null;
     [HideInInspector] public Vector2? target
     {
         get => m_move != null ? m_move.target : null;
@@ -164,7 +163,7 @@ public class ProjectileController : MonoBehaviour
         // Set the m_projectile into the same layer as the thrower.
         // We've configured the collision matrix so that Player and Enemy layers
         // don't collide with themselves, so enemy projectiles can't collide with
-        // enemies and enemyPlayer projectiles can't collide with the enemyPlayer.
+        // enemiesInScene and enemyPlayer projectiles can't collide with the enemyPlayer.
         if (thrower != null) {
             gameObject.layer = thrower.gameObject.layer;
         }
@@ -251,6 +250,11 @@ public class ProjectileController : MonoBehaviour
         // For now we don't want projectiles to interact with each other.
         ProjectileController otherProjectile = collision.gameObject.GetComponent<ProjectileController>();
         if (otherProjectile != null) {
+
+            // BUG: Projectiles colliding in opposite directions can get stuck.
+            // Effectively pushing each other and not move, or slowly in the
+            // perpendicular direction.
+
             return;
         }
 
@@ -262,15 +266,15 @@ public class ProjectileController : MonoBehaviour
             bool throwerIsEnemy = thrower.CompareTag("Enemy");
             bool hitIsEnemy = hitActor.CompareTag("Enemy");
 
-            // Player projectiles should not hit the enemyPlayer, only enemies
+            // Player projectiles should not hit the enemyPlayer, only enemiesInScene
             if (throwerIsPlayer && hitIsPlayer) {
                 // Ignore collision with self
                 return;
             }
 
-            // Enemy projectiles should not hit other enemies
+            // Enemy projectiles should not hit other enemiesInScene
             if (throwerIsEnemy && hitIsEnemy) {
-                // Ignore collision with other enemies
+                // Ignore collision with other enemiesInScene
                 return;
             }
 
