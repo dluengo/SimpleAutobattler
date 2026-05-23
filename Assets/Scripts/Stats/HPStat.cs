@@ -7,17 +7,41 @@ public class HPStat : StatBase
     // --- Members ---
     [Header("--- HP Settings ---")]
     [SerializeField] float invulnerabilityDuration = 0.5f;
+    [SerializeField] bool m_enableDamageTint = true;
+    public bool enableDamageTint
+    {
+        get => m_enableDamageTint;
+        set {
+            // If disabling tint, reset sprite color to default.
+            if (!value && m_spriteRenderer != null) {
+                m_spriteRenderer.color = new Color(1, 1, 1, 1);
+            }
+
+            m_enableDamageTint = value;
+        }
+    }
+
+    protected new string m_statName => "Hit Points";
 
     private bool m_isInvulnerable = false;
     private SpriteRenderer m_spriteRenderer;
-    private string m_hpStatName = "Hit Points";
+    //private string m_hpStatName = "Hit Points";
+
 
 
     // --- Methods ---
+    protected override void Awake()
+    {
+        base.Awake();
+
+        m_spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     protected void OnEnable()
     {
         // Subscribe to the OnValueMin event to trigger the death animation when health reaches 0.
         OnValueMin += OnHPZeroHandler;
+        OnValueChanged += OnDamageTaken_TintHandler;
     }
 
     protected void OnDisable()
@@ -25,13 +49,13 @@ public class HPStat : StatBase
         OnValueMin -= OnHPZeroHandler;
     }
 
-    protected override void Start()
-    {
-        base.Start();
+    //protected override void Start()
+    //{
+    //    base.Start();
 
-        m_statName = m_hpStatName;
-        m_spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+    //    //m_statName = m_hpStatName;
+    //    m_spriteRenderer = GetComponent<SpriteRenderer>();
+    //}
 
     public void TakeDamage(float damage)
     {
@@ -87,7 +111,17 @@ public class HPStat : StatBase
     // --- Event Handlers ---
     private void OnHPZeroHandler()
     {
-        //Debug.Log($"{m_enemyActor.gameObject.name} has reached 0 HP and will die.");
         m_actor.Die();
+    }
+
+    private void OnDamageTaken_TintHandler(float oldValue, float newValue)
+    {
+        if (!enableDamageTint || m_spriteRenderer == null) {
+            return;
+        }
+
+        float healthPercent = Mathf.Clamp01(newValue / maxValue);
+        Color tint = new Color(1f, healthPercent, healthPercent, 1f);
+        m_spriteRenderer.color = tint;
     }
 }

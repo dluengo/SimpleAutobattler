@@ -91,10 +91,12 @@ public class EnemyManager : MonoBehaviour
                     spawnPosition,
                     Quaternion.identity);
 
+                // Add the enemy to the list of active enemies and subscribe to its death event
                 if (enemyGO != null) {
                     EnemyController enemyController = enemyGO.GetComponent<EnemyController>();
                     if (enemyController != null) {
                         enemies.Add(enemyController);
+                        enemyController.OnDeath += UnregisterEnemy;
                     }
                     else {
                         Debug.LogError("EnemyManager: Spawned enemy does not have an EnemyController component.");
@@ -107,9 +109,15 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void UnregisterEnemy(EnemyController enemy)
+    public void UnregisterEnemy(ActorController enemy)
     {
-        enemies.Remove(enemy);
-    }
+        enemy.OnDeath -= UnregisterEnemy;
 
+        if (enemy is EnemyController) {
+            enemies.Remove(enemy as EnemyController);
+        }
+        else {
+            Debug.LogError("EnemyManager: Attempted to unregister an actor that is not an EnemyController.");
+        }
+    }
 }

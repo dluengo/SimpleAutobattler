@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = pause ? 0f : 1f;
     }
 
-    public static void EndGame() {
+    public static void EndGame(ActorController player) {
         Debug.Log("Game Over!");
         PauseGame(true);
 

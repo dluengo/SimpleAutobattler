@@ -60,7 +60,7 @@ public class ActorController : MonoBehaviour
 
 
     // --- Events ---
-    public event Action OnDeath;
+    public event Action<ActorController> OnDeath;
 
 
     // --- Methods ---
@@ -233,7 +233,7 @@ public class ActorController : MonoBehaviour
     // --- Event Handlers ---
     private void DeadAnimEndHandler()
     {
-        OnDeath?.Invoke();
+        OnDeath?.Invoke(this);
         Destroy(gameObject);
     }
 

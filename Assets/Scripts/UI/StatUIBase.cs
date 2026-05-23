@@ -27,8 +27,8 @@ public abstract class StatUIBase : MonoBehaviour
 
     protected virtual void Start()
     {
-        UpdateUI();
+        UpdateUI(stat.currentValue, stat.currentValue);
     }
 
-    protected abstract void UpdateUI();
+    protected abstract void UpdateUI(float oldValue, float newValue);
 }

@@ -29,8 +29,9 @@ public abstract class StatBase : MonoBehaviour
                     Debug.LogWarning($"Attempted to set currentValue to {value}, which is outside the range [{minValue}, {maxValue}]. Clamping to valid range.");
                 }
 
+                float oldValue = m_currentValue;
                 m_currentValue = Mathf.Clamp(value, minValue, maxValue);
-                OnValueChanged?.Invoke();
+                OnValueChanged?.Invoke(oldValue, m_currentValue);
 
                 if (m_currentValue <= minValue) {
                     OnValueMin?.Invoke();
@@ -46,7 +47,7 @@ public abstract class StatBase : MonoBehaviour
 
 
     // --- Events ---
-    public event Action OnValueChanged;
+    public event Action<float, float> OnValueChanged;
     public event Action OnValueMin;
     public event Action OnValueMax;
 

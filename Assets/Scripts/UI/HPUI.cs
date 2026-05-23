@@ -26,10 +26,10 @@ public class HPUI : StatUIBase
     {
         base.Start();
 
-        UpdateUI();
+        UpdateUI(hpStat.currentValue, hpStat.currentValue);
     }
 
-    protected override void UpdateUI()
+    protected override void UpdateUI(float oldValue, float newValue)
     {
         hpSlider.value = (float)hpStat.currentValue / hpStat.maxValue;
         hpText.text = $"{hpStat.currentValue} / {hpStat.maxValue}";
