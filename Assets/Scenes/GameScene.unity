@@ -31915,6 +31915,7 @@ MonoBehaviour:
   m_maxValue: 2
   m_minValue: 0
   invulnerabilityDuration: 1
+  m_enableDamageTint: 1
 --- !u!114 &1072582226
 MonoBehaviour:
   m_ObjectHideFlags: 0
