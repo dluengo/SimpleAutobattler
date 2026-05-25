@@ -50,15 +50,6 @@ public class HPStat : StatBase
         // Update the current value.
         currentValue = newHP > minValue ? newHP : minValue;
 
-        //float newValue = currentValue - damage;
-        //if (newValue != currentValue) {
-        //    isTakingDamage = true;
-        //}
-
-        //int roundedNewValue = Mathf.RoundToInt(newValue);
-
-        //currentValue = roundedNewValue > minValue ? roundedNewValue : minValue;
-
         if (isTakingDamage && invulnerabilityDuration > 0f) {
             m_isInvulnerable = true;
             StartCoroutine(InvulnerabilityCR());
@@ -87,7 +78,6 @@ public class HPStat : StatBase
     // --- Event Handlers ---
     private void OnHPZeroHandler()
     {
-        //Debug.Log($"{m_enemyActor.gameObject.name} has reached 0 HP and will die.");
         m_actor.Die();
     }
 }

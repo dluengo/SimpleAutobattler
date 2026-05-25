@@ -40,23 +40,9 @@ public class HPUI : StatUIBase
         }
     }
 
-    //protected override void Start()
-    //{
-    //    base.Start();
-
-    //    // NOTE: Convenient way to set everything up.
-    //    //MaxValueChangedHandler();
-    //}
-
     protected override void UpdateUI()
     {
         hpSlider.value = (float)hpStat.currentValue / hpStat.maxValue;
         hpText.text = $"{hpStat.currentValue} / {hpStat.maxValue}";
     }
-
-    //protected void MaxValueChangedHandler()
-    //{
-    //    hpText.text = $"{hpStat.currentValue} / {hpStat.maxValue}";
-    //    UpdateUI();
-    //}
 }
