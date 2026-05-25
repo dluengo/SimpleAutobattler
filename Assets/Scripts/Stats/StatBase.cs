@@ -31,7 +31,7 @@ public abstract class StatBase : MonoBehaviour
 
                 float oldValue = m_currentValue;
                 m_currentValue = Mathf.Clamp(value, minValue, maxValue);
-                OnValueChanged?.Invoke(oldValue, m_currentValue);
+                OnValueChanged?.Invoke();
 
                 if (m_currentValue <= minValue) {
                     OnValueMin?.Invoke();
@@ -47,7 +47,7 @@ public abstract class StatBase : MonoBehaviour
 
 
     // --- Events ---
-    public event Action<float, float> OnValueChanged;
+    public event Action OnValueChanged;
     public event Action OnValueMin;
     public event Action OnValueMax;
 

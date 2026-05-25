@@ -105,13 +105,13 @@ public class HPStat : StatBase
         m_actor.Die();
     }
 
-    private void OnDamageTaken_TintHandler(float oldValue, float newValue)
+    private void OnDamageTaken_TintHandler()
     {
         if (!enableDamageTint || m_spriteRenderer == null) {
             return;
         }
 
-        float healthPercent = Mathf.Clamp01(newValue / maxValue);
+        float healthPercent = Mathf.Clamp01((float)currentValue / maxValue);
         Color tint = new Color(1f, healthPercent, healthPercent, 1f);
         m_spriteRenderer.color = tint;
     }
