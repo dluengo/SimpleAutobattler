@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+//using System;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -9,15 +10,15 @@ public class EnemyManager : MonoBehaviour
 
 
     // --- Members ---
-    [SerializeField] GameObject spawnArea;
-    [SerializeField] GameObject[] enemyPrefabs;
     [SerializeField] bool spawnEnemies = true;
+    [SerializeField] GameObject spawnArea;
+    [SerializeField] WeightedList<GameObject> enemyPrefabs;
     [SerializeField] float spawnInterval = 5f;
     [SerializeField] int maxEnemies = 10;
     [SerializeField] int numEnemiesSpawnAtOnce = 5;
     [SerializeField] int enemiesOnStart = 5;
 
-    private List<EnemyController> enemies;
+    private List<EnemyController> enemiesInScene;
 
 
     // --- Methods ---
@@ -30,11 +31,20 @@ public class EnemyManager : MonoBehaviour
 
         Instance = this;
 
-        enemies = new List<EnemyController>();
-        Debug.Assert(enemies != null, "EnemyManager: Failed to initialize enemy list.");
+        enemiesInScene = new List<EnemyController>();
+        Debug.Assert(enemiesInScene != null, "EnemyManager: Failed to initialize enemy list.");
+
+        // NOTE: Because we assign the enemies and weights in the inspector,
+        // we need to call UpdateWeights() to ensure the total weight is calculated
+        // correctly.
+        if (enemyPrefabs != null) {
+            enemyPrefabs.UpdateWeights();
+        }
+        else {
+            Debug.LogError("EnemyManager: Enemy prefabs list is not assigned.");
+        }
 
         Debug.Assert(spawnArea != null, "EnemyManager: Spawn area is not assigned.");
-        Debug.Assert(enemyPrefabs != null && enemyPrefabs.Length > 0, "EnemyManager: Enemy prefabs are not assigned.");
     }
 
     private void Start()
@@ -55,10 +65,10 @@ public class EnemyManager : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
 
             if (spawnEnemies) {
-                if (enemies.Count < maxEnemies) {
-                    int numEnemiesToSpawn = Mathf.Min(numEnemiesSpawnAtOnce, maxEnemies - enemies.Count);
+                if (enemiesInScene.Count < maxEnemies) {
+                    int numEnemiesToSpawn = Mathf.Min(numEnemiesSpawnAtOnce, maxEnemies - enemiesInScene.Count);
                     for (int i = 0; i < numEnemiesToSpawn; i++) {
-                        if (enemies.Count < maxEnemies) {
+                        if (enemiesInScene.Count < maxEnemies) {
                             GenerateEnemy();
                         }
                         else {
@@ -73,7 +83,7 @@ public class EnemyManager : MonoBehaviour
 
     public void GenerateEnemy()
     {
-        if (spawnArea != null && enemyPrefabs != null && enemyPrefabs.Length > 0) {
+        if (spawnArea != null && enemyPrefabs != null && enemyPrefabs.list.Count > 0) {
             // Get the bounds of the spawn area
             Collider2D spawnAreaCollider = spawnArea.GetComponent<Collider2D>();
             if (spawnAreaCollider != null) {
@@ -85,18 +95,20 @@ public class EnemyManager : MonoBehaviour
                 Vector2 spawnPosition = new Vector2(randomX, randomY);
 
                 // Instantiate a random enemy prefab at the generated position
-                int randomIndex = Random.Range(0, enemyPrefabs.Length);
+                //int randomIndex = Random.Range(0, enemyPrefabs.Length);
+
+                GameObject randomEnemyPrefab = enemyPrefabs.GetRandom();
+                //GameObject randomEnemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)].Item1;
+
                 GameObject enemyGO = Instantiate(
-                    enemyPrefabs[randomIndex],
+                    randomEnemyPrefab,
                     spawnPosition,
                     Quaternion.identity);
 
-                // Add the enemy to the list of active enemies and subscribe to its death event
                 if (enemyGO != null) {
                     EnemyController enemyController = enemyGO.GetComponent<EnemyController>();
                     if (enemyController != null) {
-                        enemies.Add(enemyController);
-                        enemyController.OnDeath += UnregisterEnemy;
+                        enemiesInScene.Add(enemyController);
                     }
                     else {
                         Debug.LogError("EnemyManager: Spawned enemy does not have an EnemyController component.");
@@ -109,15 +121,9 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void UnregisterEnemy(ActorController enemy)
+    public void UnregisterEnemy(EnemyController enemy)
     {
-        enemy.OnDeath -= UnregisterEnemy;
-
-        if (enemy is EnemyController) {
-            enemies.Remove(enemy as EnemyController);
-        }
-        else {
-            Debug.LogError("EnemyManager: Attempted to unregister an actor that is not an EnemyController.");
-        }
+        enemiesInScene.Remove(enemy);
     }
+
 }

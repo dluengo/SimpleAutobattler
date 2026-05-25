@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8898178681991947247}
   - component: {fileID: 377563659092580248}
   - component: {fileID: 6547960123046632869}
-  - component: {fileID: -5478955083278874610}
+  - component: {fileID: 2961303789024332644}
   m_Layer: 7
   m_Name: Torch Goblin
   m_TagString: Enemy
@@ -246,7 +246,7 @@ MonoBehaviour:
   suggestedDistance: 1.1
   enableAttackHitBoxGizmo: 1
   m_hitbox: {fileID: 2186869850340669604}
---- !u!114 &-5478955083278874610
+--- !u!114 &2961303789024332644
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
