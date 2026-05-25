@@ -31497,7 +31497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3254a41889daae42896bc23a7880391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  spawnEnemies: 1
+  spawnEnemies: 0
   spawnArea: {fileID: 1742315000}
   enemyPrefabs:
     list:
@@ -32119,6 +32119,7 @@ MonoBehaviour:
   m_projectileRotationSpeed: 0
   m_projectilePrefab: {fileID: 2432679671526927853, guid: ab8c8a1e12d25a940b13832db6224138, type: 3}
   m_projectileMoveSOPrefab: {fileID: 11400000, guid: 9127d9150a18d594487c3bdfa01d133d, type: 2}
+  inheritVelocityFactor: 0.5
 --- !u!1 &1088835802
 GameObject:
   m_ObjectHideFlags: 0
