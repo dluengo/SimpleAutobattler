@@ -74,15 +74,6 @@ public class HPStat : StatBase
         // Update the current value.
         currentValue = newHP > minValue ? newHP : minValue;
 
-        //float newValue = currentValue - damage;
-        //if (newValue != currentValue) {
-        //    isTakingDamage = true;
-        //}
-
-        //int roundedNewValue = Mathf.RoundToInt(newValue);
-
-        //currentValue = roundedNewValue > minValue ? roundedNewValue : minValue;
-
         if (isTakingDamage && invulnerabilityDuration > 0f) {
             m_isInvulnerable = true;
             StartCoroutine(InvulnerabilityCR());

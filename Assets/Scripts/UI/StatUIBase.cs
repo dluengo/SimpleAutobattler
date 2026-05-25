@@ -18,11 +18,13 @@ public abstract class StatUIBase : MonoBehaviour
     protected virtual void OnEnable()
     {
         stat.OnValueChanged += UpdateUI;
+        stat.OnMaxValueChanged += UpdateUI;
     }
 
     protected virtual void OnDisable()
     {
         stat.OnValueChanged -= UpdateUI;
+        stat.OnMaxValueChanged -= UpdateUI;
     }
 
     protected virtual void Start()

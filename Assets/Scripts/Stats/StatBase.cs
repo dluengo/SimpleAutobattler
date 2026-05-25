@@ -51,6 +51,8 @@ public abstract class StatBase : MonoBehaviour
     public event Action OnValueMin;
     public event Action OnValueMax;
 
+    public event Action OnMaxValueChanged;
+
 
     // --- Methods ---
     protected virtual void Awake()

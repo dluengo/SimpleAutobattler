@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class HPUI : StatUIBase
 {
     // --- Members ---
-    [Header("--- HP UI Settings ---")]
+    [Header("--- Stat UI Settings ---")]
     [SerializeField] Slider hpSlider;
     [SerializeField] TextMeshProUGUI hpText;
 
@@ -22,14 +22,25 @@ public class HPUI : StatUIBase
         Debug.Assert(hpText != null, "HPUI: hpText reference is not assigned.");
     }
 
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
 
-        UpdateUI(hpStat.currentValue, hpStat.currentValue);
+        if (hpStat != null) {
+            hpStat.OnMaxValueChanged += UpdateUI;
+        }
     }
 
-    protected override void UpdateUI(float oldValue, float newValue)
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+
+        if (hpStat != null) {
+            hpStat.OnMaxValueChanged -= UpdateUI;
+        }
+    }
+
+    protected override void UpdateUI()
     {
         hpSlider.value = (float)hpStat.currentValue / hpStat.maxValue;
         hpText.text = $"{hpStat.currentValue} / {hpStat.maxValue}";
