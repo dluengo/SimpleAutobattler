@@ -36,6 +36,7 @@ public class ActorController : MonoBehaviour
     }
     public List<ActorAction> actions { get; protected set; }
     public Animator animator { get; protected set; }
+    public HPStat hpStat;
 
     [SerializeField] LayerMask m_enemyLayer;
     public LayerMask enemyLayer
@@ -49,7 +50,6 @@ public class ActorController : MonoBehaviour
     [SerializeField] AnimationClip m_deadClip;
 
     protected Rigidbody2D m_rb;
-    protected HPStat m_hpStat;
     protected AnimatorOverrideController m_animOverrideController;
 
     private string m_idleAnimClipName = "Actor-Idle";
@@ -74,7 +74,7 @@ public class ActorController : MonoBehaviour
 
         // NOTE: It's ok if an actor cannot move or doesn't have hp (cannot take damage).
         move = GetComponent<ActorMove>();
-        m_hpStat = GetComponent<HPStat>();
+        hpStat = GetComponent<HPStat>();
 
         // NOTE: AnimationClips are changeable at runtime, so we need to use an
         // AnimatorOverrideController to override the clips in the animator controller.
@@ -218,8 +218,8 @@ public class ActorController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (m_hpStat != null) {
-            m_hpStat.TakeDamage(damage);
+        if (hpStat != null) {
+            hpStat.TakeDamage(damage);
         }
     }
 

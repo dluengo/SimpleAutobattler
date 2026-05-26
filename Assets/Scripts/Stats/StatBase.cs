@@ -5,12 +5,23 @@ using System;
 public abstract class StatBase : MonoBehaviour
 {
     // --- Members ---
-    [Header("--- StatBase Settings ---")]
+    [Header("--- Stat Settings ---")]
     protected string m_statName;
     [SerializeField] int m_maxValue = 100;
     public int maxValue {
         get => m_maxValue;
-        protected set => m_maxValue = value;
+        set {
+            int oldValue = m_maxValue;
+            m_maxValue = value;
+
+            // If there was an actuall change to the max value.
+            if (oldValue != m_maxValue) {
+                currentValue = Math.Clamp(currentValue, minValue, m_maxValue);
+
+                // Trigger event.
+                OnMaxValueChanged?.Invoke();
+            }
+        }
     }
     [SerializeField] int m_minValue = 0;
     public int minValue {

@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
     public void TriggerAction()
     {
         // Press space to kill the enemyPlayer for testing purposes
-        Player.actor.Die();
+        //Player.actor.Die();
 
         // To create an empty animation clip.
         //AnimationClip clip = new AnimationClip();
@@ -158,5 +158,9 @@ public class GameManager : MonoBehaviour
         //    Color newColor = new Color(currColor.r, currColor.g, currColor.b, 0.5f);
         //    spriteRenderer.color = newColor;
         //}
+
+        // Change the max HP of the player to see if it reflects in the UI.
+        //Debug.Log("TriggerAction called: changing player max HP to 150.");
+        //Player.actor.hpStat.maxValue = 6;
     }
 }

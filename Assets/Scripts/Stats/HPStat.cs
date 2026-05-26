@@ -25,8 +25,6 @@ public class HPStat : StatBase
 
     private bool m_isInvulnerable = false;
     private SpriteRenderer m_spriteRenderer;
-    //private string m_hpStatName = "Hit Points";
-
 
 
     // --- Methods ---
