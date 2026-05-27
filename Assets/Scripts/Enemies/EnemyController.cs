@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyController : ActorController
 {
     // --- Members ---
-    public PlayerController enemyPlayer { get; protected set; }
+    public ActorController enemyPlayer { get; protected set; }
 
     [Header("--- Enemy Settings ---")]
     public bool neutral = false;

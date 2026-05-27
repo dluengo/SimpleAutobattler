@@ -40,7 +40,7 @@ public class HPUI : StatUIBase
         }
     }
 
-    protected override void UpdateUI()
+    public override void UpdateUI()
     {
         hpSlider.value = (float)hpStat.currentValue / hpStat.maxValue;
         hpText.text = $"{hpStat.currentValue} / {hpStat.maxValue}";

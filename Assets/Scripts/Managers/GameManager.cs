@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
 
     // --- Members ---
-    public PlayerController Player;
+    public ActorController Player;
     public float ElapsedTime { get; private set; } = 0f;
 
     [SerializeField] GameObject gameOverScreen;
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
         // Subscribe to the enemyPlayer's OnDeath event to trigger the game over screen.
         if (Player != null) {
-            Player.actor.OnDeath += EndGame;
+            Player.OnDeath += EndGame;
         }
         else {
             Debug.LogWarning("GameManager: Player reference is not set. Game over screen will not be triggered on enemyPlayer death.");
@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
     public void TriggerAction()
     {
         // Press space to kill the enemyPlayer for testing purposes
-        Player.actor.Die();
+        Player.Die();
 
         // To create an empty animation clip.
         //AnimationClip clip = new AnimationClip();

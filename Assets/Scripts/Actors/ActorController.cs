@@ -36,6 +36,7 @@ public class ActorController : MonoBehaviour
     }
     public List<ActorAction> actions { get; protected set; }
     public Animator animator { get; protected set; }
+    public CoinBag coinBag { get; protected set; }
 
     [SerializeField] LayerMask m_enemyLayer;
     public LayerMask enemyLayer
@@ -44,7 +45,7 @@ public class ActorController : MonoBehaviour
         protected set => m_enemyLayer = value;
     }
 
-    [SerializeField] bool enableLookDirGizmo = true;
+    [SerializeField] bool m_enableLookDirGizmo = true;
     [SerializeField] AnimationClip m_idleClip;
     [SerializeField] AnimationClip m_deadClip;
 
@@ -85,6 +86,9 @@ public class ActorController : MonoBehaviour
 
         // Initialize the list of actions with the actions attached to this actor.
         actions = new List<ActorAction>(GetComponents<ActorAction>());
+
+        // Initialize the coin bag.
+        coinBag = new CoinBag();
     }
 
     protected virtual void OnEnable()
@@ -242,7 +246,7 @@ public class ActorController : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         // Draw a line indicating the look moveDir
-        if (enableLookDirGizmo) {
+        if (m_enableLookDirGizmo) {
             Gizmos.color = Color.blue;
             Vector3 lookDirection = new Vector3(lookDir.x, lookDir.y, 0f);
             Gizmos.DrawLine(transform.position, transform.position + lookDirection);

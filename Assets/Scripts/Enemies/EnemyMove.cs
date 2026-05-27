@@ -25,7 +25,7 @@ public class EnemyMove : ActorMove
     // They also run away from the enemyPlayer if they get too close.
     protected override void Update()
     {
-        PlayerController player = m_enemyActor != null ? m_enemyActor.enemyPlayer : null;
+        ActorController player = m_enemyActor != null ? m_enemyActor.enemyPlayer : null;
         if (player != null) {
 
             Vector2 directionToPlayer = player.transform.position - transform.position;

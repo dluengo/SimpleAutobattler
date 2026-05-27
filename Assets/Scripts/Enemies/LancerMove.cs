@@ -7,7 +7,7 @@ public class LancerMove : ActorMove
     //    // NOTE: Lancers move towards the enemyPlayer up to a range, then stay there.
     //    // If the enemyPlayer leaves the range lancers will chase again.
 
-    //    PlayerController enemyPlayer = GameManager.Instance.Player;
+    //    ActorController enemyPlayer = GameManager.Instance.Player;
     //    if (enemyPlayer == null) {
     //        return;
     //    }

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(ActorController))]
-public class PlayerController : MonoBehaviour
+public class InputController : MonoBehaviour
 {
     // --- Members ---
     public ActorController actor { get; private set; }
@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         actor = GetComponent<ActorController>();
-        Debug.Assert(actor != null, "PlayerController requires an ActorController component.");
+        Debug.Assert(actor != null, "ActorController requires an ActorController component.");
     }
 
     private void Update()
@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // NOTE: The design is flawed. There should be an InputManager that handles
-    // all input and then calls methods on the PlayerController.
+    // all input and then calls methods on the ActorController.
     // This is a quick and dirty solution to trigger an action in the GameManager
     // when the space key is pressed.
     public void OnTriggerAction(InputAction.CallbackContext context)

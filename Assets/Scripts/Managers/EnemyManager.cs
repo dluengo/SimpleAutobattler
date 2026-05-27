@@ -35,7 +35,7 @@ public class EnemyManager : MonoBehaviour
         Debug.Assert(enemiesInScene != null, "EnemyManager: Failed to initialize enemy list.");
 
         // NOTE: Because we assign the enemies and weights in the inspector,
-        // we need to call UpdateWeights() to ensure the total weight is calculated
+        // we need to call UpdateWeights() to ensure the totalCoins weight is calculated
         // correctly.
         if (enemyPrefabs != null) {
             enemyPrefabs.UpdateWeights();

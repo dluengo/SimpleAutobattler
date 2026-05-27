@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class StatUIBase : MonoBehaviour
+public abstract class StatUIBase : UIBase
 {
     // --- Members ---
     // NOTE: This member must be assigned in the derived class's Awake() method,
@@ -26,11 +26,4 @@ public abstract class StatUIBase : MonoBehaviour
         stat.OnValueChanged -= UpdateUI;
         stat.OnMaxValueChanged -= UpdateUI;
     }
-
-    protected virtual void Start()
-    {
-        UpdateUI();
-    }
-
-    protected abstract void UpdateUI();
 }
