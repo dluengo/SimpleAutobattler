@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class HPUI : StatUIBase
 {
     // --- Members ---
-    [Header("--- Stat UI Settings ---")]
+    [Header("--- HP UI Settings ---")]
     [SerializeField] Slider hpSlider;
     [SerializeField] TextMeshProUGUI hpText;
 
@@ -16,8 +16,7 @@ public class HPUI : StatUIBase
     // --- Methods ---
     protected override void Awake()
     {
-        base.Awake();
-
+        Debug.Assert(stat != null, "HPUI: No HPStat found in Player's statList.");
         Debug.Assert(hpSlider != null, "HPUI: hpSlider reference is not assigned.");
         Debug.Assert(hpText != null, "HPUI: hpText reference is not assigned.");
     }

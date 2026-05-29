@@ -27,9 +27,8 @@ public class EnemyController : ActorController
 
         // Check if this enemy has Health component and subscribe to the
         // OnValueChanged event to trigger the death animation when health reaches 0.
-        HPStat hpStat = GetComponent<HPStat>();
-        if (hpStat != null) {
-            hpStat.OnValueMin += OnDeadHandler;
+        if (m_hpStat != null) {
+            m_hpStat.OnValueMin += OnDeadHandler;
         }
     }
 
@@ -38,9 +37,8 @@ public class EnemyController : ActorController
         base.OnDisable();
 
         // Unsubscribe from the OnValueChanged event to prevent memory leaks.
-        HPStat hpStat = GetComponent<HPStat>();
-        if (hpStat != null) {
-            hpStat.OnValueMin -= OnDeadHandler;
+        if (m_hpStat != null) {
+            m_hpStat.OnValueMin -= OnDeadHandler;
         }
     }
 
@@ -123,9 +121,9 @@ public class EnemyController : ActorController
         // Check if the collision is with my enemy
         if (collision.gameObject.layer == enemyLayer) {
 
-            // Apply damage to the enemyPlayer
+            // Apply damage to the enemyPlayer if it has an HPStat component.
             HPStat playerHp = collision.gameObject.GetComponent<HPStat>();
-            if (playerHp != null) {
+            if (playerHp != null && playerHp.enabled) {
                 playerHp.TakeDamage(m_contactDamage);
             }   
         }

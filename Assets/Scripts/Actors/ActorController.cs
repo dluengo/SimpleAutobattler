@@ -50,8 +50,11 @@ public class ActorController : MonoBehaviour
     [SerializeField] AnimationClip m_deadClip;
 
     protected Rigidbody2D m_rb;
-    protected HPStat m_hpStat;
     protected AnimatorOverrideController m_animOverrideController;
+
+    // Stats, Actors may not have stats, but if they do, they will
+    // use them for different things depending on the type of stat.
+    protected HPStat m_hpStat;
 
     private string m_idleAnimClipName = "Actor-Idle";
     private string m_deadAnimParamName = "isDead";
@@ -222,7 +225,7 @@ public class ActorController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (m_hpStat != null) {
+        if (m_hpStat != null && m_hpStat.enabled) {
             m_hpStat.TakeDamage(damage);
         }
     }

@@ -201,9 +201,10 @@ MonoBehaviour:
   m_enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  enableLookDirGizmo: 0
+  m_enableLookDirGizmo: 1
   m_idleClip: {fileID: 7400000, guid: 94df887bbf9024d439670100dfbb7087, type: 2}
   m_deadClip: {fileID: 0}
+  m_statList: []
   neutral: 0
   m_contactDamage: 1
 --- !u!114 &7091407437918470131
@@ -261,9 +262,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HPStat
-  m_maxValue: 1
-  m_minValue: 0
+  m_hasMin: 1
+  m_hasMax: 0
+  minValue: 0
+  maxValue: 1
+  m_currentValue: 1
   invulnerabilityDuration: 0
+  m_enableDamageTint: 0
 --- !u!1 &6536918148369378857
 GameObject:
   m_ObjectHideFlags: 0

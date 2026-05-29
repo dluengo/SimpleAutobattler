@@ -1,42 +1,82 @@
 using UnityEngine;
 using System;
 
+
 [RequireComponent(typeof(ActorController))]
 public abstract class StatBase : MonoBehaviour
 {
     // --- Members ---
     [Header("--- StatBase Settings ---")]
-    protected string m_statName;
-    [SerializeField] int m_maxValue = 100;
-    public int maxValue {
-        get => m_maxValue;
-        protected set => m_maxValue = value;
+    [SerializeField] bool m_hasMin;
+    public bool hasMin
+    {
+        get => m_hasMin;
+        protected set => m_hasMin = value;
     }
-    [SerializeField] int m_minValue = 0;
-    public int minValue {
+    [SerializeField] int m_minValue;
+    public int minValue
+    {
         get => m_minValue;
-        protected set => m_minValue = value;
+        protected set {
+            if (m_minValue != value) {
+                m_minValue = value;
+
+                if (hasMin) {
+                    OnMinValueChanged?.Invoke();
+                }
+            }
+        }
     }
 
-    private int m_currentValue;
+    [SerializeField] bool m_hasMax;
+    public bool hasMax
+    {
+        get => m_hasMax;
+        protected set => m_hasMax = value;
+    }
+    [SerializeField] int m_maxValue;
+    public int maxValue
+    {
+        get => m_maxValue;
+        protected set {
+            if (m_maxValue != value) {
+                m_maxValue = value;
+
+                if (hasMax) {
+                    OnMaxValueChanged?.Invoke();
+                }
+            }
+        }
+    }
+
+    [SerializeField] int m_currentValue;
     public int currentValue
     {
         get => m_currentValue;
         protected set {
-            if (value != m_currentValue) {
-
-                if (value < minValue || (value > maxValue && maxValue >= 0)) {
-                    Debug.LogWarning($"Attempted to set currentValue to {value}, which is outside the range [{minValue}, {maxValue}]. Clamping to valid range.");
+            if (m_currentValue != value) {
+                if (hasMin && hasMax) {
+                    m_currentValue = Math.Clamp(value, minValue, maxValue);
+                }
+                else if (hasMin) {
+                    m_currentValue = Math.Max(minValue, value);
+                }
+                else if (hasMax) {
+                    m_currentValue = Math.Min(value, maxValue);
+                }
+                // Both min and max are disabled
+                else {
+                    m_currentValue = value;
                 }
 
-                float oldValue = m_currentValue;
-                m_currentValue = Mathf.Clamp(value, minValue, maxValue);
+                // Trigger event.
                 OnValueChanged?.Invoke();
 
-                if (m_currentValue <= minValue) {
+                // Check if extra events need to be triggered.
+                if (hasMin && m_currentValue <= minValue) {
                     OnValueMin?.Invoke();
                 }
-                else if (maxValue >= 0 && m_currentValue >= maxValue) {
+                else if (hasMax && m_currentValue >= maxValue) {
                     OnValueMax?.Invoke();
                 }
             }
@@ -51,6 +91,7 @@ public abstract class StatBase : MonoBehaviour
     public event Action OnValueMin;
     public event Action OnValueMax;
 
+    public event Action OnMinValueChanged;
     public event Action OnMaxValueChanged;
 
 
@@ -58,11 +99,7 @@ public abstract class StatBase : MonoBehaviour
     protected virtual void Awake()
     {
         m_actor = GetComponent<ActorController>();
-        Debug.Assert(m_actor != null, "StatBase: ActorController component is missing.");
-    }
 
-    protected virtual void Start()
-    {
-        currentValue = maxValue;
+        Debug.Assert(m_actor != null, "StatBase: Actor reference is not assigned.");
     }
 }

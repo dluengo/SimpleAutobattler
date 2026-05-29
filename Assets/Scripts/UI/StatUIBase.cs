@@ -10,20 +10,21 @@ public abstract class StatUIBase : UIBase
 
 
     // --- Methods ---
-    protected virtual void Awake()
-    {
-        Debug.Assert(stat != null, "Stat is not assigned.");
-    }
+    protected abstract void Awake();
 
     protected virtual void OnEnable()
     {
-        stat.OnValueChanged += UpdateUI;
-        stat.OnMaxValueChanged += UpdateUI;
+        if (stat != null) {
+            stat.OnValueChanged += UpdateUI;
+            stat.OnMaxValueChanged += UpdateUI;
+        }
     }
 
     protected virtual void OnDisable()
     {
-        stat.OnValueChanged -= UpdateUI;
-        stat.OnMaxValueChanged -= UpdateUI;
+        if (stat != null) {
+            stat.OnValueChanged -= UpdateUI;
+            stat.OnMaxValueChanged -= UpdateUI;
+        }
     }
 }

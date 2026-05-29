@@ -1,61 +1,57 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(ActorController))]
+
 public class HPStat : StatBase
 {
     // --- Members ---
-    [Header("--- HP Settings ---")]
+    [Header("--- HP Stat Settings ---")]
     [SerializeField] float invulnerabilityDuration = 0.5f;
-    [SerializeField] bool m_enableDamageTint = true;
-    public bool enableDamageTint
-    {
-        get => m_enableDamageTint;
-        set {
-            // If disabling tint, reset sprite color to default.
-            if (!value && m_spriteRenderer != null) {
-                m_spriteRenderer.color = new Color(1, 1, 1, 1);
-            }
 
-            m_enableDamageTint = value;
-        }
-    }
+    // TODO: Tint color is not working because of how the animation clips work.
+    // Animation clips override the sprite of the gameobject, resetting the
+    // color to the default color. Effectively overriding the tint color we set
+    // For now we don't support it, although most likely this will come back to
+    // bite us. But for now we leave some commented code.
+    //[SerializeField] bool m_enableDamageTint = true;
+    //public bool enableDamageTint
+    //{
+    //    get => m_enableDamageTint;
+    //    set {
+    //        // If disabling tint, reset sprite color to default.
+    //        if (!value && m_spriteRenderer != null) {
+    //            m_spriteRenderer.color = new Color(1, 1, 1, 1);
+    //        }
 
-    protected new string m_statName => "Hit Points";
+    //        m_enableDamageTint = value;
+    //        TintHandler();
+    //    }
+    //}
 
     private bool m_isInvulnerable = false;
-    private SpriteRenderer m_spriteRenderer;
-    //private string m_hpStatName = "Hit Points";
-
+    //private SpriteRenderer m_spriteRenderer;
 
 
     // --- Methods ---
-    protected override void Awake()
-    {
-        base.Awake();
+    //protected override void Awake()
+    //{
+    //    base.Awake();
 
-        m_spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+    //    m_spriteRenderer = GetComponent<SpriteRenderer>();
+    //}
 
     protected void OnEnable()
     {
         // Subscribe to the OnValueMin event to trigger the death animation when health reaches 0.
         OnValueMin += OnHPZeroHandler;
-        OnValueChanged += OnDamageTaken_TintHandler;
+        //OnValueChanged += TintHandler;
     }
 
     protected void OnDisable()
     {
         OnValueMin -= OnHPZeroHandler;
+        //OnValueChanged -= TintHandler;
     }
-
-    //protected override void Start()
-    //{
-    //    base.Start();
-
-    //    //m_statName = m_hpStatName;
-    //    m_spriteRenderer = GetComponent<SpriteRenderer>();
-    //}
 
     public void TakeDamage(float damage)
     {
@@ -74,6 +70,8 @@ public class HPStat : StatBase
         // Update the current value.
         currentValue = newHP > minValue ? newHP : minValue;
 
+        // Trigger invulnerability if took damage and there is
+        // any invulnerability duration
         if (isTakingDamage && invulnerabilityDuration > 0f) {
             m_isInvulnerable = true;
             StartCoroutine(InvulnerabilityCR());
@@ -82,19 +80,20 @@ public class HPStat : StatBase
 
     private IEnumerator InvulnerabilityCR()
     {
-        // Make the sprite 50% transparent
-        if (m_spriteRenderer != null) {
-            Color c = m_spriteRenderer.color;
-            m_spriteRenderer.color = new Color(c.r, c.g, c.b, 0.5f);
-        }
+        // TODO: Same problem as with the tint. Because of how the animation clips work,
+        // the sprite color is reset to default, overriding the alpha change we make here.
+        //if (m_spriteRenderer != null) {
+        //    Color c = m_spriteRenderer.color;
+        //    m_spriteRenderer.color = new Color(c.r, c.g, c.b, 0.5f);
+        //}
 
         yield return new WaitForSeconds(invulnerabilityDuration);
 
         // Restore sprite alpha
-        if (m_spriteRenderer != null) {
-            Color c = m_spriteRenderer.color;
-            m_spriteRenderer.color = new Color(c.r, c.g, c.b, 1f);
-        }
+        //if (m_spriteRenderer != null) {
+        //    Color c = m_spriteRenderer.color;
+        //    m_spriteRenderer.color = new Color(c.r, c.g, c.b, 1f);
+        //}
 
         m_isInvulnerable = false;
     }
@@ -105,14 +104,20 @@ public class HPStat : StatBase
         m_actor.Die();
     }
 
-    private void OnDamageTaken_TintHandler()
-    {
-        if (!enableDamageTint || m_spriteRenderer == null) {
-            return;
-        }
+    //private void TintHandler()
+    //{
+    //    Debug.Log($"HPStat: TintHandler called. currentValue={currentValue}, maxValue={maxValue}, enableDamageTint={enableDamageTint}");
+    //    // Cache the SpriteRenderer reference if we haven't already.
+    //    if (m_spriteRenderer == null) {
+    //        return;
+    //    }
 
-        float healthPercent = Mathf.Clamp01((float)currentValue / maxValue);
-        Color tint = new Color(1f, healthPercent, healthPercent, 1f);
-        m_spriteRenderer.color = tint;
-    }
+    //    if (!enableDamageTint) {
+    //        m_spriteRenderer.color = new Color(1, 1, 1, 1);
+    //    }
+    //    else {
+    //        float healthPercent = Mathf.Clamp01((float)currentValue / maxValue);
+    //        m_spriteRenderer.color = new Color(1, healthPercent, healthPercent, 1);
+    //    }
+    //}
 }
