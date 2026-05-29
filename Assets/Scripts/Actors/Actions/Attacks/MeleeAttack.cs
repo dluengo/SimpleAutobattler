@@ -23,12 +23,9 @@ public class MeleeAttack : AttackAction
 
         Debug.Assert(m_hitbox != null, $"AttackAction {name} requires a Collider2D component for attack hitbox.");
 
-        // NOTE!
-        // We don't want the collider to be active and generating collisions
+        // NOTE: We don't want the collider to be active and generating collisions
         // We need it to have an easy way to define the area of the hitbox for
         // when hit detection is performed.
-        //m_hitboxOffset = m_hitbox.offset;
-        //m_hitboxSize = m_hitbox.bounds.size;
         m_hitbox.enabled = false;
     }
 

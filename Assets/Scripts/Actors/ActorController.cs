@@ -10,17 +10,6 @@ public class ActorController : MonoBehaviour
     // --- Members ---
     [Header("--- Actor Settings ---")]
     public bool actionsEnabled = true;
-    public bool movementEnabled {
-        get => move != null && move.movementEnabled;
-        set {
-            if (move != null) {
-                move.movementEnabled = value;
-            }
-            else {
-                Debug.LogWarning($"ActorController: Attempting to set movementEnabled but no ActorMove component found on {gameObject.name}.");
-            }
-        }
-    }
     private Vector2 m_lookDir = Vector2.right;
     public Vector2 lookDir
     {
@@ -29,11 +18,7 @@ public class ActorController : MonoBehaviour
     }
 
     protected ActorMove m_move;
-    public ActorMove move
-    {
-        get => m_move;
-        protected set => m_move = value;
-    }
+ 
     public List<ActorAction> actions { get; protected set; }
     public Animator animator { get; protected set; }
     public CoinBag coinBag { get; protected set; }
@@ -55,6 +40,7 @@ public class ActorController : MonoBehaviour
     // Stats, Actors may not have stats, but if they do, they will
     // use them for different things depending on the type of stat.
     protected HPStat m_hpStat;
+    protected SpeedStat m_speedStat;
 
     private string m_idleAnimClipName = "Actor-Idle";
     private string m_deadAnimParamName = "isDead";
@@ -77,8 +63,9 @@ public class ActorController : MonoBehaviour
         Debug.Assert(animator != null, "ActorController: Animator component is missing.");
 
         // NOTE: It's ok if an actor cannot move or doesn't have hp (cannot take baseDamage).
-        move = GetComponent<ActorMove>();
+        m_move = GetComponent<ActorMove>();
         m_hpStat = GetComponent<HPStat>();
+        m_speedStat = GetComponent<SpeedStat>();
 
         // NOTE: AnimationClips are changeable at runtime, so we need to use an
         // AnimatorOverrideController to override the clips in the animator controller.
@@ -150,26 +137,18 @@ public class ActorController : MonoBehaviour
             }
         }
         
-        if (!lookDirUpdated && move != null) {
+        if (!lookDirUpdated && m_move != null) {
 
             // If moving this frame, update lookDir to match moveDir. Otherwise
             // just keepCasting looking in the same target when idle.
-            if (move.moveDir != Vector2.zero) {
-                lookDir = move.moveDir;
+            if (m_move.moveDir != Vector2.zero) {
+                lookDir = m_move.moveDir;
                 lookDirUpdated = true;
             }
         }
 
         if (FlipNeeded()) {
             Flip();
-        }
-    }
-
-    protected virtual void FixedUpdate()
-    {
-        if (move != null && move.movementEnabled && move.moveDir != Vector2.zero) {
-            m_rb.MovePosition(
-                (Vector2)transform.position + move.moveDir.normalized * move.moveSpeed * Time.fixedDeltaTime);
         }
     }
 
@@ -214,8 +193,8 @@ public class ActorController : MonoBehaviour
         }
 
         // Disable movement and actions
-        if (move != null) {
-            move.movementEnabled = false;
+        if (m_move != null && m_move.enabled) {
+            m_move.movementEnabled = false;
         }
 
         actionsEnabled = false;

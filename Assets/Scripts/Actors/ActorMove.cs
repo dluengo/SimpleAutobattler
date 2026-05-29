@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(ActorController), typeof(Animator))]
+[RequireComponent(typeof(ActorController), typeof(Animator), typeof(Rigidbody2D))]
 public class ActorMove : MonoBehaviour
 {
     // --- Members ---
@@ -25,7 +25,15 @@ public class ActorMove : MonoBehaviour
 
     [SerializeField] protected float m_moveSpeed = 5f;
     public float moveSpeed     {
-        get => m_moveSpeed;
+        get {
+            // When someone asks for the moveSpeed, we check if we have a SpeedStat
+            // and take it into account.
+            if (m_speedStat != null) {
+                return m_moveSpeed + m_speedStat.currentValue;
+            }
+
+            return m_moveSpeed;
+        }
         protected set => m_moveSpeed = value;
     }
     [SerializeField] protected AnimationClip m_moveAnimClip;
@@ -62,6 +70,8 @@ public class ActorMove : MonoBehaviour
     }
 
     protected ActorController m_actor;
+    protected SpeedStat m_speedStat;
+    protected Rigidbody2D m_rb;
 
     private string m_moveAnimClipName = "Actor-Move";
 
@@ -75,10 +85,13 @@ public class ActorMove : MonoBehaviour
     // --- Methods ---
     protected virtual void Awake()
     {
+        m_speedStat = GetComponent<SpeedStat>();
+
+        m_rb = GetComponent<Rigidbody2D>();
+        Debug.Assert(m_rb != null, "ActorMove requires a Rigidbody2D component.");
+
         m_actor = GetComponent<ActorController>();
-        if (m_actor == null) {
-            Debug.LogError("ActorMove requires an ActorController component.");
-        }
+        Debug.Assert(m_actor != null, "ActorMove requires an ActorController component.");
     }
 
     protected virtual void OnEnable()
@@ -101,6 +114,16 @@ public class ActorMove : MonoBehaviour
         // Check every frame if we are moving and if so , invoke the OnMove event.
         if (movementEnabled && isMoving) {
             OnMove?.Invoke();
+        }
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        // NOTE: We control the final speed using both moveSpeed from this module and
+        // m_speedStat.currentValue if it exists throught the getter of moveSpeed.
+        if (movementEnabled && moveDir != Vector2.zero) {
+            m_rb.MovePosition(
+                (Vector2)transform.position + moveDir.normalized * moveSpeed * Time.fixedDeltaTime);
         }
     }
 }

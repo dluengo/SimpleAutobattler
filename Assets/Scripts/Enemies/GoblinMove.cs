@@ -17,10 +17,10 @@ public class GoblinMove : ActorMove
             Vector2 playerDir = m_enemyController.enemyPlayer.transform.position - transform.position;
 
             // Goblins just run towards the enemyPlayer.
-            m_actor.move.moveDir = playerDir.normalized;
+            moveDir = playerDir.normalized;
         }
         else {
-            m_actor.move.moveDir = Vector2.zero;
+            moveDir = Vector2.zero;
         }
     }
 }

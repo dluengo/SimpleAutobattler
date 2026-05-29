@@ -24,6 +24,7 @@ public abstract class ActorAction : MonoBehaviour
 
     protected string m_actionName;
     protected ActorController m_actor;
+    protected ActorMove m_move;
     protected Animator m_animator;
 
     private ActionAnimSMB m_actionEndSMB;
@@ -45,6 +46,8 @@ public abstract class ActorAction : MonoBehaviour
     {
         m_actor = GetComponent<ActorController>();
         Debug.Assert(m_actor != null, $"ActorAction {name} requires an ActorController component.");
+
+        m_move = GetComponent<ActorMove>();
 
         m_animator = GetComponent<Animator>();
         Debug.Assert(m_animator != null, $"ActorAction {name} requires an Animator component.");
@@ -108,7 +111,7 @@ public abstract class ActorAction : MonoBehaviour
 
             // Check if the action should stop the actor's movement
             if (castStops) {
-                m_actor.movementEnabled = false;
+                m_move.movementEnabled = false;
             }
 
             m_animRunning = true;
@@ -144,7 +147,7 @@ public abstract class ActorAction : MonoBehaviour
     {
         m_animRunning = false;
         if (castStops) {
-            m_actor.movementEnabled = true;
+            m_move.movementEnabled = true;
         }
 
         OnActionEnd?.Invoke();

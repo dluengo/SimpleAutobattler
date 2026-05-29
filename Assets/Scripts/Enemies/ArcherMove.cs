@@ -13,7 +13,7 @@ public class ArcherMove : ActorMove
 
         // If we don't have a enemyPlayer, just stop moving.
         if (m_archerController.enemyPlayer == null) {
-            m_actor.move.moveDir = Vector2.zero;
+            moveDir = Vector2.zero;
             return;
         }
 
@@ -22,11 +22,11 @@ public class ArcherMove : ActorMove
         float distanceToPlayer = dirPlayer.magnitude;
         if (distanceToPlayer > m_archerController.range) {
             // Move towards enemyPlayer
-            m_actor.move.moveDir = dirPlayer;
+            moveDir = dirPlayer;
         }
         else {
             // Stop moving
-            m_actor.move.moveDir = Vector2.zero;
+            moveDir = Vector2.zero;
         }
     }
 }

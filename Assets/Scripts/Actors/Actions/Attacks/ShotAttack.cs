@@ -22,7 +22,7 @@ public class ShotAttack : RangedAttack
                 Vector2 perp = new Vector2(-actionDir.y, actionDir.x);
 
                 // Get the actor's velocity (assuming you have access to it)
-                Vector2 actorVelocity = m_actor.move != null ? m_actor.move.moveDir * m_actor.move.moveSpeed : Vector2.zero;
+                Vector2 actorVelocity = m_move != null ? m_move.moveDir * m_move.moveSpeed : Vector2.zero;
 
                 // Project the actor's velocity onto the perpendicular direction
                 float perpComponent = Vector2.Dot(actorVelocity, perp);

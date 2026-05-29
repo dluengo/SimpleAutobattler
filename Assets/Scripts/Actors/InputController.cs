@@ -9,12 +9,16 @@ public class InputController : MonoBehaviour
 
     [SerializeField] float m_minInputThreshold = 0.1f;
 
+    protected ActorMove m_move;
+
 
     // --- Methods ---
     private void Awake()
     {
         actor = GetComponent<ActorController>();
         Debug.Assert(actor != null, "ActorController requires an ActorController component.");
+
+        m_move = GetComponent<ActorMove>();
     }
 
     private void Update()
@@ -59,8 +63,8 @@ public class InputController : MonoBehaviour
         }
 
         // Fallback to movement target or right
-        if (actor.move != null && actor.move.moveDir != Vector2.zero) {
-            return actor.move.moveDir;
+        if (m_move != null && m_move.moveDir != Vector2.zero) {
+            return m_move.moveDir;
         }
 
         return Vector2.right;
@@ -91,8 +95,9 @@ public class InputController : MonoBehaviour
         }
 
         // Fallback to movement target or right
-        if (actor.move != null && actor.move.moveDir != Vector2.zero)
-            return actor.move.moveDir;
+        if (m_move != null && m_move.moveDir != Vector2.zero) {
+            return m_move.moveDir;
+        }
 
         return Vector2.right;
     }
@@ -104,14 +109,14 @@ public class InputController : MonoBehaviour
         if (context.performed) {
             Vector2 input = context.ReadValue<Vector2>();
             if (input.magnitude < m_minInputThreshold) {
-                actor.move.moveDir = Vector2.zero;
+                m_move.moveDir = Vector2.zero;
             }
             else {
-                actor.move.moveDir = input.normalized;
+                m_move.moveDir = input.normalized;
             }
         }
         else {
-            actor.move.moveDir = Vector2.zero;
+            m_move.moveDir = Vector2.zero;
         }
     }
 

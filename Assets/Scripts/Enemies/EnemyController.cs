@@ -10,17 +10,10 @@ public class EnemyController : ActorController
 
     [SerializeField] float m_contactDamage = 1f;
 
-    protected EnemyMove enemyMove;
+    protected new EnemyMove m_move => base.m_move as EnemyMove;
 
 
     // --- Methods ---
-    protected override void Awake()
-    {
-        base.Awake();
-
-        enemyMove = GetComponent<EnemyMove>();
-    }
-
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -50,10 +43,10 @@ public class EnemyController : ActorController
 
         // Initialize the chase radius of the EnemyMove component to the range
         // of the first attack action.
-        if (enemyMove != null && actions.Count > 0) {
+        if (m_move != null && actions.Count > 0) {
             AttackAction attackAction = actions[0] as AttackAction;
             if (attackAction != null && attackAction.suggestedDistance > 0) {
-                enemyMove.chaseRangeRadius = attackAction.suggestedDistance;
+                m_move.chaseRangeRadius = attackAction.suggestedDistance;
             }
         }
     }
@@ -65,43 +58,44 @@ public class EnemyController : ActorController
         base.Update();
 
         // If there is no move component, do nothing.
-        if (enemyMove == null) {
+        if (m_move == null || !m_move.enabled) {
             return;
         }
 
-        // If there is no player, do nothing.
+        // If there is no player, stand still.
         if (enemyPlayer == null) {
-            enemyMove.moveDir = Vector2.zero;
+            m_move.moveDir = Vector2.zero;
             return;
         }
 
         Vector2 directionToPlayer = enemyPlayer.transform.position - transform.position;
         float distanceToPlayer = directionToPlayer.magnitude;
 
-        // If enemy is neutral and the player is inside enemy's flee range, flee.
-        if (neutral) {
+        if (m_move != null && m_move.enabled) {
 
             // Player too close, flee.
-            if (enemyMove != null && distanceToPlayer < enemyMove.fleeRangeRadius) {
-                enemyMove.moveDir = -directionToPlayer.normalized;
+            if (distanceToPlayer < m_move.fleeRangeRadius) {
+                m_move.moveDir = -directionToPlayer.normalized;
             }
-            // Player is far, do nothing.
+            // Player is far away, move towards them.
+            else if (distanceToPlayer > m_move.chaseRangeRadius) {
+                m_move.moveDir = directionToPlayer.normalized;
+            }
+            // Player is within action/attack range. Stop moving.
             else {
-                move.moveDir = Vector2.zero;
-            }
+                m_move.moveDir = Vector2.zero;
 
-            return;
+                // Trigger the first action (presumably an attack).
+                if (actions.Count > 0) {
+                    actions[0].StartActionTarget(enemyPlayer.transform.position);
+                }
+            }
         }
 
-        // Always look towards the enemyPlayer
+        // NOTE: lookDir update is handled in ActorController. However, because we
+        // may have changed the moveDir after base.Update(), we need to update
+        // lookDir here in case it's needed.
         lookDir = (enemyPlayer.transform.position - transform.position).normalized;
-
-        if (enemyMove != null) {
-            if (distanceToPlayer <= enemyMove.chaseRangeRadius && actions.Count > 0) {
-                //actions[0].StartActionDirection(lookDir);
-                actions[0].StartActionTarget(enemyPlayer.transform.position);
-            }
-        }
     }
 
 
