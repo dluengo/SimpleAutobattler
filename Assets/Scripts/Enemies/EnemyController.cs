@@ -121,7 +121,7 @@ public class EnemyController : ActorController
         // Check if the collision is with my enemy
         if (collision.gameObject.layer == enemyLayer) {
 
-            // Apply damage to the enemyPlayer if it has an HPStat component.
+            // Apply baseDamage to the enemyPlayer if it has an HPStat component.
             HPStat playerHp = collision.gameObject.GetComponent<HPStat>();
             if (playerHp != null && playerHp.enabled) {
                 playerHp.TakeDamage(m_contactDamage);

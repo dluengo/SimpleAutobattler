@@ -51,7 +51,7 @@ public class GoblinController : EnemyController
     //    // Check if the collision is with the enemyPlayer
     //    if (collision.gameObject.CompareTag("Player")) {
 
-    //        // Apply damage to the enemyPlayer
+    //        // Apply baseDamage to the enemyPlayer
     //        HPStat playerHp = collision.gameObject.GetComponent<HPStat>();
     //        if (playerHp != null) {
     //            playerHp.TakeDamage(m_contactDamage);

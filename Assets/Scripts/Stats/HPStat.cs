@@ -55,7 +55,7 @@ public class HPStat : StatBase
 
     public void TakeDamage(float damage)
     {
-        // If the actor is invulnerable or damage is zero or less, do nothing.
+        // If the actor is invulnerable or baseDamage is zero or less, do nothing.
         if (m_isInvulnerable || damage <= 0) {
             return;
         }
@@ -70,7 +70,7 @@ public class HPStat : StatBase
         // Update the current value.
         currentValue = newHP > minValue ? newHP : minValue;
 
-        // Trigger invulnerability if took damage and there is
+        // Trigger invulnerability if took baseDamage and there is
         // any invulnerability duration
         if (isTakingDamage && invulnerabilityDuration > 0f) {
             m_isInvulnerable = true;

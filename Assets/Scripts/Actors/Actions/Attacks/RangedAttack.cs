@@ -37,7 +37,11 @@ public abstract class RangedAttack : AttackAction
             // Initialize the projectile's controller.
             ProjectileController projectile = projectileGO.GetComponent<ProjectileController>();
             if (projectile != null) {
-                projectile.Init(m_actor, damage, m_projectileSpeed, m_projectileRotationSpeed);
+                projectile.Init(
+                    m_actor,
+                    CalculateDamage(),
+                    m_projectileSpeed,
+                    m_projectileRotationSpeed);
                 return projectileGO;
             }
         }

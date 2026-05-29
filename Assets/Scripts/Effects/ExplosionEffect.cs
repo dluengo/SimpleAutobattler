@@ -26,7 +26,7 @@ public class ExplosionEffect : MonoBehaviour
                 rb.AddForce(direction * explosionForce, ForceMode2D.Impulse);
             }
 
-            // You can add more logic here, e.g., damage, status effects, etc.
+            // You can add more logic here, e.g., baseDamage, status effects, etc.
         }
     }
 

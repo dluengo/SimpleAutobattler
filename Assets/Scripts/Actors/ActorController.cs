@@ -76,7 +76,7 @@ public class ActorController : MonoBehaviour
         animator = GetComponent<Animator>();
         Debug.Assert(animator != null, "ActorController: Animator component is missing.");
 
-        // NOTE: It's ok if an actor cannot move or doesn't have hp (cannot take damage).
+        // NOTE: It's ok if an actor cannot move or doesn't have hp (cannot take baseDamage).
         move = GetComponent<ActorMove>();
         m_hpStat = GetComponent<HPStat>();
 

@@ -278,7 +278,7 @@ public class ProjectileController : MonoBehaviour
                 return;
             }
 
-            // Apply damage if valid target
+            // Apply baseDamage if valid target
             HPStat hpStat = collision.gameObject.GetComponent<HPStat>();
             if (hpStat != null && hpStat.enabled) {
                 hpStat.TakeDamage(damage);
