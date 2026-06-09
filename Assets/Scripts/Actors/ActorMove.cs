@@ -120,7 +120,7 @@ public class ActorMove : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         // NOTE: We control the final speed using both moveSpeed from this module and
-        // m_speedStat.currentValue if it exists throught the getter of moveSpeed.
+        // m_speedStat.value if it exists throught the getter of moveSpeed.
         if (movementEnabled && moveDir != Vector2.zero) {
             m_rb.MovePosition(
                 (Vector2)transform.position + moveDir.normalized * moveSpeed * Time.fixedDeltaTime);

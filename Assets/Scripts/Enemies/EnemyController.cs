@@ -14,26 +14,26 @@ public class EnemyController : ActorController
 
 
     // --- Methods ---
-    protected override void OnEnable()
-    {
-        base.OnEnable();
+    //protected override void OnEnable()
+    //{
+    //    base.OnEnable();
 
-        // Check if this enemy has Health component and subscribe to the
-        // OnValueChanged event to trigger the death animation when health reaches 0.
-        if (m_hpStat != null) {
-            m_hpStat.OnValueMin += OnDeadHandler;
-        }
-    }
+    //    // Check if this enemy has Health component and subscribe to the
+    //    // OnValueChanged event to trigger the death animation when health reaches 0.
+    //    //if (m_hpStat != null) {
+    //    //    m_hpStat.OnValueMin += OnDeadHandler;
+    //    //}
+    //}
 
-    protected override void OnDisable()
-    {
-        base.OnDisable();
+    //protected override void OnDisable()
+    //{
+    //    base.OnDisable();
 
-        // Unsubscribe from the OnValueChanged event to prevent memory leaks.
-        if (m_hpStat != null) {
-            m_hpStat.OnValueMin -= OnDeadHandler;
-        }
-    }
+    //    // Unsubscribe from the OnValueChanged event to prevent memory leaks.
+    //    //if (m_hpStat != null) {
+    //    //    m_hpStat.OnValueMin -= OnDeadHandler;
+    //    //}
+    //}
 
     protected override void Start()
     {
@@ -115,11 +115,15 @@ public class EnemyController : ActorController
         // Check if the collision is with my enemy
         if (collision.gameObject.layer == enemyLayer) {
 
-            // Apply baseDamage to the enemyPlayer if it has an HPStat component.
-            HPStat playerHp = collision.gameObject.GetComponent<HPStat>();
-            if (playerHp != null && playerHp.enabled) {
-                playerHp.TakeDamage(m_contactDamage);
-            }   
+            // Apply baseDamage to the enemyPlayer if it has an HitPoints component.
+            //HitPoints playerHp = collision.gameObject.GetComponent<HitPoints>();
+            //if (playerHp != null) {
+            //    playerHp.ChangeHP(m_contactDamage);
+            //}
+            ActorController actor = collision.gameObject.GetComponent<ActorController>();
+            if (actor != null) {
+                actor.TakeDamage(m_contactDamage);
+            }
         }
     }
 

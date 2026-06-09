@@ -48,9 +48,10 @@ public class MeleeAttack : AttackAction
         foreach (Collider2D hitCollider in hitColliders) {
 
             // If the game object has HP, damage it.
-            HPStat hpStat = hitCollider.GetComponent<HPStat>();
-            if (hpStat != null && hpStat.enabled) {
-                hpStat.TakeDamage(CalculateDamage());
+            //HitPoints hpStat = hitCollider.GetComponent<HitPoints>();
+            HitPoints hpStat = hitCollider.GetComponent<StatsController>().GetStat<HitPoints>();
+            if (hpStat != null) {
+                hpStat.ChangeHP(CalculateDamage());
             }
         }
     }

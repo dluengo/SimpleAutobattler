@@ -47,7 +47,6 @@ GameObject:
   - component: {fileID: 7890767598670965802}
   - component: {fileID: 8516675031916318852}
   - component: {fileID: 4925146582326606734}
-  - component: {fileID: 8554183680161340730}
   m_Layer: 7
   m_Name: TNTGoblin
   m_TagString: Enemy
@@ -235,7 +234,7 @@ MonoBehaviour:
   m_enableLookDirGizmo: 1
   m_idleClip: {fileID: 7400000, guid: b016469bbe07a33468a47cc341fe8529, type: 2}
   m_deadClip: {fileID: 7400000, guid: 480128e3a32242f499a376a5cca50558, type: 2}
-  m_statList: []
+  m_stats: {fileID: 0}
   neutral: 0
   m_contactDamage: 1
   m_dynamitePrefab: {fileID: 4966302532219181152, guid: 6f17cf35f30e1e3439d9e9d5c477125e, type: 3}
@@ -274,7 +273,7 @@ MonoBehaviour:
   actionsPerSecond: 1
   keepCasting: 0
   m_animClip: {fileID: 7400000, guid: f079b65d77bb204499639e09d8a06450, type: 2}
-  damage: 1
+  baseDamage: 1
   enableSuggestedDistanceGizmo: 1
   suggestedDistance: 0
   m_projectileSpeed: 10
@@ -282,22 +281,3 @@ MonoBehaviour:
   m_projectilePrefab: {fileID: 4966302532219181152, guid: 6f17cf35f30e1e3439d9e9d5c477125e, type: 3}
   m_projectileMoveSOPrefab: {fileID: 11400000, guid: d0887d45b2a44ac44bd432908db0bad3, type: 2}
   throwArcHeight: 2
---- !u!114 &8554183680161340730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8494490834174860631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HPStat
-  m_hasMin: 1
-  m_hasMax: 0
-  minValue: 0
-  maxValue: 1
-  m_currentValue: 1
-  invulnerabilityDuration: 0
-  m_enableDamageTint: 0
