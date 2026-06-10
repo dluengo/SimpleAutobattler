@@ -19,7 +19,7 @@ public class GoblinController : EnemyController
     //    // OnValueChanged event to trigger the death animation when health reaches 0.
     //    HitPoints hpStat = GetComponent<HitPoints>();
     //    if (hpStat != null) {
-    //        hpStat.OnValueMin += OnDeath;
+    //        hpStat.OnValueMin += OnDestroy;
     //    }
     //}
 
@@ -30,7 +30,7 @@ public class GoblinController : EnemyController
     //    // Unsubscribe from the OnValueChanged event to prevent memory leaks.
     //    HitPoints hpStat = GetComponent<HitPoints>();
     //    if (hpStat != null) {
-    //        hpStat.OnValueMin -= OnDeath;
+    //        hpStat.OnValueMin -= OnDestroy;
     //    }
     //}
 
@@ -61,7 +61,7 @@ public class GoblinController : EnemyController
 
 
     //// --- Events Handlers ---
-    //private void OnDeath()
+    //private void OnDestroy()
     //{
     //    Destroy(gameObject);
     //}

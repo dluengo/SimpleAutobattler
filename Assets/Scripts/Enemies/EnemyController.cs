@@ -23,6 +23,8 @@ public class EnemyController : ActorController
     //    //if (m_hpStat != null) {
     //    //    m_hpStat.OnValueMin += OnDeadHandler;
     //    //}
+
+    //    //this.OnDestroy += OnDeadHandler;
     //}
 
     //protected override void OnDisable()
@@ -129,9 +131,9 @@ public class EnemyController : ActorController
 
 
     // --- Events Handlers ---
-    private void OnDeadHandler()
-    {
-        EnemyManager.Instance.UnregisterEnemy(this);
-        Die();
-    }
+    //private void OnDeadHandler()
+    //{
+    //    EnemyManager.Instance.UnregisterEnemy(this);
+    //    Die();
+    //}
 }

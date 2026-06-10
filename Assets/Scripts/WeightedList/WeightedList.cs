@@ -51,7 +51,7 @@ public class WeightedList<T> where T : class
         totalWeight += weight;
     }
 
-    public T GetRandom()
+    public T GetRandomItem()
     {
         if (totalWeight == 0f) {
             Debug.LogWarning("Total weight is zero. Cannot select an item.");

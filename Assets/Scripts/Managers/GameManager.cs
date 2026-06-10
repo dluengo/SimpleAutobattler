@@ -59,9 +59,9 @@ public class GameManager : MonoBehaviour
             inventoryMenu.SetActive(false);
         }
 
-        // Subscribe to the enemyPlayer's OnDeath event to trigger the game over screen.
+        // Subscribe to the enemyPlayer's OnDestroy event to trigger the game over screen.
         if (Player != null) {
-            Player.OnDeath += EndGame;
+            Player.OnDestroy += EndGame;
         }
         else {
             Debug.LogWarning("GameManager: Player reference is not set. Game over screen will not be triggered on enemyPlayer death.");
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = pause ? 0f : 1f;
     }
 
-    public static void EndGame(ActorController player) {
+    public static void EndGame() {
         Debug.Log("Game Over!");
         PauseGame(true);
 
