@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6277453067822389423}
   - component: {fileID: 492040376121767732}
   - component: {fileID: 4698479030589917537}
-  - component: {fileID: -5050024728963027081}
+  - component: {fileID: -4436470520910129071}
   m_Layer: 7
   m_Name: Snake
   m_TagString: Enemy
@@ -204,7 +204,6 @@ MonoBehaviour:
   m_enableLookDirGizmo: 1
   m_idleClip: {fileID: 7400000, guid: b267213791aeb2744a0363611e1fa596, type: 2}
   m_deadClip: {fileID: 0}
-  m_statList: []
   neutral: 0
   m_contactDamage: 1
 --- !u!114 &492040376121767732
@@ -242,12 +241,12 @@ MonoBehaviour:
   actionsPerSecond: 1
   keepCasting: 0
   m_animClip: {fileID: 7400000, guid: f0275fa797ec6ea47bf8dfed1894dfeb, type: 2}
-  damage: 1
+  baseDamage: 1
   enableSuggestedDistanceGizmo: 1
   suggestedDistance: 0
   enableAttackHitBoxGizmo: 0
   m_hitbox: {fileID: 8456545311308243429}
---- !u!114 &-5050024728963027081
+--- !u!114 &-4436470520910129071
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,16 +255,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1190292240306382050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a7cf8dd33694d74ab8f1fc6bc49db65, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HPStat
-  m_hasMin: 1
-  m_hasMax: 0
-  minValue: 0
-  maxValue: 1
-  m_currentValue: 1
-  invulnerabilityDuration: 0
-  m_enableDamageTint: 0
+  m_EditorClassIdentifier: Assembly-CSharp::HitPoints
+  m_statSO: {fileID: 11400000, guid: ace8044dd1168d24d9ce70bd93f30d08, type: 2}
+  m_baseHP: 1
+  m_hpPerVit: 0
 --- !u!1 &4917259941276244217
 GameObject:
   m_ObjectHideFlags: 0

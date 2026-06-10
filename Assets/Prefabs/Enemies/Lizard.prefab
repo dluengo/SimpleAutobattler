@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 7670103316884060267}
   - component: {fileID: 2545068449492764235}
   - component: {fileID: 6518411474286448566}
-  - component: {fileID: -161189481625195073}
+  - component: {fileID: -6555136014080063108}
   m_Layer: 7
   m_Name: Lizard
   m_TagString: Enemy
@@ -272,7 +272,6 @@ MonoBehaviour:
   m_enableLookDirGizmo: 1
   m_idleClip: {fileID: 7400000, guid: 79cedf9ced5322248ab3fc5e4a669080, type: 2}
   m_deadClip: {fileID: 0}
-  m_statList: []
   neutral: 0
   m_contactDamage: 1
 --- !u!114 &2545068449492764235
@@ -310,12 +309,12 @@ MonoBehaviour:
   actionsPerSecond: 1
   keepCasting: 0
   m_animClip: {fileID: 7400000, guid: 28f49413a1ddffb468fe98f2c6a43d1b, type: 2}
-  damage: 1
+  baseDamage: 1
   enableSuggestedDistanceGizmo: 1
   suggestedDistance: 0
   enableAttackHitBoxGizmo: 1
   m_hitbox: {fileID: 1318730049745416647}
---- !u!114 &-161189481625195073
+--- !u!114 &-6555136014080063108
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,13 +323,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7712407233117804192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a7cf8dd33694d74ab8f1fc6bc49db65, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HPStat
-  m_hasMin: 1
-  m_hasMax: 0
-  minValue: 0
-  maxValue: 1
-  m_currentValue: 1
-  invulnerabilityDuration: 0
-  m_enableDamageTint: 0
+  m_EditorClassIdentifier: Assembly-CSharp::HitPoints
+  m_statSO: {fileID: 11400000, guid: ace8044dd1168d24d9ce70bd93f30d08, type: 2}
+  m_baseHP: 1
+  m_hpPerVit: 0

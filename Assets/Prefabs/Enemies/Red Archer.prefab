@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7738706290175748298}
   - component: {fileID: 6933154718479952818}
   - component: {fileID: 6878986292292695495}
+  - component: {fileID: 7665184518025850979}
   m_Layer: 7
   m_Name: Red Archer
   m_TagString: Enemy
@@ -202,7 +203,6 @@ MonoBehaviour:
   m_enableLookDirGizmo: 1
   m_idleClip: {fileID: 7400000, guid: 6793b66217bb613418e2407792754734, type: 2}
   m_deadClip: {fileID: 7400000, guid: 480128e3a32242f499a376a5cca50558, type: 2}
-  m_stats: {fileID: 0}
   neutral: 0
   m_contactDamage: 1
   m_range: 5
@@ -245,3 +245,18 @@ MonoBehaviour:
   m_projectilePrefab: {fileID: 2432679671526927853, guid: ab8c8a1e12d25a940b13832db6224138, type: 3}
   m_projectileMoveSOPrefab: {fileID: 11400000, guid: 9127d9150a18d594487c3bdfa01d133d, type: 2}
   inheritVelocityFactor: 0.5
+--- !u!114 &7665184518025850979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5028512033808512551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7cf8dd33694d74ab8f1fc6bc49db65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitPoints
+  m_statSO: {fileID: 11400000, guid: ace8044dd1168d24d9ce70bd93f30d08, type: 2}
+  m_baseHP: 1
+  m_hpPerVit: 0

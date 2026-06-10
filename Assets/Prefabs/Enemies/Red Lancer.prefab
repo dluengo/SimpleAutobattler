@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1956048435949695072}
   - component: {fileID: 5546185054585067818}
   - component: {fileID: 4633943066156284734}
-  - component: {fileID: 4802190602259416775}
+  - component: {fileID: -7272498965737383534}
   m_Layer: 7
   m_Name: Red Lancer
   m_TagString: Enemy
@@ -204,7 +204,6 @@ MonoBehaviour:
   m_enableLookDirGizmo: 1
   m_idleClip: {fileID: 7400000, guid: 9d56c56f68a600c45815ff1c13cc26e8, type: 2}
   m_deadClip: {fileID: 0}
-  m_statList: []
   neutral: 0
   m_contactDamage: 1
 --- !u!114 &5546185054585067818
@@ -242,12 +241,12 @@ MonoBehaviour:
   actionsPerSecond: 1
   keepCasting: 0
   m_animClip: {fileID: 7400000, guid: 77548010663f6a4429f6b51723f0ae66, type: 2}
-  damage: 1
+  baseDamage: 1
   enableSuggestedDistanceGizmo: 0
   suggestedDistance: 2
   enableAttackHitBoxGizmo: 0
   m_hitbox: {fileID: 6643826201465567716}
---- !u!114 &4802190602259416775
+--- !u!114 &-7272498965737383534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,16 +255,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 704242643554750122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a7cf8dd33694d74ab8f1fc6bc49db65, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HPStat
-  m_hasMin: 1
-  m_hasMax: 0
-  minValue: 0
-  maxValue: 1
-  m_currentValue: 1
-  invulnerabilityDuration: 0
-  m_enableDamageTint: 0
+  m_EditorClassIdentifier: Assembly-CSharp::HitPoints
+  m_statSO: {fileID: 11400000, guid: ace8044dd1168d24d9ce70bd93f30d08, type: 2}
+  m_baseHP: 1
+  m_hpPerVit: 0
 --- !u!1 &3526503529492623119
 GameObject:
   m_ObjectHideFlags: 0

@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6555800888556782620}
   - component: {fileID: 5607375151333520096}
   - component: {fileID: 4355066037871443978}
-  - component: {fileID: -7726252566683062028}
+  - component: {fileID: -8781417380097673876}
   m_Layer: 7
   m_Name: Gnome
   m_TagString: Enemy
@@ -282,7 +282,6 @@ MonoBehaviour:
   m_enableLookDirGizmo: 1
   m_idleClip: {fileID: 7400000, guid: 1c42e3beedbe9b84b873f7bea636f1d2, type: 2}
   m_deadClip: {fileID: 0}
-  m_statList: []
   neutral: 0
   m_contactDamage: 1
 --- !u!114 &5607375151333520096
@@ -320,12 +319,12 @@ MonoBehaviour:
   actionsPerSecond: 1
   keepCasting: 0
   m_animClip: {fileID: 7400000, guid: f78264e5d20952644aeb70e28d52cfb1, type: 2}
-  damage: 1
+  baseDamage: 1
   enableSuggestedDistanceGizmo: 1
   suggestedDistance: 1.2
   enableAttackHitBoxGizmo: 1
   m_hitbox: {fileID: 4415880928503309096}
---- !u!114 &-7726252566683062028
+--- !u!114 &-8781417380097673876
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -334,13 +333,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4491987891339133005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a7cf8dd33694d74ab8f1fc6bc49db65, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HPStat
-  m_hasMin: 1
-  m_hasMax: 0
-  minValue: 0
-  maxValue: 1
-  m_currentValue: 1
-  invulnerabilityDuration: 0
-  m_enableDamageTint: 0
+  m_EditorClassIdentifier: Assembly-CSharp::HitPoints
+  m_statSO: {fileID: 11400000, guid: ace8044dd1168d24d9ce70bd93f30d08, type: 2}
+  m_baseHP: 1
+  m_hpPerVit: 0

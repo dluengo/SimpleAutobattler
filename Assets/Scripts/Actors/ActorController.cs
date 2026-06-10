@@ -66,8 +66,6 @@ public class ActorController : MonoBehaviour
 
         // NOTE: It's ok if an actor cannot move or doesn't have hp (cannot take baseDamage).
         m_move = GetComponent<ActorMove>();
-        
-        m_stats = GetComponent<StatsController>();
 
         // NOTE: AnimationClips are changeable at runtime, so we need to use an
         // AnimatorOverrideController to override the clips in the animator controller.
@@ -81,6 +79,9 @@ public class ActorController : MonoBehaviour
 
         // Initialize the coin bag.
         coinBag = new CoinBag();
+
+        // Initialize the StatsController.
+        m_stats = new StatsController(this);
     }
 
     protected virtual void OnEnable()

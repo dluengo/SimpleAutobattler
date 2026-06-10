@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ActorController))]
-public class StatsController : MonoBehaviour, IEnumerable
+//[RequireComponent(typeof(ActorController))]
+public class StatsController : IEnumerable
 {
     // -- Members ---
-    [Header("--- Stats Controller Settings ---")]
+    //[Header("--- Stats Controller Settings ---")]
     //public bool useHPStat = false;
     //public int baseHP;
     //public bool useVitalityStat = false;
@@ -17,24 +17,24 @@ public class StatsController : MonoBehaviour, IEnumerable
 
 
     // --- Methods ---
-    private void Awake()
+    //private void Awake()
+    //{
+    //    m_statList = new List<Stat>();
+    //    m_actor = GetComponent<ActorController>();
+    //    Debug.Assert(m_actor != null, "StatsController requires an ActorController component on the same GameObject.");
+
+    //    // Look for all the stats components in the actor
+    //    m_actor.gameObject.GetComponents<Stat>(m_statList);
+    //}
+
+    public StatsController(ActorController actor)
     {
         m_statList = new List<Stat>();
-        m_actor = GetComponent<ActorController>();
+        m_actor = actor;
         Debug.Assert(m_actor != null, "StatsController requires an ActorController component on the same GameObject.");
 
         // Look for all the stats components in the actor
         m_actor.gameObject.GetComponents<Stat>(m_statList);
-
-        //Vitality vitalityStat = null;
-        //if (useVitalityStat) {
-        //    vitalityStat = new Vitality(vitality);
-        //    m_statList.Add(vitalityStat);
-        //}
-
-        //if (useHPStat) {
-        //    m_statList.Add(new HitPoints(baseHP, vitalityStat));
-        //}
     }
 
 
