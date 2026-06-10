@@ -19,6 +19,17 @@ public class HitPoints : Stat
             }
         }
     }
+    [SerializeField] protected int m_hpPerVit;
+    public int HPPerVit
+    {
+        get => m_hpPerVit;
+        protected set {
+            if (m_hpPerVit != value) {
+                m_hpPerVit = value;
+                this.value = CalculateMaxHP();
+            }
+        }
+    }
 
     protected int m_maxHP;
     public int maxHP
@@ -84,6 +95,12 @@ public class HitPoints : Stat
     private int CalculateMaxHP()
     {
         // MaxHP is baseHP + vitality.
-        return baseHP + (m_vitality != null ? m_vitality.value : 0);
+        return baseHP + (m_vitality != null ? m_vitality.value * m_hpPerVit : 0);
+    }
+
+    protected override int CalculateStatValue()
+    {
+        // MaxHP is baseHP + vitality.
+        return CalculateMaxHP();
     }
 }

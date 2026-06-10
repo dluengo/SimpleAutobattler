@@ -7,7 +7,7 @@ using UnityEngine;
 public abstract class Stat : MonoBehaviour
 {
     // --- Members ---
-    [SerializeField]protected int m_value;
+    protected int m_value;
     public int value
     {
         get => m_value;
@@ -27,13 +27,13 @@ public abstract class Stat : MonoBehaviour
         }
     }
 
-    //protected StatSO m_statSO;
-    [SerializeField]protected string m_statName;
-    public string statName => m_statName;
-    [SerializeField, TextArea] protected string m_statDescription;
-    public string statDescription => m_statDescription;
-    [SerializeField] protected Sprite m_icon;
-    public Sprite icon => m_icon;
+    [Header("--- Stat Settings ---")]
+    [SerializeField] protected StatSO m_statSO;
+    public StatSO statSO
+    {
+        get => m_statSO;
+        protected set => m_statSO = value;
+    }
 
     protected ActorController m_actor;
 
@@ -48,10 +48,15 @@ public abstract class Stat : MonoBehaviour
     {
         m_actor = GetComponent<ActorController>();
         Debug.Assert(m_actor != null, "Stat requires an ActorController component on the same GameObject.");
+
+        Debug.Assert(statSO != null, "Stat requires a reference to a StatSO ScriptableObject.");
     }
 
     protected virtual void OnEnable()
     {
         value = m_value;
+        statSO = m_statSO;
     }
+
+    protected abstract int CalculateStatValue();
 }

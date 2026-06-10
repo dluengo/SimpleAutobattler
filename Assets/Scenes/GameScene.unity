@@ -32427,10 +32427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f253fd41e4f5142a29dc9ab8407779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Vitality
-  m_value: 2
-  m_statName: Vitality
-  m_statDescription: fjkjelwr
-  m_icon: {fileID: 5884459376729634008, guid: 1a82ac221844e6a449d9ad9044cbb692, type: 3}
+  m_statSO: {fileID: 11400000, guid: df0ea221cc97be8479bb68c0418963e9, type: 2}
+  m_attrValue: 2
 --- !u!114 &1072582230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32443,11 +32441,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7cf8dd33694d74ab8f1fc6bc49db65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitPoints
-  m_value: 0
-  m_statName: Hit Points
-  m_statDescription: jfladsjfklsdj
-  m_icon: {fileID: 5884459376729634008, guid: 1a82ac221844e6a449d9ad9044cbb692, type: 3}
+  m_statSO: {fileID: 11400000, guid: ace8044dd1168d24d9ce70bd93f30d08, type: 2}
   m_baseHP: 3
+  m_hpPerVit: 2
 --- !u!1 &1084737058
 GameObject:
   m_ObjectHideFlags: 0
@@ -33402,8 +33398,31 @@ PrefabInstance:
     - {fileID: 6554166610872012705, guid: fef3ebc75c7c3034da788543b3293251, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5028512033808512551, guid: fef3ebc75c7c3034da788543b3293251, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1458925633}
   m_SourcePrefab: {fileID: 100100000, guid: fef3ebc75c7c3034da788543b3293251, type: 3}
+--- !u!1 &1458925632 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5028512033808512551, guid: fef3ebc75c7c3034da788543b3293251, type: 3}
+  m_PrefabInstance: {fileID: 1458925631}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1458925633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458925632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7cf8dd33694d74ab8f1fc6bc49db65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitPoints
+  m_statSO: {fileID: 11400000, guid: ace8044dd1168d24d9ce70bd93f30d08, type: 2}
+  m_baseHP: 0
+  m_hpPerVit: 0
 --- !u!1 &1526629318
 GameObject:
   m_ObjectHideFlags: 0

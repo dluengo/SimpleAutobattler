@@ -37,7 +37,7 @@ public class AttributesUI : UIBase
                 AttributeSlotUI attrSlot = attrSlotGO.GetComponent<AttributeSlotUI>();
                 if (attrSlot != null) {
                     attrSlot.attr = attr;
-                    attrSlot.sprite = attr.icon;
+                    attrSlot.sprite = attr.statSO.icon;
                 }
             }
         }
