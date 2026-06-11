@@ -22,7 +22,8 @@ public abstract class Attribute : Stat
     [SerializeField] protected int m_attrValue;
     public int attrValue
     {
-        get => value;
+        // NOTE: Could there be problems with the cast?
+        get => (int)value;
         set {
             this.value = value;
             m_attrValue = value;
@@ -36,7 +37,7 @@ public abstract class Attribute : Stat
         attrValue = m_attrValue;
     }
 
-    protected override int CalculateStatValue()
+    protected override float CalculateStatValue()
     {
         return attrValue;
     }

@@ -4,14 +4,14 @@ public abstract class AttackAction : ActorAction
 {
     // --- Members ---
     [Header("--- Attack Settings ---")]
-    public float baseDamage = 1f;
-
-    protected DamageStat m_damageStat;
+    [SerializeField] protected float m_defaultDamage = 1f;
 
     // NOTE: The range area is the circle where the actor could start
     // attacking if there is an enemy.
     [SerializeField] bool enableSuggestedDistanceGizmo = true;
     public float suggestedDistance;
+
+    protected Damage m_damageStat;
 
 
     // --- Methods ---
@@ -19,18 +19,14 @@ public abstract class AttackAction : ActorAction
     {
         base.Awake();
 
-        m_damageStat = GetComponent<DamageStat>();
+        m_damageStat = GetComponent<Damage>();
     }
 
     protected float CalculateDamage()
     {
-        // If the actor has a DamageStat use it to calculate the output damage.
-        if (m_damageStat) {
-            return (baseDamage + m_damageStat.currentValue) * m_damageStat.damageMultiplier;
-        }
-        else {
-            return baseDamage;
-        }
+        // Damage is calculated using the damage stat if present (it should),
+        // we return a default damage if damage stat is not present.
+        return m_damageStat != null ? m_damageStat.value : m_defaultDamage;
     }
 
 

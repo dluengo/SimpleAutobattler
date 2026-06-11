@@ -7,21 +7,35 @@ using UnityEngine;
 public abstract class Stat : MonoBehaviour
 {
     // --- Members ---
-    protected int m_value;
-    public int value
+    protected float m_value;
+    public float value
     {
         get => m_value;
         set {
-            if (m_value != value) {
-                int oldValue = m_value;
-                m_value = value;
+            //if (m_value != value) {
+            //    float oldValue = m_value;
+            //    m_value = value;
+
+            //    // Trigger change event
+            //    OnValueChanged?.Invoke();
+
+            //    // Trigger zero event if applicable
+            //    if (m_value == 0 && oldValue != 0) {
+            //        OnValueMinimum?.Invoke();
+            //    }
+            //}
+
+            float newValueClamped = clampAtMin ? Mathf.Max(value, minValue) : value;
+            if (m_value != newValueClamped) {
+                float oldValue = m_value;
+                m_value = newValueClamped;
 
                 // Trigger change event
-                OnValueChanged?.Invoke(oldValue, m_value);
+                OnValueChanged?.Invoke();
 
                 // Trigger zero event if applicable
-                if (m_value == 0 && oldValue != 0) {
-                    OnValueZero?.Invoke();
+                if (clampAtMin && m_value == minValue) {
+                    OnValueMinimum?.Invoke();
                 }
             }
         }
@@ -35,12 +49,15 @@ public abstract class Stat : MonoBehaviour
         protected set => m_statSO = value;
     }
 
+    protected bool clampAtMin => statSO != null && statSO.hasMinValue;
+    protected float minValue => statSO != null ? statSO.minValue : 0f;
+
     protected ActorController m_actor;
 
 
     // --- Events ---
-    public event Action<int, int> OnValueChanged;
-    public event Action OnValueZero;
+    public event Action OnValueChanged;
+    public event Action OnValueMinimum;
 
 
     // --- Methods ---
@@ -58,5 +75,5 @@ public abstract class Stat : MonoBehaviour
         statSO = m_statSO;
     }
 
-    protected abstract int CalculateStatValue();
+    protected abstract float CalculateStatValue();
 }

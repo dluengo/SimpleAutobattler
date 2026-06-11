@@ -40,9 +40,7 @@ public class ActorController : MonoBehaviour
     // Stats, Actors may not have m_stats, but if they do, they will
     // use them for different things depending on the type of stat.
     protected StatsController m_stats;
-    protected HitPoints m_hpStat;
-
-    //public AttributesController attrs { get; protected set; }
+    protected HitPoints m_hitpoints;
 
     private string m_idleAnimClipName = "Actor-Idle";
     private string m_deadAnimParamName = "isDead";
@@ -82,6 +80,7 @@ public class ActorController : MonoBehaviour
 
         // Initialize the StatsController.
         m_stats = new StatsController(this);
+        m_hitpoints = m_stats.GetStat<HitPoints>();
     }
 
     protected virtual void OnEnable()
@@ -112,14 +111,14 @@ public class ActorController : MonoBehaviour
             }
         }
 
-        // Initialize m_hpStat using the StatsController.
+        // Initialize m_hitpoints using the StatsController.
         if (m_stats != null) {
-            m_hpStat = m_stats.GetStat<HitPoints>();
+            m_hitpoints = m_stats.GetStat<HitPoints>();
         }
 
         // During initialization (Awake/OnEnable/Start) we don't subscribe to HitPoints
         // because ActorController.OnEnable() runs before StatsController.Awake(), so
-        // m_hpStat would be null at that point. Instead, we subscribe to HitPoints in Start().
+        // m_hitpoints would be null at that point. Instead, we subscribe to HitPoints in Start().
         SubscribeHPZeroEvent();
     }
 
@@ -207,8 +206,8 @@ public class ActorController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (m_hpStat != null) {
-            m_hpStat.ChangeHP(damage);
+        if (m_hitpoints != null) {
+            m_hitpoints.TakeDamage((int)damage);
         }
     }
 
@@ -258,15 +257,15 @@ public class ActorController : MonoBehaviour
 
     private void SubscribeHPZeroEvent()
     {
-        if (m_hpStat != null) {
-            m_hpStat.OnValueZero += Die;
+        if (m_hitpoints != null) {
+            m_hitpoints.OnValueMinimum += Die;
         }
     }
 
     private void UnsubscribeHPZeroEvent()
     {
-        if (m_hpStat != null) {
-            m_hpStat.OnValueZero -= Die;
+        if (m_hitpoints != null) {
+            m_hitpoints.OnValueMinimum -= Die;
         }
     }
 

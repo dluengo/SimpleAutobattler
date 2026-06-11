@@ -54,7 +54,7 @@ public class GoblinController : EnemyController
     //        // Apply baseDamage to the enemyPlayer
     //        HitPoints playerHp = collision.gameObject.GetComponent<HitPoints>();
     //        if (playerHp != null) {
-    //            playerHp.ChangeHP(m_contactDamage);
+    //            playerHp.TakeDamage(m_contactDamage);
     //        }
     //    }
     //}

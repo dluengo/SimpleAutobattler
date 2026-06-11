@@ -46,61 +46,106 @@ public class HitPoints : Stat
     // It is ok if the Stat doesn't have a reference to the vitality attribute
     // of an Actor, but if it does, it will use it to calculate max HP.
     protected Vitality m_vitality;
+    private bool m_alreadySubscribed = false;
+
+    // NOTE: This member is just to be able to watch in the inspector how
+    // the hp actually changes.
+    [SerializeField] private int m_currentHP;
+    public int currentHPReadOnly
+    {
+        get => (int)value;
+    }
 
 
     // --- Events ---
+    public event Action<float> OnDamageTaken;
     public event Action OnMaxHPChanged;
     public event Action OnBaseHPChanged;
 
 
     // --- Methods ---
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        SubscribeEvents();
+
+        this.OnValueChanged += UpdateCurrentHP;
+    }
+
+    protected virtual void OnDisable()
+    {
+        UnsubscribeEvents();
+
+        this.OnValueChanged -= UpdateCurrentHP;
+    }
+
     protected virtual void Start()
     {
         m_vitality = m_actor.GetAttribute<Vitality>();
 
-        maxHP = value = CalculateMaxHP();
+        maxHP = CalculateMaxHP();
+        value = maxHP;
 
         // Subscribe to vitality changes to update HP accordingly.
-        if (m_vitality != null) {
-            m_vitality.OnValueChanged += OnVitalityChangedHandler;
-        }
+        SubscribeEvents();
     }
 
-    public void ChangeHP(float amount)
+    public void TakeDamage(float damage)
     {
-        if (amount == 0) {
+        if (damage == 0) {
             return;
         }
 
-        // Amount is float but HP is int, we need to handle this.
-        int newHP = Mathf.RoundToInt(value - amount);
+        // Could this cast and next comparison cause issues?
+        int newHP = Mathf.FloorToInt(value - damage);
         if (newHP != value) {
-            
+            OnDamageTaken?.Invoke(damage);
         }
 
-        // Update the current value.
+        // Update the current value. Note this would trigger events.
         value = newHP;
+    }
+
+    protected override float CalculateStatValue()
+    {
+        return CalculateMaxHP();
     }
 
 
     // --- Event Handlers ---
-    private void OnVitalityChangedHandler(int oldValue, int newValue)
+    private void OnVitalityChangedHandler()
     {
         maxHP = CalculateMaxHP();
         value = Mathf.Min(value, maxHP);
+    }
+
+    private void UpdateCurrentHP()
+    {
+        m_currentHP = (int)value;
     }
 
 
     // --- Helpers ---
     private int CalculateMaxHP()
     {
-        // MaxHP is baseHP + vitality.
-        return baseHP + (m_vitality != null ? m_vitality.value * m_hpPerVit : 0);
+        // NOTE: Could there be issues with the casting?
+        // MaxHP is baseDamage + vitality.
+        return baseHP + (m_vitality != null ? (int)(m_vitality.value * m_hpPerVit) : 0);
     }
 
-    protected override int CalculateStatValue()
+    private void SubscribeEvents()
     {
-        // MaxHP is baseHP + vitality.
-        return CalculateMaxHP();
+        if (m_vitality != null && !m_alreadySubscribed) {
+            m_alreadySubscribed = true;
+            m_vitality.OnValueChanged += OnVitalityChangedHandler;
+        }
+    }
+
+    private void UnsubscribeEvents()
+    {
+        if (m_vitality != null) {
+            m_vitality.OnValueChanged -= OnVitalityChangedHandler;
+        }
     }
 }

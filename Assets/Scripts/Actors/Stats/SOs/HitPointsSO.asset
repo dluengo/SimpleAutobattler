@@ -15,3 +15,5 @@ MonoBehaviour:
   statName: Hit Points
   statDescription: The amount of damage you can absorb before dying.
   icon: {fileID: 5884459376729634008, guid: 1a82ac221844e6a449d9ad9044cbb692, type: 3}
+  hasMinValue: 1
+  minValue: 0

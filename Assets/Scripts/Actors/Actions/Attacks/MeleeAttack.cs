@@ -51,7 +51,7 @@ public class MeleeAttack : AttackAction
             //HitPoints hpStat = hitCollider.GetComponent<HitPoints>();
             //HitPoints hpStat = hitCollider.GetComponent<StatsController>().GetStat<HitPoints>();
             //if (hpStat != null) {
-            //    hpStat.ChangeHP(CalculateDamage());
+            //    hpStat.TakeDamage(CalculateDamage());
             //}
 
             ActorController actor = hitCollider.GetComponent<ActorController>();

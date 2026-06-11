@@ -20,8 +20,8 @@ public class EnemyController : ActorController
 
     //    // Check if this enemy has Health component and subscribe to the
     //    // OnValueChanged event to trigger the death animation when health reaches 0.
-    //    //if (m_hpStat != null) {
-    //    //    m_hpStat.OnValueMin += OnDeadHandler;
+    //    //if (m_hitpoints != null) {
+    //    //    m_hitpoints.OnValueMin += OnDeadHandler;
     //    //}
 
     //    //this.OnDestroy += OnDeadHandler;
@@ -32,8 +32,8 @@ public class EnemyController : ActorController
     //    base.OnDisable();
 
     //    // Unsubscribe from the OnValueChanged event to prevent memory leaks.
-    //    //if (m_hpStat != null) {
-    //    //    m_hpStat.OnValueMin -= OnDeadHandler;
+    //    //if (m_hitpoints != null) {
+    //    //    m_hitpoints.OnValueMin -= OnDeadHandler;
     //    //}
     //}
 
@@ -120,7 +120,7 @@ public class EnemyController : ActorController
             // Apply baseDamage to the enemyPlayer if it has an HitPoints component.
             //HitPoints playerHp = collision.gameObject.GetComponent<HitPoints>();
             //if (playerHp != null) {
-            //    playerHp.ChangeHP(m_contactDamage);
+            //    playerHp.TakeDamage(m_contactDamage);
             //}
             ActorController actor = collision.gameObject.GetComponent<ActorController>();
             if (actor != null) {

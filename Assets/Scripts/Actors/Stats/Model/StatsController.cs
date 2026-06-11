@@ -8,7 +8,7 @@ public class StatsController : IEnumerable
     // -- Members ---
     //[Header("--- Stats Controller Settings ---")]
     //public bool useHPStat = false;
-    //public int baseHP;
+    //public int baseDamage;
     //public bool useVitalityStat = false;
     //public int vitality;
 
