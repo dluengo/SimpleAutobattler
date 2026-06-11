@@ -12,19 +12,6 @@ public abstract class Stat : MonoBehaviour
     {
         get => m_value;
         set {
-            //if (m_value != value) {
-            //    float oldValue = m_value;
-            //    m_value = value;
-
-            //    // Trigger change event
-            //    OnValueChanged?.Invoke();
-
-            //    // Trigger zero event if applicable
-            //    if (m_value == 0 && oldValue != 0) {
-            //        OnValueMinimum?.Invoke();
-            //    }
-            //}
-
             float newValueClamped = clampAtMin ? Mathf.Max(value, minValue) : value;
             if (m_value != newValueClamped) {
                 float oldValue = m_value;

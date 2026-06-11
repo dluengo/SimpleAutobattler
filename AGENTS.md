@@ -2,7 +2,7 @@
 - Project name: SimpleAutobattler
 - Unity version: Unity 6000.4.0f1
 - Active game object:
-  - Name: Limits
+  - Name: Canvas
   - Tag: Untagged
-  - Layer: Map Limits
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
