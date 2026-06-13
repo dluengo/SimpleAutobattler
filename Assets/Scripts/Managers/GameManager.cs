@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
         // To create an empty animation clip.
         //AnimationClip clip = new AnimationClip();
         //clip.name = animClipName;
-        //AnimationCurve curve = AnimationCurve.Linear(0.0F, 1.0F, .0001F, 1.0F); // Unity won’t let me use 0 length, so use a very small length instead
+        //AnimationCurve curve = AnimationCurve.Linear(0.0F, 1.0F, .0001F, 1.0F); // Unity wonï¿½t let me use 0 length, so use a very small length instead
         //EditorCurveBinding binding = EditorCurveBinding.FloatCurve(string.Empty, typeof(UnityEngine.Animator), "ThisIsAnEmptyAnimationClip"); // Just dummy data
         //AnimationUtility.SetEditorCurve(clip, binding, curve);
         //AssetDatabase.CreateAsset(clip, "Assets/" + animClipName + ".anim");
