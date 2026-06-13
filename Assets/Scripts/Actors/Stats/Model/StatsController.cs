@@ -1,32 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[RequireComponent(typeof(ActorController))]
+
+[Serializable]
 public class StatsController : IEnumerable
 {
     // -- Members ---
-    //[Header("--- Stats Controller Settings ---")]
-    //public bool useHPStat = false;
-    //public int baseDamage;
-    //public bool useVitalityStat = false;
-    //public int vitality;
-
     protected List<Stat> m_statList;
     protected ActorController m_actor;
 
 
     // --- Methods ---
-    //private void Awake()
-    //{
-    //    m_statList = new List<Stat>();
-    //    m_actor = GetComponent<ActorController>();
-    //    Debug.Assert(m_actor != null, "StatsController requires an ActorController component on the same GameObject.");
-
-    //    // Look for all the stats components in the actor
-    //    m_actor.gameObject.GetComponents<Stat>(m_statList);
-    //}
-
     public StatsController(ActorController actor)
     {
         m_statList = new List<Stat>();

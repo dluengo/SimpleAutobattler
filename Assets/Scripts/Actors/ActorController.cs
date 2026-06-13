@@ -10,7 +10,7 @@ public class ActorController : MonoBehaviour
     // --- Members ---
     [Header("--- Actor Settings ---")]
     public bool actionsEnabled = true;
-    private Vector2 m_lookDir = Vector2.right;
+    private Vector2 m_lookDir = Vector2.right;  
     public Vector2 lookDir
     {
         get => m_lookDir;
@@ -37,10 +37,10 @@ public class ActorController : MonoBehaviour
     protected Rigidbody2D m_rb;
     protected AnimatorOverrideController m_animOverrideController;
 
-    // Stats, Actors may not have m_stats, but if they do, they will
+    // Stats, Actors may not have stats, but if they do, they will
     // use them for different things depending on the type of stat.
-    protected StatsController m_stats;
-    protected HitPoints m_hitpoints;
+    public StatsController stats { get; protected set; }
+    public HitPoints hitpoints { get; protected set; }
 
     private string m_idleAnimClipName = "Actor-Idle";
     private string m_deadAnimParamName = "isDead";
@@ -79,8 +79,8 @@ public class ActorController : MonoBehaviour
         coinBag = new CoinBag();
 
         // Initialize the StatsController.
-        m_stats = new StatsController(this);
-        m_hitpoints = m_stats.GetStat<HitPoints>();
+        stats = new StatsController(this);
+        hitpoints = stats.GetStat<HitPoints>();
     }
 
     protected virtual void OnEnable()
@@ -111,14 +111,14 @@ public class ActorController : MonoBehaviour
             }
         }
 
-        // Initialize m_hitpoints using the StatsController.
-        if (m_stats != null) {
-            m_hitpoints = m_stats.GetStat<HitPoints>();
+        // Initialize hitpoints using the StatsController.
+        if (stats != null) {
+            hitpoints = stats.GetStat<HitPoints>();
         }
 
         // During initialization (Awake/OnEnable/Start) we don't subscribe to HitPoints
         // because ActorController.OnEnable() runs before StatsController.Awake(), so
-        // m_hitpoints would be null at that point. Instead, we subscribe to HitPoints in Start().
+        // hitpoints would be null at that point. Instead, we subscribe to HitPoints in Start().
         SubscribeHPZeroEvent();
     }
 
@@ -206,8 +206,8 @@ public class ActorController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (m_hitpoints != null) {
-            m_hitpoints.TakeDamage((int)damage);
+        if (hitpoints != null) {
+            hitpoints.TakeDamage((int)damage);
         }
     }
 
@@ -219,8 +219,8 @@ public class ActorController : MonoBehaviour
 
     public T GetAttribute<T>() where T : Attribute
     {
-        if (m_stats != null) {
-            foreach (Stat stat in m_stats) {
+        if (stats != null) {
+            foreach (Stat stat in stats) {
                 if (stat is T) {
                     return stat as T;
                 }
@@ -257,15 +257,15 @@ public class ActorController : MonoBehaviour
 
     private void SubscribeHPZeroEvent()
     {
-        if (m_hitpoints != null) {
-            m_hitpoints.OnValueMinimum += Die;
+        if (hitpoints != null) {
+            hitpoints.OnValueMinimum += Die;
         }
     }
 
     private void UnsubscribeHPZeroEvent()
     {
-        if (m_hitpoints != null) {
-            m_hitpoints.OnValueMinimum -= Die;
+        if (hitpoints != null) {
+            hitpoints.OnValueMinimum -= Die;
         }
     }
 

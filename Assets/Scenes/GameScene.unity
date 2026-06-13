@@ -287,8 +287,8 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 0
   m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
@@ -31168,7 +31168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5028512033808512551, guid: fef3ebc75c7c3034da788543b3293251, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5625921070850799848, guid: fef3ebc75c7c3034da788543b3293251, type: 3}
       propertyPath: m_LocalPosition.x
@@ -31252,7 +31252,7 @@ RectTransform:
   m_Father: {fileID: 1190100416}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.547, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -36110,6 +36110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttributesUI
   attrSlotList: {fileID: 141242787}
+  m_actor: {fileID: 1072582221}
   m_attrSlotPrefab: {fileID: 2472958413331090219, guid: c52ea31120919b145935307d7af905a8, type: 3}
 --- !u!1 &1976667825
 GameObject:
@@ -36653,7 +36654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2144862607
 RectTransform:
   m_ObjectHideFlags: 0
