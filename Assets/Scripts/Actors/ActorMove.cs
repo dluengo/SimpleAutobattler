@@ -28,9 +28,9 @@ public class ActorMove : MonoBehaviour
         get {
             // When someone asks for the moveSpeed, we check if we have a SpeedStat
             // and take it into account.
-            if (m_speedStat != null) {
-                return m_moveSpeed + m_speedStat.currentValue;
-            }
+            //if (m_speedStat != null) {
+            //    return m_moveSpeed + m_speedStat.currentValue;
+            //}
 
             return m_moveSpeed;
         }
@@ -70,7 +70,7 @@ public class ActorMove : MonoBehaviour
     }
 
     protected ActorController m_actor;
-    protected SpeedStat m_speedStat;
+    //protected SpeedStat m_speedStat;
     protected Rigidbody2D m_rb;
 
     private string m_moveAnimClipName = "Actor-Move";
@@ -85,7 +85,7 @@ public class ActorMove : MonoBehaviour
     // --- Methods ---
     protected virtual void Awake()
     {
-        m_speedStat = GetComponent<SpeedStat>();
+        //m_speedStat = GetComponent<SpeedStat>();
 
         m_rb = GetComponent<Rigidbody2D>();
         Debug.Assert(m_rb != null, "ActorMove requires a Rigidbody2D component.");
@@ -120,7 +120,7 @@ public class ActorMove : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         // NOTE: We control the final speed using both moveSpeed from this module and
-        // m_speedStat.currentValue if it exists throught the getter of moveSpeed.
+        // m_speedStat.value if it exists throught the getter of moveSpeed.
         if (movementEnabled && moveDir != Vector2.zero) {
             m_rb.MovePosition(
                 (Vector2)transform.position + moveDir.normalized * moveSpeed * Time.fixedDeltaTime);

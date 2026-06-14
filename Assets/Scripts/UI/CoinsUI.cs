@@ -14,13 +14,6 @@ public class CoinsUI : UIBase
     // --- Methods ---
     protected virtual void Awake()
     {
-        m_player = GameManager.Instance.Player;
-        if (m_player != null) {
-            m_coinBag = m_player.coinBag;
-            Debug.Assert(m_coinBag != null, "CoinBag reference is not found in ActorController.");
-        }
-
-        Debug.Assert(m_player != null, "ActorController reference is not found in GameManager.");
         Debug.Assert(m_coinsText != null, "Coins TextMeshProUGUI reference is not assigned.");
     }
 
@@ -32,22 +25,51 @@ public class CoinsUI : UIBase
         // UIBase to ensure that the Awake() run first, it doesn't. Weirder,
         // if we set ActorController BEFORE default time and then UIBase, it works.
         // That's the approach we take for now, but...
-        if (m_coinBag != null) {
-            m_coinBag.OnCoinAmountChanged += UpdateUI;
-        }
+        SubscribeEvents();
     }
 
     protected virtual void OnDisable()
     {
-        if (m_coinBag != null) {
-            m_coinBag.OnCoinAmountChanged -= UpdateUI;
+        UnsubscribeEvents();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        m_player = GameManager.Instance.Player;
+        Debug.Assert(m_player != null, "ActorController reference is not found in GameManager.");
+
+        if (m_player != null) {
+            m_coinBag = m_player.coinBag;
+            Debug.Assert(m_coinBag != null, "CoinBag reference is not found in ActorController.");
+
+            SubscribeEvents();
         }
+
+        Debug.Assert(m_coinsText != null, "Coins TextMeshProUGUI reference is not assigned.");
     }
 
     public override void UpdateUI()
     {
         if (m_coinBag != null) {
             m_coinsText.text = m_coinBag.coinAmount.ToString();
+        }
+    }
+
+
+    // --- Helpers ---
+    private void SubscribeEvents()
+    {
+        if (m_coinBag != null) {
+            m_coinBag.OnCoinAmountChanged += UpdateUI;
+        }
+    }
+
+    private void UnsubscribeEvents()
+    {
+        if (m_coinBag != null) {
+            m_coinBag.OnCoinAmountChanged -= UpdateUI;
         }
     }
 }

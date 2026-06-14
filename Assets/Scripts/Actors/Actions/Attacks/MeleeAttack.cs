@@ -47,10 +47,16 @@ public class MeleeAttack : AttackAction
         // Iterate through all the colliders we are hitting.
         foreach (Collider2D hitCollider in hitColliders) {
 
-            // If the game object has HP, damage it.
-            HPStat hpStat = hitCollider.GetComponent<HPStat>();
-            if (hpStat != null && hpStat.enabled) {
-                hpStat.TakeDamage(CalculateDamage());
+            // If the object hit is an Actor, damage it.
+            //HitPoints hpStat = hitCollider.GetComponent<HitPoints>();
+            //HitPoints hpStat = hitCollider.GetComponent<StatsController>().GetStat<HitPoints>();
+            //if (hpStat != null) {
+            //    hpStat.TakeDamage(CalculateDamage());
+            //}
+
+            ActorController actor = hitCollider.GetComponent<ActorController>();
+            if (actor != null) {
+                actor.TakeDamage(CalculateDamage());
             }
         }
     }

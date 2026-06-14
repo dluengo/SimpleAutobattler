@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6308317452529118331}
   - component: {fileID: 1952834067509480766}
   - component: {fileID: 7603331616122051181}
-  - component: {fileID: -3036645897512086381}
+  - component: {fileID: -2373939613442353603}
   m_Layer: 7
   m_Name: Hex Shaman
   m_TagString: Enemy
@@ -203,7 +203,6 @@ MonoBehaviour:
   m_enableLookDirGizmo: 1
   m_idleClip: {fileID: 7400000, guid: 35994ceed9472f343a9a49770261045e, type: 2}
   m_deadClip: {fileID: 0}
-  m_statList: []
   neutral: 0
   m_contactDamage: 1
 --- !u!114 &1952834067509480766
@@ -241,7 +240,7 @@ MonoBehaviour:
   actionsPerSecond: 1
   keepCasting: 0
   m_animClip: {fileID: 7400000, guid: ed182dd56985f354d8786156d7666be3, type: 2}
-  damage: 1
+  baseDamage: 1
   enableSuggestedDistanceGizmo: 1
   suggestedDistance: 5
   m_projectileSpeed: 7
@@ -249,7 +248,7 @@ MonoBehaviour:
   m_projectilePrefab: {fileID: 6586963412292735399, guid: 4eb863d9181f6af4699a4fbe93bd25ba, type: 3}
   m_projectileMoveSOPrefab: {fileID: 11400000, guid: 9127d9150a18d594487c3bdfa01d133d, type: 2}
   inheritVelocityFactor: 0.5
---- !u!114 &-3036645897512086381
+--- !u!114 &-2373939613442353603
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,13 +257,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7481643995911882667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a7cf8dd33694d74ab8f1fc6bc49db65, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HPStat
-  m_hasMin: 1
-  m_hasMax: 0
-  minValue: 0
-  maxValue: 1
-  m_currentValue: 1
-  invulnerabilityDuration: 0
-  m_enableDamageTint: 0
+  m_EditorClassIdentifier: Assembly-CSharp::HitPoints
+  m_statSO: {fileID: 11400000, guid: ace8044dd1168d24d9ce70bd93f30d08, type: 2}
+  m_baseHP: 1
+  m_hpPerVit: 0

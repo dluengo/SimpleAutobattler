@@ -10,7 +10,7 @@ public class ActorController : MonoBehaviour
     // --- Members ---
     [Header("--- Actor Settings ---")]
     public bool actionsEnabled = true;
-    private Vector2 m_lookDir = Vector2.right;
+    private Vector2 m_lookDir = Vector2.right;  
     public Vector2 lookDir
     {
         get => m_lookDir;
@@ -39,8 +39,8 @@ public class ActorController : MonoBehaviour
 
     // Stats, Actors may not have stats, but if they do, they will
     // use them for different things depending on the type of stat.
-    protected HPStat m_hpStat;
-    protected SpeedStat m_speedStat;
+    public StatsController stats { get; protected set; }
+    public HitPoints hitpoints { get; protected set; }
 
     private string m_idleAnimClipName = "Actor-Idle";
     private string m_deadAnimParamName = "isDead";
@@ -50,7 +50,7 @@ public class ActorController : MonoBehaviour
 
 
     // --- Events ---
-    public event Action<ActorController> OnDeath;
+    public event Action OnDestroy;
 
 
     // --- Methods ---
@@ -64,8 +64,6 @@ public class ActorController : MonoBehaviour
 
         // NOTE: It's ok if an actor cannot move or doesn't have hp (cannot take baseDamage).
         m_move = GetComponent<ActorMove>();
-        m_hpStat = GetComponent<HPStat>();
-        m_speedStat = GetComponent<SpeedStat>();
 
         // NOTE: AnimationClips are changeable at runtime, so we need to use an
         // AnimatorOverrideController to override the clips in the animator controller.
@@ -79,28 +77,22 @@ public class ActorController : MonoBehaviour
 
         // Initialize the coin bag.
         coinBag = new CoinBag();
+
+        // Initialize the StatsController.
+        stats = new StatsController(this);
+        hitpoints = stats.GetStat<HitPoints>();
     }
 
     protected virtual void OnEnable()
     {
         enemyLayer = m_enemyLayer;
 
-        // Susbcribe to DeadAnimSMB.OnDeadAnimEnd
-        if (animator != null) {
-            foreach (var behaviour in animator.GetBehaviours<DeadAnimSMB>()) {
-                m_deadEndSMB = behaviour;
-                m_deadEndSMB.OnDeadAnimEnd += DeadAnimEndHandler;
-            }
-        }
+        SubscribeEvents();
     }
 
     protected virtual void OnDisable()
     {
-        // Unsubscribe from DeadAnimSMB.OnDeadAnimEnd
-        if (m_deadEndSMB != null) {
-            m_deadEndSMB.OnDeadAnimEnd -= DeadAnimEndHandler;
-            m_deadEndSMB = null;
-        }
+        UnsubscribeEvents();
     }
 
     protected virtual void Start()
@@ -118,6 +110,16 @@ public class ActorController : MonoBehaviour
                 Debug.LogWarning($"Failed to set dead animation clip for {gameObject.name}. Make sure the animator has a state named '{m_deadAnimClipName}' with an AnimationClip assigned.");
             }
         }
+
+        // Initialize hitpoints using the StatsController.
+        if (stats != null) {
+            hitpoints = stats.GetStat<HitPoints>();
+        }
+
+        // During initialization (Awake/OnEnable/Start) we don't subscribe to HitPoints
+        // because ActorController.OnEnable() runs before StatsController.Awake(), so
+        // hitpoints would be null at that point. Instead, we subscribe to HitPoints in Start().
+        SubscribeHPZeroEvent();
     }
 
     protected virtual void Update()
@@ -204,8 +206,8 @@ public class ActorController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (m_hpStat != null && m_hpStat.enabled) {
-            m_hpStat.TakeDamage(damage);
+        if (hitpoints != null) {
+            hitpoints.TakeDamage((int)damage);
         }
     }
 
@@ -215,11 +217,63 @@ public class ActorController : MonoBehaviour
         return (enemyLayer.value & (1 << actor.gameObject.layer)) > 0;
     }
 
+    public T GetAttribute<T>() where T : Attribute
+    {
+        if (stats != null) {
+            foreach (Stat stat in stats) {
+                if (stat is T) {
+                    return stat as T;
+                }
+            }
+        }
+        return null;
+    }
+
+
+    // --- Helper Methods ---
+    private void SubscribeEvents()
+    {
+        // Susbcribe to DeadAnimSMB.OnDeadAnimEnd
+        if (animator != null) {
+            foreach (var behaviour in animator.GetBehaviours<DeadAnimSMB>()) {
+                m_deadEndSMB = behaviour;
+                m_deadEndSMB.OnDeadAnimEnd += DeadAnimEndHandler;
+            }
+        }
+
+        // Subscribe to HP reaching its minimum value (usually 0). Trigger death.
+        SubscribeHPZeroEvent();
+    }
+
+    private void UnsubscribeEvents()
+    {
+        if (m_deadEndSMB != null) {
+            m_deadEndSMB.OnDeadAnimEnd -= DeadAnimEndHandler;
+            m_deadEndSMB = null;
+        }
+
+        UnsubscribeHPZeroEvent();
+    }
+
+    private void SubscribeHPZeroEvent()
+    {
+        if (hitpoints != null) {
+            hitpoints.OnValueMinimum += Die;
+        }
+    }
+
+    private void UnsubscribeHPZeroEvent()
+    {
+        if (hitpoints != null) {
+            hitpoints.OnValueMinimum -= Die;
+        }
+    }
+
 
     // --- Event Handlers ---
     private void DeadAnimEndHandler()
     {
-        OnDeath?.Invoke(this);
+        OnDestroy?.Invoke();
         Destroy(gameObject);
     }
 

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8898178681991947247}
   - component: {fileID: 377563659092580248}
   - component: {fileID: 6547960123046632869}
-  - component: {fileID: 2961303789024332644}
+  - component: {fileID: -8030121500481132138}
   m_Layer: 7
   m_Name: Torch Goblin
   m_TagString: Enemy
@@ -204,7 +204,6 @@ MonoBehaviour:
   m_enableLookDirGizmo: 1
   m_idleClip: {fileID: 7400000, guid: f6b70cfc24333924f86cc9700a94029a, type: 2}
   m_deadClip: {fileID: 0}
-  m_statList: []
   neutral: 0
   m_contactDamage: 1
 --- !u!114 &377563659092580248
@@ -242,12 +241,12 @@ MonoBehaviour:
   actionsPerSecond: 1
   keepCasting: 0
   m_animClip: {fileID: 7400000, guid: 9075d64abce4fe147b38bc97a7a7b10e, type: 2}
-  damage: 1
+  baseDamage: 1
   enableSuggestedDistanceGizmo: 1
   suggestedDistance: 1.1
   enableAttackHitBoxGizmo: 1
   m_hitbox: {fileID: 2186869850340669604}
---- !u!114 &2961303789024332644
+--- !u!114 &-8030121500481132138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,16 +255,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 280658299221495744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a7cf8dd33694d74ab8f1fc6bc49db65, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HPStat
-  m_hasMin: 1
-  m_hasMax: 0
-  minValue: 0
-  maxValue: 1
-  m_currentValue: 1
-  invulnerabilityDuration: 0
-  m_enableDamageTint: 0
+  m_EditorClassIdentifier: Assembly-CSharp::HitPoints
+  m_statSO: {fileID: 11400000, guid: ace8044dd1168d24d9ce70bd93f30d08, type: 2}
+  m_baseHP: 1
+  m_hpPerVit: 0
 --- !u!1 &9172825267918409757
 GameObject:
   m_ObjectHideFlags: 0

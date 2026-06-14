@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 6274060369642544883}
   - component: {fileID: 6430667937749143558}
   - component: {fileID: 2551702254023544876}
-  - component: {fileID: 7532837718850027630}
+  - component: {fileID: -9208405418116856615}
   m_Layer: 7
   m_Name: Goblin
   m_TagString: Enemy
@@ -234,7 +234,6 @@ MonoBehaviour:
   m_enableLookDirGizmo: 1
   m_idleClip: {fileID: 7400000, guid: fa7d366528303374bb1ec1b385d0a267, type: 2}
   m_deadClip: {fileID: 0}
-  m_statList: []
   neutral: 0
   m_contactDamage: 1
 --- !u!114 &2551702254023544876
@@ -252,7 +251,7 @@ MonoBehaviour:
   m_movementEnabled: 1
   m_moveSpeed: 3
   m_moveAnimClip: {fileID: 7400000, guid: e5e5f83edb5e5524cb87fef69a03571a, type: 2}
---- !u!114 &7532837718850027630
+--- !u!114 &-9208405418116856615
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,13 +260,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8956263321373483646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a7cf8dd33694d74ab8f1fc6bc49db65, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HPStat
-  m_hasMin: 1
-  m_hasMax: 0
-  minValue: 0
-  maxValue: 1
-  m_currentValue: 1
-  invulnerabilityDuration: 0
-  m_enableDamageTint: 0
+  m_EditorClassIdentifier: Assembly-CSharp::HitPoints
+  m_statSO: {fileID: 11400000, guid: ace8044dd1168d24d9ce70bd93f30d08, type: 2}
+  m_baseHP: 1
+  m_hpPerVit: 0

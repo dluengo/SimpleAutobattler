@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7108936865670305562}
   - component: {fileID: 353340191523966945}
   - component: {fileID: 1913563421375974983}
-  - component: {fileID: 1278443041751168300}
+  - component: {fileID: 5413782693517247323}
   m_Layer: 7
   m_Name: Pig
   m_TagString: Enemy
@@ -202,7 +202,6 @@ MonoBehaviour:
   m_enableLookDirGizmo: 1
   m_idleClip: {fileID: 7400000, guid: b4b626fdec2520547969fdac280dbdfe, type: 2}
   m_deadClip: {fileID: 0}
-  m_statList: []
   neutral: 1
   m_contactDamage: 1
 --- !u!114 &1913563421375974983
@@ -224,7 +223,7 @@ MonoBehaviour:
   fleeRangeRadius: 5
   enableChaseRangeGizmo: 1
   enableFleeRangeGizmo: 1
---- !u!114 &1278443041751168300
+--- !u!114 &5413782693517247323
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,13 +232,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2081572240625200111}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f0bfdf2cef54d48a1ae88cf7c45419, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a7cf8dd33694d74ab8f1fc6bc49db65, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HPStat
-  m_hasMin: 1
-  m_hasMax: 0
-  minValue: 0
-  maxValue: 1
-  m_currentValue: 1
-  invulnerabilityDuration: 0
-  m_enableDamageTint: 0
+  m_EditorClassIdentifier: Assembly-CSharp::HitPoints
+  m_statSO: {fileID: 11400000, guid: ace8044dd1168d24d9ce70bd93f30d08, type: 2}
+  m_baseHP: 1
+  m_hpPerVit: 0

@@ -268,21 +268,16 @@ public class ProjectileController : MonoBehaviour
 
             // Projectiles should not hit the thrower.
             if (throwerIsPlayer && hitIsPlayer) {
-                // Ignore collision with self
                 return;
             }
 
             // Enemy projectiles should not hit enemies
             if (throwerIsEnemy && hitIsEnemy) {
-                // Ignore collision with other enemiesInScene
                 return;
             }
 
-            // Apply baseDamage if valid target
-            HPStat hpStat = collision.gameObject.GetComponent<HPStat>();
-            if (hpStat != null && hpStat.enabled) {
-                hpStat.TakeDamage(damage);
-            }
+            // Apply damage.
+            hitActor.TakeDamage(damage);
         }
 
         // Here we know we hit something different than a projectile.

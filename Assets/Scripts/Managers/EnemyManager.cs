@@ -77,7 +77,6 @@ public class EnemyManager : MonoBehaviour
                     }
                 }
             }
-
         }
     }
 
@@ -97,7 +96,7 @@ public class EnemyManager : MonoBehaviour
                 // Instantiate a random enemy prefab at the generated position
                 //int randomIndex = Random.Range(0, enemyPrefabs.Length);
 
-                GameObject randomEnemyPrefab = enemyPrefabs.GetRandom();
+                GameObject randomEnemyPrefab = enemyPrefabs.GetRandomItem();
                 //GameObject randomEnemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)].Item1;
 
                 GameObject enemyGO = Instantiate(
@@ -108,7 +107,12 @@ public class EnemyManager : MonoBehaviour
                 if (enemyGO != null) {
                     EnemyController enemyController = enemyGO.GetComponent<EnemyController>();
                     if (enemyController != null) {
+
+                        // Add the newly generated enemy to the list of enemies in the scene.
                         enemiesInScene.Add(enemyController);
+
+                        // Register a callback to remove the enemy from the list when it dies.
+                        enemyController.OnDestroy += () => UnregisterEnemy(enemyController);
                     }
                     else {
                         Debug.LogError("EnemyManager: Spawned enemy does not have an EnemyController component.");

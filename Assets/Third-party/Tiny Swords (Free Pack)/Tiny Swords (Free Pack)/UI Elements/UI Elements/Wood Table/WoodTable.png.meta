@@ -61,7 +61,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -70,13 +70,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 26, y: 44, z: 24, w: 30}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -98,7 +98,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -124,82 +124,16 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WoodTable_0
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 319
-        width: 85
-        height: 87
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 36fd5bd4b91073410800000000000000
-      internalID: 1456634771012968291
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WoodTable_1
-      rect:
-        serializedVersion: 2
-        x: 191
-        y: 319
-        width: 66
-        height: 81
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7d26f988edb7496d0800000000000000
-      internalID: -2984624457334693161
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WoodTable_2
-      rect:
-        serializedVersion: 2
-        x: 319
-        y: 319
-        width: 85
-        height: 87
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c7f467d7db494d860800000000000000
-      internalID: 7553826016581799804
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: WoodTable_3
       rect:
         serializedVersion: 2
-        x: 48
-        y: 191
-        width: 81
-        height: 66
+        x: 45
+        y: 196
+        width: 83
+        height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -212,59 +146,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodTable_4
-      rect:
-        serializedVersion: 2
-        x: 191
-        y: 191
-        width: 66
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7fad3db3563b22b20800000000000000
-      internalID: 3108243940215872247
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WoodTable_5
-      rect:
-        serializedVersion: 2
-        x: 319
-        y: 191
-        width: 81
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1830088b628667030800000000000000
-      internalID: 3492093076585841537
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: WoodTable_6
       rect:
         serializedVersion: 2
-        x: 43
-        y: 24
-        width: 86
-        height: 105
+        x: 44
+        y: 25
+        width: 84
+        height: 97
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -277,56 +167,12 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: WoodTable_7
-      rect:
-        serializedVersion: 2
-        x: 191
-        y: 24
-        width: 66
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 28376cf8b586d03b0800000000000000
-      internalID: -5544660823759752318
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WoodTable_8
-      rect:
-        serializedVersion: 2
-        x: 319
-        y: 24
-        width: 86
-        height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8e4781022e613f530800000000000000
-      internalID: 3887476063807763688
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
-    internalID: 0
+    spriteID: d23734eacda914d44a8a494f822bc069
+    internalID: -2075602407
     vertices: []
     indices: 
     edges: []
@@ -337,6 +183,7 @@ TextureImporter:
     nameFileIdTable:
       WoodTable_0: 1456634771012968291
       WoodTable_1: -2984624457334693161
+      WoodTable_10: 622844381
       WoodTable_2: 7553826016581799804
       WoodTable_3: -565612253562943241
       WoodTable_4: 3108243940215872247
@@ -344,6 +191,7 @@ TextureImporter:
       WoodTable_6: -2246418273884473086
       WoodTable_7: -5544660823759752318
       WoodTable_8: 3887476063807763688
+      WoodTable_9: -1386656966
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

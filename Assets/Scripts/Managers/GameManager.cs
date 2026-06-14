@@ -1,6 +1,7 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject UICanvas;
+    [SerializeField] GameObject inventoryMenu;
 
     private int m_lastElapsedSeconds = 0;
 
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
         Debug.Assert(Player != null, "GameManager: Player reference is not assigned.");
         Debug.Assert(gameOverScreen != null, "GameManager: gameOverScreen reference is not assigned.");
         Debug.Assert(UICanvas != null, "GameManager: UICanvas reference is not assigned.");
+        Debug.Assert(inventoryMenu != null, "GameManager: inventoryMenu reference is not assigned.");
     }
 
     private void Start()
@@ -51,9 +54,14 @@ public class GameManager : MonoBehaviour
             UICanvas.SetActive(true);
         }
 
-        // Subscribe to the enemyPlayer's OnDeath event to trigger the game over screen.
+        // Disable the inventory menu at the start of the game.
+        if (inventoryMenu != null) {
+            inventoryMenu.SetActive(false);
+        }
+
+        // Subscribe to the enemyPlayer's OnDestroy event to trigger the game over screen.
         if (Player != null) {
-            Player.OnDeath += EndGame;
+            Player.OnDestroy += EndGame;
         }
         else {
             Debug.LogWarning("GameManager: Player reference is not set. Game over screen will not be triggered on enemyPlayer death.");
@@ -104,12 +112,25 @@ public class GameManager : MonoBehaviour
         Time.timeScale = pause ? 0f : 1f;
     }
 
-    public static void EndGame(ActorController player) {
+    public static void EndGame() {
         Debug.Log("Game Over!");
         PauseGame(true);
 
         if (Instance.gameOverScreen != null) {
             Instance.gameOverScreen.SetActive(true);
+        }
+    }
+
+    public static void ToggleInventory(InputAction.CallbackContext context)
+    {
+        if (context.performed && Instance.inventoryMenu != null) {
+            bool isOnDisplay = Instance.inventoryMenu.activeSelf;
+
+            // Pause/Unpause the game if opening/closing the inventory.
+            PauseGame(!isOnDisplay);
+
+            // Toggle the inventory menu visibility.
+            Instance.inventoryMenu.SetActive(!isOnDisplay);
         }
     }
 
@@ -145,7 +166,7 @@ public class GameManager : MonoBehaviour
         // To create an empty animation clip.
         //AnimationClip clip = new AnimationClip();
         //clip.name = animClipName;
-        //AnimationCurve curve = AnimationCurve.Linear(0.0F, 1.0F, .0001F, 1.0F); // Unity won’t let me use 0 length, so use a very small length instead
+        //AnimationCurve curve = AnimationCurve.Linear(0.0F, 1.0F, .0001F, 1.0F); // Unity wonï¿½t let me use 0 length, so use a very small length instead
         //EditorCurveBinding binding = EditorCurveBinding.FloatCurve(string.Empty, typeof(UnityEngine.Animator), "ThisIsAnEmptyAnimationClip"); // Just dummy data
         //AnimationUtility.SetEditorCurve(clip, binding, curve);
         //AssetDatabase.CreateAsset(clip, "Assets/" + animClipName + ".anim");

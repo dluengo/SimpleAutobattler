@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ddd1c5c5ef2d8847a31c6138d01decf, type: 3}
+  m_Name: VitalitySO
+  m_EditorClassIdentifier: Assembly-CSharp::VitalitySO
+  statName: Vitality
+  statDescription: Affects your max HP and your HP regen
+  icon: {fileID: 5884459376729634008, guid: 1a82ac221844e6a449d9ad9044cbb692, type: 3}
