@@ -5,15 +5,16 @@ using UnityEngine;
 public class CoinsUI : UIBase
 {
     // --- Members ---
+    [SerializeField] ActorController m_player;
     [SerializeField] TextMeshProUGUI m_coinsText;
 
-    private ActorController m_player;
     private CoinBag m_coinBag;
 
 
     // --- Methods ---
     protected virtual void Awake()
     {
+        Debug.Assert(m_player != null, "ActorController reference is not assigned.");
         Debug.Assert(m_coinsText != null, "Coins TextMeshProUGUI reference is not assigned.");
     }
 
@@ -37,9 +38,6 @@ public class CoinsUI : UIBase
     {
         base.Start();
 
-        m_player = GameManager.Instance.Player;
-        Debug.Assert(m_player != null, "ActorController reference is not found in GameManager.");
-
         if (m_player != null) {
             m_coinBag = m_player.coinBag;
             Debug.Assert(m_coinBag != null, "CoinBag reference is not found in ActorController.");
@@ -47,7 +45,7 @@ public class CoinsUI : UIBase
             SubscribeEvents();
         }
 
-        Debug.Assert(m_coinsText != null, "Coins TextMeshProUGUI reference is not assigned.");
+        UpdateUI();
     }
 
     public override void UpdateUI()

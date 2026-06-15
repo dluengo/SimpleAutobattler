@@ -88,8 +88,8 @@ public class ProjectileController : MonoBehaviour
 
     private AnimatorOverrideController m_animOverrideController;
     private string m_idleAnimClipName = "Projectile-Idle";
-    private string m_endAnimClipName = "Projectile-End";
-    private string m_endTriggerParamName = "End";
+    private string m_endAnimClipName = "Projectile-EndPickUp";
+    private string m_endTriggerParamName = "EndPickUp";
 
 
     // --- Events ---
@@ -220,7 +220,7 @@ public class ProjectileController : MonoBehaviour
             DestroyProjectile();
         }
 
-        // We are subscribed to the OnExit event of the End State of the AnimatorController.
+        // We are subscribed to the OnExit event of the EndPickUp State of the AnimatorController.
     }
 
     private void SubscribeOnTargetReached() {
@@ -281,7 +281,7 @@ public class ProjectileController : MonoBehaviour
         }
 
         // Here we know we hit something different than a projectile.
-        // End the projectile.
+        // EndPickUp the projectile.
         End();
     }
 }

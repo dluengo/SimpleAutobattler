@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public class ActorController : MonoBehaviour
@@ -154,32 +155,6 @@ public class ActorController : MonoBehaviour
         }
     }
 
-    private bool FlipNeeded()
-    {
-        // Looking right and facing left
-        if (lookDir.x > 0f && transform.localScale.x < 0f) {
-            return true;
-        }
-        // Looking left and facing right
-        else if (lookDir.x < 0f && transform.localScale.x > 0f) {
-            return true;
-        }
-
-        return false;
-    }
-
-    private void Flip()
-    {
-        if (m_allowFlip) {
-            transform.localScale = new Vector3(
-                -transform.localScale.x,
-                transform.localScale.y,
-                transform.localScale.z);
-
-            lookDir = -lookDir;
-        }
-    }
-
     // An easy way for other modules to update the animation clips.
     public bool UpdateAnimClip(string animClipName, AnimationClip newAnimClip)
     {
@@ -229,8 +204,51 @@ public class ActorController : MonoBehaviour
         return null;
     }
 
+    public void PickUp(PickUpController pickUp)
+    {
+        // Switch which type of item we've been told to pick up.
+        Item item = pickUp.item;
+        if (item is Coin) {
+            if (coinBag != null) {
+                coinBag.coinAmount += (item as Coin).value;
+
+                // NOTE: This may trigger a pickup animation.
+                pickUp.isPickedUp = true;
+            }
+        }
+        else {
+            Debug.Log($"Collided with an item of type {item.GetType().Name} that we don't know how to handle. Leaving it there.");
+        }
+    }
+
 
     // --- Helper Methods ---
+    private bool FlipNeeded()
+    {
+        // Looking right and facing left
+        if (lookDir.x > 0f && transform.localScale.x < 0f) {
+            return true;
+        }
+        // Looking left and facing right
+        else if (lookDir.x < 0f && transform.localScale.x > 0f) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private void Flip()
+    {
+        if (m_allowFlip) {
+            transform.localScale = new Vector3(
+                -transform.localScale.x,
+                transform.localScale.y,
+                transform.localScale.z);
+
+            lookDir = -lookDir;
+        }
+    }
+
     private void SubscribeEvents()
     {
         // Susbcribe to DeadAnimSMB.OnDeadAnimEnd
@@ -276,6 +294,29 @@ public class ActorController : MonoBehaviour
         OnDestroy?.Invoke();
         Destroy(gameObject);
     }
+
+    // --- Collision Handling ---
+    //protected virtual void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    // Check if we collided with a pick up.
+    //    PickUpController pickUp = collision.gameObject.GetComponent<PickUpController>();
+    //    if (pickUp != null) {
+    //        Item item = pickUp.item;
+
+    //        // NOTE: As new types of Items are developed, they need to be controlled here.
+    //        // We collided with a coin.
+    //        if (item is Coin) {
+    //            coinBag.coinAmount += (item as Coin).value;
+
+    //            // NOTE: This may trigger a pickup animation.
+    //            pickUp.isPickedUp = true;
+    //        }
+    //        // We don't know what type of item we collided with. Just leave it there.
+    //        else {
+    //            Debug.Log($"Collided with an item of type {item.GetType().Name} that we don't know how to handle. Leaving it there.");
+    //        }
+    //    }
+    //}
 
 
     // --- Gizmos ---
