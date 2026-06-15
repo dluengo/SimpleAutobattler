@@ -3,7 +3,7 @@ using System;
 
 
 [Serializable]
-public class Item
+public abstract class Item
 {
     // --- Members ---
     [Header("--- Item Settings ---")]
@@ -18,7 +18,7 @@ public class Item
 
 
     // --- Methods ---
-    public Item(ItemSO itemSO)
+    protected Item(ItemSO itemSO)
     {
         m_itemSO = itemSO;
     }

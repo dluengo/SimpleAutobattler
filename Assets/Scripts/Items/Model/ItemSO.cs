@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class ItemSO : ScriptableObject
 {
     // --- Members ---
-    [Header("--- itemSO Settings ---")]
+    [Header("--- ItemSO Settings ---")]
     public string itemName;
     [TextArea]
     public string description;

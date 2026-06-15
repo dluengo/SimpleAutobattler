@@ -216,6 +216,10 @@ public class ActorController : MonoBehaviour
                 pickUp.isPickedUp = true;
             }
         }
+        else if (item is Gear) {
+            Debug.Log($"Picked up gear: {item.itemName}. This is a placeholder for future gear handling logic.");
+            pickUp.isPickedUp = true;
+        }
         else {
             Debug.Log($"Collided with an item of type {item.GetType().Name} that we don't know how to handle. Leaving it there.");
         }
