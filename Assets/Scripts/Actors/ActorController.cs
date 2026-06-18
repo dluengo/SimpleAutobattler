@@ -49,6 +49,8 @@ public class ActorController : MonoBehaviour
     private DeadAnimSMB m_deadEndSMB;
     private bool m_allowFlip = true;
 
+    protected InventoryController m_inventory;
+
 
     // --- Events ---
     public event Action OnDestroy;
@@ -76,12 +78,18 @@ public class ActorController : MonoBehaviour
         // Initialize the list of actions with the actions attached to this actor.
         actions = new List<ActorAction>(GetComponents<ActorAction>());
 
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // TODO: Actors may not have coinbags (enemies) so change this properly.
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // Initialize the coin bag.
         coinBag = new CoinBag();
 
-        // Initialize the StatsController.
+        // Initialize the StatsController. Actors may not have stats.
         stats = new StatsController(this);
         hitpoints = stats.GetStat<HitPoints>();
+
+        // Initialize the Inventory. Actor may not have inventory.
+        m_inventory = GetComponent<InventoryController>();
     }
 
     protected virtual void OnEnable()
@@ -217,8 +225,10 @@ public class ActorController : MonoBehaviour
             }
         }
         else if (item is Gear) {
-            Debug.Log($"Picked up gear: {item.itemName}. This is a placeholder for future gear handling logic.");
-            pickUp.isPickedUp = true;
+            Debug.Log($"Trying to pick up gear: {item.itemName}");
+            if (m_inventory != null) {
+                pickUp.isPickedUp = m_inventory.AddItem(item);
+            }
         }
         else {
             Debug.Log($"Collided with an item of type {item.GetType().Name} that we don't know how to handle. Leaving it there.");

@@ -3,7 +3,7 @@ using System;
 
 
 [Serializable]
-public abstract class Item
+public class Item
 {
     // --- Members ---
     [Header("--- Item Settings ---")]

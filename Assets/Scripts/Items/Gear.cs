@@ -1,6 +1,8 @@
 using UnityEngine;
+using System;
 
-public abstract class Gear : Item
+[Serializable]
+public class Gear : Item
 {
     // --- Members ---
     public BodyPart bodyPart => m_gearSO.bodyPart;
