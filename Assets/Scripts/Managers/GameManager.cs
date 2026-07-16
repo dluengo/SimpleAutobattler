@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject UICanvas;
-    [SerializeField] GameObject inventoryMenu;
+    [SerializeField] GameObject inventoryUI;
 
     private int m_lastElapsedSeconds = 0;
 
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         Debug.Assert(Player != null, "GameManager: Player reference is not assigned.");
         Debug.Assert(gameOverScreen != null, "GameManager: gameOverScreen reference is not assigned.");
         Debug.Assert(UICanvas != null, "GameManager: UICanvas reference is not assigned.");
-        Debug.Assert(inventoryMenu != null, "GameManager: inventoryMenu reference is not assigned.");
+        Debug.Assert(inventoryUI != null, "GameManager: inventoryUI reference is not assigned.");
     }
 
     private void Start()
@@ -55,8 +55,8 @@ public class GameManager : MonoBehaviour
         }
 
         // Disable the inventory menu at the start of the game.
-        if (inventoryMenu != null) {
-            inventoryMenu.SetActive(false);
+        if (inventoryUI != null) {
+            inventoryUI.SetActive(false);
         }
 
         // Subscribe to the enemyPlayer's OnDestroy event to trigger the game over screen.
@@ -123,14 +123,15 @@ public class GameManager : MonoBehaviour
 
     public static void ToggleInventory(InputAction.CallbackContext context)
     {
-        if (context.performed && Instance.inventoryMenu != null) {
-            bool isOnDisplay = Instance.inventoryMenu.activeSelf;
+        if (context.performed && Instance.inventoryUI != null) {
+            bool isOnDisplay = Instance.inventoryUI.activeSelf;
 
             // Pause/Unpause the game if opening/closing the inventory.
             PauseGame(!isOnDisplay);
 
-            // Toggle the inventory menu visibility.
-            Instance.inventoryMenu.SetActive(!isOnDisplay);
+            Debug.Log($"Toggling inventory UI. Current state: {(isOnDisplay ? "Visible" : "Hidden")}. Game is now {(Time.timeScale == 0f ? "Paused" : "Running")}.");
+            // Toggle the inventory and equipment UI visibility.
+            Instance.inventoryUI.SetActive(!isOnDisplay);
         }
     }
 

@@ -4,33 +4,63 @@ using UnityEngine;
 
 
 [Serializable]
-public class Bag : IEnumerable
+public class Bag : ICollection
 {
     // --- Members ---
-    //[SerializeField] protected int m_nSlots;
-    ////public int nSlots => m_nSlots;
+    [Header("--- Bag Settings ---")]
+    // NOTE: To be set from Inspector.
+    [SerializeField] protected BagSlot[] m_bagSlots;
+    public BagSlot[] items => m_bagSlots;
 
-    [SerializeField] protected Item[] m_itemSlots;
-    public Item[] items => m_itemSlots;
+    public int Count => items.Length;
+
+    public bool IsSynchronized => throw new NotImplementedException();
+
+    public object SyncRoot => throw new NotImplementedException();
+
+
+    // Define the indexer to allow client code to use [] notation.
+    public BagSlot this[int i]
+    {
+        get => m_bagSlots[i];
+        set => m_bagSlots[i] = value;
+    }
 
 
     // --- Methods ---
     public IEnumerator GetEnumerator()
     {
-        return m_itemSlots.GetEnumerator();
+        return m_bagSlots.GetEnumerator();
     }
 
     public bool AddItem(Item item)
     {
-        // Find the first empty slot in the bag and add the item to that slot.
-        for (int i = 0; i < m_itemSlots.Length; i++) {
-            if (m_itemSlots[i] == null) {
-                m_itemSlots[i] = item;
-                return true;
+        BagSlot bagSlot = GetEmptyBagSlot();
+
+        if (bagSlot != null) {
+            bagSlot.item = item;
+            return true;
+        }
+
+        return false;
+    }
+
+    public void CopyTo(Array array, int index)
+    {
+        for (int i = index; i < array.Length; i++) {
+            array.SetValue(m_bagSlots[i], i);
+        }
+    }
+
+    // --- Helper Methods ---
+    public BagSlot GetEmptyBagSlot()
+    {
+        foreach (BagSlot bagSlot in m_bagSlots) {
+            if (bagSlot.IsEmpty()) {
+                return bagSlot;
             }
         }
 
-        // No empty slots available
-        return false;
+        return null;
     }
 }

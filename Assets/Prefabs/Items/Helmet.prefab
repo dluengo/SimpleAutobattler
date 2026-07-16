@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6487318473477398992}
   - component: {fileID: 4041281765725242403}
   - component: {fileID: 6133364082243191025}
-  - component: {fileID: 2025954594082180420}
+  - component: {fileID: 8690900187745079916}
   m_Layer: 10
   m_Name: Helmet
   m_TagString: Item
@@ -152,7 +152,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2025954594082180420
+--- !u!114 &8690900187745079916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,7 +161,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4983334525758494098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aee4be876d4e5ff4d9333fced4a98287, type: 3}
+  m_Script: {fileID: 11500000, guid: 56f7bfb4d0c4bb84789a6829ad8f87a1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickUpController
+  m_EditorClassIdentifier: Assembly-CSharp::GearPickUpController
   m_itemSO: {fileID: 11400000, guid: 98cc8e1e5faed5b4abd72f66e1b198fd, type: 2}
+  floatAmplitude: 0.1
+  floatFrequency: 5

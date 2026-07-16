@@ -89,7 +89,7 @@ public class ProjectileController : MonoBehaviour
     private AnimatorOverrideController m_animOverrideController;
     private string m_idleAnimClipName = "Projectile-Idle";
     private string m_endAnimClipName = "Projectile-EndPickUp";
-    private string m_endTriggerParamName = "EndPickUp";
+    private string m_endTriggerParamName = "End";
 
 
     // --- Events ---

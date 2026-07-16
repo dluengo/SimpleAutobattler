@@ -42,7 +42,7 @@ public class WeightedList<T> where T : class
     public void Add(T item, float weight)
     {
         if (weight < 0f) {
-            Debug.LogWarning("Weight cannot be negative. Item not added.");
+            Debug.LogWarning("Weight cannot be negative. m_item not added.");
             return;
         }
 

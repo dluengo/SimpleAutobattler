@@ -1,33 +1,24 @@
 using System;
+using System.ComponentModel;
 using UnityEngine;
 
 [Serializable]
-public class GearSlot
+public class GearSlot : SlotBase<Gear>
 {
     // --- Members ---
     [SerializeField] protected BodyPart m_bodyPart;
     public BodyPart bodyPart => m_bodyPart;
 
-    // NOTE: One could assign in inspector a Gear that doesn't match the body part.
-    [SerializeField] protected Gear m_gear;
     public Gear gear
     {
-        get => m_gear;
+        get => element;
         set {
-            if (value.bodyPart != m_bodyPart)
-            {
+            if (value.bodyPart != m_bodyPart) {
                 Debug.LogWarning($"Gear {value.itemName} cannot be equipped in slot for {m_bodyPart}.");
                 return;
             }
 
-            m_gear = value;
+            element = value;
         }
-    }
-
-
-    // --- Methods ---
-    public bool IsEmpty()
-    {
-        return m_gear.itemSO == null;
     }
 }

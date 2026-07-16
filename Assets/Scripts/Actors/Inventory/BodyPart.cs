@@ -4,5 +4,7 @@ public enum BodyPart
     Torso,
     Legs,
     Feet,
-    Hands
+    Hands,
+    Ring,
+    Amulet
 }

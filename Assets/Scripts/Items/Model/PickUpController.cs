@@ -38,7 +38,7 @@ public class PickUpController : MonoBehaviour
         {
             m_isPickedUp = value;
 
-            // Item has been picked up.
+            // m_item has been picked up.
             if (m_isPickedUp) {
                 // Trigger event
                 OnPickedUp?.Invoke();

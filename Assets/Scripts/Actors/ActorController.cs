@@ -50,6 +50,7 @@ public class ActorController : MonoBehaviour
     private bool m_allowFlip = true;
 
     protected InventoryController m_inventory;
+    public Equipment equipment => m_inventory != null ? m_inventory.equipment : null;
 
 
     // --- Events ---
@@ -225,7 +226,6 @@ public class ActorController : MonoBehaviour
             }
         }
         else if (item is Gear) {
-            Debug.Log($"Trying to pick up gear: {item.itemName}");
             if (m_inventory != null) {
                 pickUp.isPickedUp = m_inventory.AddItem(item);
             }
@@ -315,7 +315,7 @@ public class ActorController : MonoBehaviour
     //    // Check if we collided with a pick up.
     //    PickUpController pickUp = collision.gameObject.GetComponent<PickUpController>();
     //    if (pickUp != null) {
-    //        Item item = pickUp.item;
+    //        m_item item = pickUp.item;
 
     //        // NOTE: As new types of Items are developed, they need to be controlled here.
     //        // We collided with a coin.
