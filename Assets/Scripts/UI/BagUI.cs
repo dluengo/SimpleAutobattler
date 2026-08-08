@@ -45,7 +45,7 @@ public class BagUI : UIBase
         m_bagSlotUIList = new BagSlotUI[transform.childCount];
 
         int index = 0;
-        foreach (BagSlot slot in bag) {
+        foreach (BagSlot bagslot in bag) {
             m_bagSlotUIList[index] = transform.GetChild(index).GetComponent<BagSlotUI>();
             if (m_bagSlotUIList[index] == null) {
                 Debug.LogWarning($"BagUI: Child at index {index} does not have a BagSlotUI component.");
@@ -53,7 +53,7 @@ public class BagUI : UIBase
                 continue;
             }
 
-            m_bagSlotUIList[index].slot = slot;
+            m_bagSlotUIList[index].slot = bagslot;
 
             index++;
         }

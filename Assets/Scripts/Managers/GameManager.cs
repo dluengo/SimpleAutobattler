@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
             // Pause/Unpause the game if opening/closing the inventory.
             PauseGame(!isOnDisplay);
 
-            Debug.Log($"Toggling inventory UI. Current state: {(isOnDisplay ? "Visible" : "Hidden")}. Game is now {(Time.timeScale == 0f ? "Paused" : "Running")}.");
+            //Debug.Log($"Toggling inventory UI. Current state: {(isOnDisplay ? "Visible" : "Hidden")}. Game is now {(Time.timeScale == 0f ? "Paused" : "Running")}.");
             // Toggle the inventory and equipment UI visibility.
             Instance.inventoryUI.SetActive(!isOnDisplay);
         }

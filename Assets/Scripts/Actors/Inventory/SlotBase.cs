@@ -18,6 +18,8 @@ public abstract class SlotBase<T> : INotifyPropertyChanged, IIcon where T : INot
                 // TODO: Debug, PropertyChanged is null here, however BagUI should've triggered
                 // the subscription of every BagSlotUI...
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(element)));
+                //DEBUGGING:
+                //OnElementChanged?.Invoke(m_element);
             }
         }
     }
@@ -26,6 +28,9 @@ public abstract class SlotBase<T> : INotifyPropertyChanged, IIcon where T : INot
 
     // --- Events ---
     public event PropertyChangedEventHandler PropertyChanged;
+
+    // DEBUGGING:
+    //public event Action<T> OnElementChanged;
 
 
     // --- Methods ---

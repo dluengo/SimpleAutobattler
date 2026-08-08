@@ -26,6 +26,8 @@ public class EquipmentUI : UIBase
             return;
         }
 
+        SetupSlotUIList();
+
         SetupSlots();
     }
 
@@ -39,24 +41,60 @@ public class EquipmentUI : UIBase
 
 
     // --- Helper Methods ---
-
-    // NOTE: number of GearSlotUI and GearSlot *SHOULD* match.
-    protected void SetupSlots()
+    protected void SetupSlotUIList()
     {
+        // Initialize the list of GearSlotUI components based on the number of children.
+        // The children *SHOULD* have GearSlotUI components attached to them and the
+        // bodyParts of these UIs *SHOULD* match the bodyParts of the GearSlots in the Equipment.
         m_gearSlotUIList = new GearSlotUI[transform.childCount];
 
-        int index = 0;
+        for (int i = 0; i < transform.childCount; i++) {
+
+            m_gearSlotUIList[i] = transform.GetChild(i).GetComponent<GearSlotUI>();
+            if (m_gearSlotUIList[i] == null) {
+                Debug.LogWarning($"EquipmentUI: Child at index {i} does not have a GearSlotUI component.");
+            }
+        }
+    }
+
+    protected void SetupSlots()
+    {
+        // We need to assign a GearSlotUI to each GearSlot in the Equipment.
+        // For this, the number of GearSlotUI set in the Editor and the bodyParts
+        // of each them *SHOULD* match the number of GearSlots in the Equipment
+        // and their bodyParts.
         foreach (GearSlot slot in equipment) {
-            m_gearSlotUIList[index] = transform.GetChild(index).GetComponent<GearSlotUI>();
-            if (m_gearSlotUIList[index] == null) {
-                Debug.LogWarning($"EquipmentUI: Child at index {index} does not have a GearSlotUI component.");
-                index++;
-                continue;
+            bool slotUIFound = false;
+
+            // Iterate through the GearSlotUIs looking for a proper candidate
+            // to match this GearSlot.
+            for (int index = 0; index < m_gearSlotUIList.Length; index++) {
+
+                GearSlotUI candidateSlotUI = m_gearSlotUIList[index];
+
+                // Candidate must exist.
+                if (candidateSlotUI != null) {
+
+                    // Candidate must not have been assigned to a GearSlot yet.
+                    if (candidateSlotUI.slot == null) {
+
+                        // Candidate must have the same bodyPart as the GearSlot.
+                        if (candidateSlotUI.bodyPart == slot.bodyPart) {                            
+                            candidateSlotUI.slot = slot;
+                            slotUIFound = true;
+                            break;
+                        }
+                    }
+                }
+                else {
+                    Debug.LogWarning($"EquipmentUI: Child at index {index} does not have a GearSlotUI component.");
+                }
             }
 
-            m_gearSlotUIList[index].slot = slot;
 
-            index++;
+            if (!slotUIFound) {
+                Debug.LogWarning($"EquipmentUI: No GearSlotUI found for GearSlot with bodyPart {slot.bodyPart}.");
+            }
         }
     }
 
