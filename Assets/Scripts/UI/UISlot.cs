@@ -64,8 +64,6 @@ public abstract class UISlot<T, U> : UIBase
     {
         if (m_slot != null) {
             m_slot.PropertyChanged += PropertyChangedHandler;
-            // DEBUGGING:
-            //m_slot.OnElementChanged += ElementChangedHandler;
         }
     }
 
@@ -73,8 +71,6 @@ public abstract class UISlot<T, U> : UIBase
     {
         if (m_slot != null) {
             m_slot.PropertyChanged -= PropertyChangedHandler;
-            // DEBUGGING:
-            //m_slot.OnElementChanged -= ElementChangedHandler;
         }
     }
 
@@ -83,7 +79,6 @@ public abstract class UISlot<T, U> : UIBase
         UpdateUI();
     }
 
-    // DEBUGGING:
     protected virtual void ElementChangedHandler(U element)
     {
         UpdateUI();
