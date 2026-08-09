@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc63801bb8037d48801884020b52aac, type: 3}
   m_Name: ChestArmor
   m_EditorClassIdentifier: Assembly-CSharp::ChestArmorSO
-  itemName: 
-  description: 
-  icon: {fileID: 0}
+  itemName: Chest Armor
+  description: Coverture for the torso
+  icon: {fileID: 1256164435, guid: 33084c5680362ae4a921e2de6c036cd5, type: 3}
   idleClip: {fileID: 0}
   pickedUpClip: {fileID: 0}
-  bodyPart: 0
+  bodyPart: 1
   defense: 1
