@@ -79,4 +79,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Tt]ext[Mm]esh Pro/*
 /[Aa]ssets/[Tt]ext[Mm]esh Pro.meta
 
+# MANUALLY ADDED: Ignore recovery files
+/[Aa]ssets/_[Rr]ecovery/*
+
 
