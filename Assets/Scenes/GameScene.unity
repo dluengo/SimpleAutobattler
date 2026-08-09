@@ -32365,6 +32365,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673592945}
   m_CullTransparentMesh: 1
+--- !u!1001 &709835886
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.7817907
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.5842724
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108737452698069361, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_Name
+      value: Chest Armor
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
 --- !u!1001 &722367393
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38885,6 +38942,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061996042}
   m_CullTransparentMesh: 1
+--- !u!1001 &2111962435
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.2263813
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.6905594
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302607701653400184, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108737452698069361, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
+      propertyPath: m_Name
+      value: Chest Armor (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7fa6132bae3910344abc4a07e6814cc2, type: 3}
 --- !u!1 &2133990027
 GameObject:
   m_ObjectHideFlags: 0
@@ -39353,3 +39467,5 @@ SceneRoots:
   - {fileID: 1496382958}
   - {fileID: 5392201878883145466}
   - {fileID: 722367393}
+  - {fileID: 709835886}
+  - {fileID: 2111962435}
