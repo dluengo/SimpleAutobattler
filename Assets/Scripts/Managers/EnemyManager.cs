@@ -111,7 +111,10 @@ public class EnemyManager : MonoBehaviour
                         // Add the newly generated enemy to the list of enemies in the scene.
                         enemiesInScene.Add(enemyController);
 
-                        // Register a callback to remove the enemy from the list when it dies.
+                        // Register a callback to trigger OnDeath logic.
+                        enemyController.OnDeath += () => EnemyDieHandler(enemyController);
+
+                        // Register a callback to remove the enemy from the list when it is destroyed.
                         enemyController.OnDestroy += () => UnregisterEnemy(enemyController);
                     }
                     else {
@@ -125,9 +128,26 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+
+    // --- Event Handlers ---
+    private void EnemyDieHandler(EnemyController deadEnemy)
+    {
+        // Here we handle what happens when an enemy dies. Drop loot and stuff.
+
+        DropLoot(deadEnemy);
+    }
+
+
     public void UnregisterEnemy(EnemyController enemy)
     {
         enemiesInScene.Remove(enemy);
     }
 
+
+    // --- Helper Methods ---
+    private void DropLoot(EnemyController deadEnemy)
+    {
+        
+        Debug.Log($"Enemy {deadEnemy.name} has died. Dropping loot...");
+    }
 }

@@ -61,6 +61,7 @@ public class HitPoints : Stat
     public event Action<float> OnDamageTaken;
     public event Action OnMaxHPChanged;
     public event Action OnBaseHPChanged;
+    public event Action OnDeath;
 
 
     // --- Methods ---
@@ -105,6 +106,9 @@ public class HitPoints : Stat
 
         // Update the current value. Note this would trigger events.
         value = newHP;
+        if (value <= 0) {
+            OnDeath?.Invoke();
+        }
     }
 
     protected override float CalculateStatValue()

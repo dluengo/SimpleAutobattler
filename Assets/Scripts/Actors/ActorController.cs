@@ -54,6 +54,7 @@ public class ActorController : MonoBehaviour
 
 
     // --- Events ---
+    public event Action OnDeath;
     public event Action OnDestroy;
 
 
@@ -186,6 +187,10 @@ public class ActorController : MonoBehaviour
         actionsEnabled = false;
 
         animator.SetBool(m_deadAnimParamName, true);
+
+        // Invoke the OnDeath event. NOTE: An actor dies right after receiving
+        // fatal damage and before the death animation is played.
+        OnDeath?.Invoke();
     }
 
     public void TakeDamage(float damage)
@@ -305,7 +310,8 @@ public class ActorController : MonoBehaviour
     // --- Event Handlers ---
     private void DeadAnimEndHandler()
     {
-        OnDestroy?.Invoke();
+        // NOTE: We don't trigger OnDeath here because it is triggered before
+        // the die animation ends.
         Destroy(gameObject);
     }
 

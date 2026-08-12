@@ -64,6 +64,7 @@ public class PickUpController : MonoBehaviour
     public void Init(ItemSO itemSO)
     { 
         m_itemSO = itemSO;
+        item = m_itemSO.CreateNewItem();
     }
 
     protected virtual void Awake()
@@ -109,8 +110,9 @@ public class PickUpController : MonoBehaviour
             return;
         }
 
-        // At start instantiate the item based on the itemSO
-        item = m_itemSO.CreateNewItem();
+        if (item == null) {
+            Init(m_itemSO);
+        }
     }
 
 
