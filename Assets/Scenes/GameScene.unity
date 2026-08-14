@@ -31601,7 +31601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e033244956e18349bc4ff1ce2001a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  Player: {fileID: 1072582221}
+  Player: {fileID: 1072582235}
   gameOverScreen: {fileID: 889129077}
   UICanvas: {fileID: 2144862606}
   inventoryUI: {fileID: 1176503635}
@@ -33285,7 +33285,7 @@ GameObject:
   - component: {fileID: 1072582213}
   - component: {fileID: 1072582219}
   - component: {fileID: 1072582218}
-  - component: {fileID: 1072582221}
+  - component: {fileID: 1072582235}
   - component: {fileID: 1072582227}
   - component: {fileID: 1072582224}
   - component: {fileID: 1072582226}
@@ -33613,25 +33613,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.013499141, y: -0.034143656}
   m_Size: {x: 0.5392692, y: 0.9769173}
   m_Direction: 0
---- !u!114 &1072582221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072582211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ebb2067eec5cad4081084884f017a09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ActorController
-  actionsEnabled: 1
-  m_enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  m_enableLookDirGizmo: 1
-  m_idleClip: {fileID: 7400000, guid: f4eca7cec46c1d44a9319a2031f0b044, type: 2}
-  m_deadClip: {fileID: 7400000, guid: 480128e3a32242f499a376a5cca50558, type: 2}
 --- !u!114 &1072582224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33781,6 +33762,25 @@ MonoBehaviour:
     - m_bodyPart: 2
     - m_bodyPart: 5
     - m_bodyPart: 6
+--- !u!114 &1072582235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072582211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6e7f661cdc40248a3db19ae7670029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  actionsEnabled: 1
+  m_enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  m_enableLookDirGizmo: 1
+  m_idleClip: {fileID: 7400000, guid: f4eca7cec46c1d44a9319a2031f0b044, type: 2}
+  m_deadClip: {fileID: 7400000, guid: 4495512384310324d9de93e1d5936064, type: 2}
 --- !u!1 &1084737058
 GameObject:
   m_ObjectHideFlags: 0
@@ -34529,8 +34529,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8559da8b8fee64f885918fdb7f1ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  m_player: {fileID: 1072582221}
+  m_player: {fileID: 1072582235}
   m_coinsText: {fileID: 1084737060}
+  m_coinBag:
+    m_coinAmount: 0
+    m_maxCoins: 0
 --- !u!1 &1350737808
 GameObject:
   m_ObjectHideFlags: 0
@@ -38157,7 +38160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttributesUI
   attrSlotList: {fileID: 141242787}
-  m_actor: {fileID: 1072582221}
+  m_actor: {fileID: 0}
   m_attrSlotPrefab: {fileID: 2472958413331090219, guid: c52ea31120919b145935307d7af905a8, type: 3}
 --- !u!1 &1976667825
 GameObject:

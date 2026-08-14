@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
     public void TriggerAction()
     {
         // Press space to kill the enemyPlayer for testing purposes
-        Player.Die();
+        //Player.Die();
 
         // To create an empty animation clip.
         //AnimationClip clip = new AnimationClip();

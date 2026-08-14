@@ -8,7 +8,7 @@ public class CoinsUI : UIBase
     [SerializeField] ActorController m_player;
     [SerializeField] TextMeshProUGUI m_coinsText;
 
-    private CoinBag m_coinBag;
+    [SerializeField] CoinBag m_coinBag;
 
 
     // --- Methods ---
@@ -16,6 +16,13 @@ public class CoinsUI : UIBase
     {
         Debug.Assert(m_player != null, "ActorController reference is not assigned.");
         Debug.Assert(m_coinsText != null, "Coins TextMeshProUGUI reference is not assigned.");
+
+        if (m_player != null) {
+            m_coinBag = m_player.coinBag;
+            Debug.Assert(m_coinBag != null, "CoinBag reference is not found in ActorController.");
+
+            //SubscribeEvents();
+        }
     }
 
     protected virtual void OnEnable()
@@ -38,12 +45,12 @@ public class CoinsUI : UIBase
     {
         base.Start();
 
-        if (m_player != null) {
-            m_coinBag = m_player.coinBag;
-            Debug.Assert(m_coinBag != null, "CoinBag reference is not found in ActorController.");
+        //if (m_player != null) {
+        //    m_coinBag = m_player.coinBag;
+        //    Debug.Assert(m_coinBag != null, "CoinBag reference is not found in ActorController.");
 
-            SubscribeEvents();
-        }
+        //    SubscribeEvents();
+        //}
 
         UpdateUI();
     }

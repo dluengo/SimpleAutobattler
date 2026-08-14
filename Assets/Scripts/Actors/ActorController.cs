@@ -85,14 +85,14 @@ public class ActorController : MonoBehaviour
         // TODO: Actors may not have coinbags (enemies) so change this properly.
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // Initialize the coin bag.
-        coinBag = new CoinBag();
+        //coinBag = new CoinBag();
 
         // Initialize the StatsController. Actors may not have stats.
         stats = new StatsController(this);
         hitpoints = stats.GetStat<HitPoints>();
 
         // Initialize the Inventory. Actor may not have inventory.
-        m_inventory = GetComponent<InventoryController>();
+        //m_inventory = GetComponent<InventoryController>();
     }
 
     protected virtual void OnEnable()
