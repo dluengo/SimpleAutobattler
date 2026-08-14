@@ -101,9 +101,7 @@ ScriptedImporter:
     addShadowCasters: 0
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
-  importFileNodeState: 1
   platformSettingsDirtyTick: 639146961664711345
-  textureAssetName: 
   singleSpriteImportData:
   - name: 
     originalName: 
@@ -414,6 +412,5 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
-  spritePackingTag: 
-  canvasSize: {x: 192, y: 192}
   previousTextureSize: {x: 512, y: 512}
+  canvasSize: {x: 192, y: 192}

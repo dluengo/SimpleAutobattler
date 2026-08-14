@@ -65,24 +65,21 @@ public class HitPoints : Stat
 
 
     // --- Methods ---
-    protected override void OnEnable()
-    {
-        base.OnEnable();
+    //protected override void OnEnable()
+    //{
+    //    base.OnEnable();
 
-        SubscribeEvents();
-
-        this.OnValueChanged += UpdateCurrentHP;
-    }
+    //    SubscribeEvents();
+    //}
 
     protected virtual void OnDisable()
     {
         UnsubscribeEvents();
-
-        this.OnValueChanged -= UpdateCurrentHP;
     }
 
     protected virtual void Start()
     {
+        Debug.Log($"{gameObject.name}:HitPoints.Start()");
         m_vitality = m_actor.GetAttribute<Vitality>();
 
         maxHP = CalculateMaxHP();
@@ -104,11 +101,11 @@ public class HitPoints : Stat
             OnDamageTaken?.Invoke(damage);
         }
 
-        // Update the current value. Note this would trigger events.
+        // Update the current value.
+        //
+        // NOTE: If the min values are set, the OnValueMinimum event will trigger,
+        // which will trigger our OnDeath event.
         value = newHP;
-        if (value <= 0) {
-            OnDeath?.Invoke();
-        }
     }
 
     protected override float CalculateStatValue()
@@ -140,14 +137,27 @@ public class HitPoints : Stat
 
     private void SubscribeEvents()
     {
-        if (m_vitality != null && !m_alreadySubscribed) {
+        this.OnValueChanged += UpdateCurrentHP;
+
+        if (!m_alreadySubscribed) {
+            if (m_vitality != null) {
+                m_vitality.OnValueChanged += OnVitalityChangedHandler;
+            }
+
+            // Invoke the OnDeath event (event of HitPoints) when the Stat reaches its
+            // minimum. Note OnValueMinimum is invoked by Stat.
+            //
+            // This could be considered a renaming of the OnValueMinimum event to give
+            // some meaningful name to this layer of abstraction.
+            OnValueMinimum += () => { OnDeath?.Invoke(); };
             m_alreadySubscribed = true;
-            m_vitality.OnValueChanged += OnVitalityChangedHandler;
         }
     }
 
     private void UnsubscribeEvents()
     {
+        this.OnValueChanged -= UpdateCurrentHP;
+
         if (m_vitality != null) {
             m_vitality.OnValueChanged -= OnVitalityChangedHandler;
         }

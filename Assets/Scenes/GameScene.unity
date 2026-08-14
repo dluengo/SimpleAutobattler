@@ -32037,15 +32037,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5028512033808512551, guid: fef3ebc75c7c3034da788543b3293251, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5625921070850799848, guid: fef3ebc75c7c3034da788543b3293251, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.5528755
+      value: 18.12
       objectReference: {fileID: 0}
     - target: {fileID: 5625921070850799848, guid: fef3ebc75c7c3034da788543b3293251, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.42
+      value: -1.42
       objectReference: {fileID: 0}
     - target: {fileID: 5625921070850799848, guid: fef3ebc75c7c3034da788543b3293251, type: 3}
       propertyPath: m_LocalPosition.z
@@ -32081,7 +32081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7665184518025850979, guid: fef3ebc75c7c3034da788543b3293251, type: 3}
       propertyPath: m_baseHP
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33130,6 +33130,67 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1001 &896172678
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1197256120430872107, guid: b925da43f9554e74181c28903215560d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197256120430872107, guid: b925da43f9554e74181c28903215560d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197256120430872107, guid: b925da43f9554e74181c28903215560d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197256120430872107, guid: b925da43f9554e74181c28903215560d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197256120430872107, guid: b925da43f9554e74181c28903215560d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197256120430872107, guid: b925da43f9554e74181c28903215560d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197256120430872107, guid: b925da43f9554e74181c28903215560d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197256120430872107, guid: b925da43f9554e74181c28903215560d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197256120430872107, guid: b925da43f9554e74181c28903215560d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197256120430872107, guid: b925da43f9554e74181c28903215560d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494490834174860631, guid: b925da43f9554e74181c28903215560d, type: 3}
+      propertyPath: m_Name
+      value: TNTGoblin
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494490834174860631, guid: b925da43f9554e74181c28903215560d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b925da43f9554e74181c28903215560d, type: 3}
 --- !u!1 &923221028
 GameObject:
   m_ObjectHideFlags: 0
@@ -39129,3 +39190,4 @@ SceneRoots:
   - {fileID: 582285724}
   - {fileID: 5801060715108946081}
   - {fileID: 4231476587669299729}
+  - {fileID: 896172678}

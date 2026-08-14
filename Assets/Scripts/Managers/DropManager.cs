@@ -157,7 +157,14 @@ public class DropManager : MonoBehaviour
 
     private int DetermineGoldAmount(ActorController actor)
     {
-        // TODO: Implement logic to determine the amount of gold to drop
-        return 5;
+        int amount = 5;
+
+        // For now just base de gold drop on the enemy tier.
+        EnemyController enemy = actor as EnemyController;
+        if (enemy != null) {
+            amount = enemy.tier * 2 + 1;
+        }
+
+        return amount;
     }
 }

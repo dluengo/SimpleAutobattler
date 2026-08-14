@@ -6,10 +6,13 @@ using System.Collections;
 public class EnemyManager : MonoBehaviour
 {
     // --- Singleton ---
+
     public static EnemyManager Instance;
 
 
     // --- Members ---
+
+    [Header("--- EnemyManager Settings ---")]
     [SerializeField] bool spawnEnemies = true;
     [SerializeField] GameObject spawnArea;
     [SerializeField] WeightedList<GameObject> enemyPrefabs;
@@ -22,6 +25,7 @@ public class EnemyManager : MonoBehaviour
 
 
     // --- Methods ---
+
     private void Awake()
     {
         if (Instance != null && Instance != this) {
@@ -45,6 +49,20 @@ public class EnemyManager : MonoBehaviour
         }
 
         Debug.Assert(spawnArea != null, "EnemyManager: Spawn area is not assigned.");
+
+        // For ease of use with the editor.
+        //
+        // Here we check how many enemies are already in the scene and add them to our list
+        // of enemies, so we can subscribe to their OnDeath event and manage them properly.
+        Object[] existingEnemies = Object.FindObjectsByType<EnemyController>();
+        foreach (Object enemyObject in existingEnemies) {
+
+            EnemyController enemy = enemyObject as EnemyController;
+            if (enemy != null) {
+                enemiesInScene.Add(enemy);
+                SubscribeEvents(enemy);
+            }
+        }
     }
 
     private void Start()
@@ -105,17 +123,13 @@ public class EnemyManager : MonoBehaviour
                     Quaternion.identity);
 
                 if (enemyGO != null) {
-                    EnemyController enemyController = enemyGO.GetComponent<EnemyController>();
-                    if (enemyController != null) {
+                    EnemyController enemy = enemyGO.GetComponent<EnemyController>();
+                    if (enemy != null) {
 
                         // Add the newly generated enemy to the list of enemies in the scene.
-                        enemiesInScene.Add(enemyController);
+                        enemiesInScene.Add(enemy);
 
-                        // Register a callback to trigger OnDeath logic.
-                        enemyController.OnDeath += () => EnemyDieHandler(enemyController);
-
-                        // Register a callback to remove the enemy from the list when it is destroyed.
-                        enemyController.OnDestroy += () => UnregisterEnemy(enemyController);
+                        SubscribeEvents(enemy);
                     }
                     else {
                         Debug.LogError("EnemyManager: Spawned enemy does not have an EnemyController component.");
@@ -130,24 +144,25 @@ public class EnemyManager : MonoBehaviour
 
 
     // --- Event Handlers ---
+
+    private void SubscribeEvents(EnemyController enemy)
+    {
+        // Register a callback to trigger OnDeath logic.
+        enemy.OnDeath += () => EnemyDieHandler(enemy);
+
+        // Register a callback to remove the enemy from the list when it is destroyed.
+        enemy.OnDestroy += () => UnregisterEnemy(enemy);
+    }
+
     private void EnemyDieHandler(EnemyController deadEnemy)
     {
         // Here we handle what happens when an enemy dies. Drop loot and stuff.
-
-        DropLoot(deadEnemy);
+        DropManager.Instance.HandleDrop(deadEnemy);
     }
 
 
     public void UnregisterEnemy(EnemyController enemy)
     {
         enemiesInScene.Remove(enemy);
-    }
-
-
-    // --- Helper Methods ---
-    private void DropLoot(EnemyController deadEnemy)
-    {
-        
-        Debug.Log($"Enemy {deadEnemy.name} has died. Dropping loot...");
     }
 }

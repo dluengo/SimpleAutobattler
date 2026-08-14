@@ -8,12 +8,27 @@ public class EnemyController : ActorController
     [Header("--- Enemy Settings ---")]
     public bool neutral = false;
 
+    [SerializeField] protected int m_tier = 0;
+    public int tier {
+        get => m_tier;
+        protected set {
+            m_tier = value;
+        }
+    }
+
     [SerializeField] float m_contactDamage = 1f;
 
     protected new EnemyMove m_move => base.m_move as EnemyMove;
 
 
     // --- Methods ---
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        tier = m_tier;
+    }
+
     protected override void Start()
     {
         base.Start();

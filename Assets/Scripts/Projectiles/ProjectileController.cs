@@ -87,8 +87,8 @@ public class ProjectileController : MonoBehaviour
     protected ProjectileEndAnimSMB m_projectileEndSMB { get; private set; }
 
     private AnimatorOverrideController m_animOverrideController;
-    private string m_idleAnimClipName = "Projectile-Idle";
-    private string m_endAnimClipName = "Projectile-EndPickUp";
+    private string m_idleAnimClipName = "Idle";
+    private string m_endAnimClipName = "End";
     private string m_endTriggerParamName = "End";
 
 

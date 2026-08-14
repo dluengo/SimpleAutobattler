@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
     public void TriggerAction()
     {
         // Press space to kill the enemyPlayer for testing purposes
-        //Player.Die();
+        Player.Die();
 
         // To create an empty animation clip.
         //AnimationClip clip = new AnimationClip();
@@ -182,6 +182,6 @@ public class GameManager : MonoBehaviour
         //}
 
         // Drop some gold around the player for testing purposes
-        DropManager.Instance.HandleDrop(Player);
+        //DropManager.Instance.HandleDrop(Player);
     }
 }
