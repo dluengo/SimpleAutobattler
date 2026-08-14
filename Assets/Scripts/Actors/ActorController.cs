@@ -56,7 +56,7 @@ public class ActorController : MonoBehaviour
     // --- Events ---
 
     public event Action OnDeath;
-    //public event Action OnDestroy;
+    public event Action OnDestroy;
 
 
     // --- Methods ---
@@ -174,7 +174,6 @@ public class ActorController : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log($"{gameObject.name}:ActorController.Die()");
         // Disable the collider to prevent further interactions
         Collider2D collider = GetComponent<Collider2D>();
         if (collider != null) {
@@ -298,26 +297,13 @@ public class ActorController : MonoBehaviour
         }
     }
 
-    //private void SubscribeHPZeroEvent()
-    //{
-    //    if (hitpoints != null) {
-    //        hitpoints.OnDeath += Die;
-    //    }
-    //}
-
-    //private void UnsubscribeHPZeroEvent()
-    //{
-    //    if (hitpoints != null) {
-    //        hitpoints.OnDeath -= Die;
-    //    }
-    //}
-
 
     // --- Event Handlers ---
     private void DeadAnimEndHandler()
     {
         // NOTE: We don't trigger OnDeath here because it is triggered before
         // the die animation ends.
+        OnDestroy?.Invoke();
         Destroy(gameObject);
     }
 

@@ -79,7 +79,6 @@ public class HitPoints : Stat
 
     protected virtual void Start()
     {
-        Debug.Log($"{gameObject.name}:HitPoints.Start()");
         m_vitality = m_actor.GetAttribute<Vitality>();
 
         maxHP = CalculateMaxHP();
