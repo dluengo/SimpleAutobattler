@@ -82,4 +82,8 @@ crashlytics-build.properties
 # MANUALLY ADDED: Ignore recovery files
 /[Aa]ssets/_[Rr]ecovery/*
 
+# MANUALLY ADDED: Ignore Tests scripts
+/[Aa]ssets/[Ss]cripts/Tests and PoCs/*
+/[Aa]ssets/[Ss]cripts/Tests and PoCs.meta
+
 
