@@ -83,7 +83,5 @@ crashlytics-build.properties
 /[Aa]ssets/_[Rr]ecovery/*
 
 # MANUALLY ADDED: Ignore Tests scripts
-/[Aa]ssets/[Ss]cripts/Tests and PoCs/*
-/[Aa]ssets/[Ss]cripts/Tests and PoCs.meta
-
-
+/Assets/Scripts/Tests/*
+/Assets/Scripts/Tests.meta
