@@ -7,7 +7,7 @@ public class HitPoints : Stat
 {
     // --- Members ---
     [Header("--- Hit Points Settings ---")]
-    [SerializeField] protected int m_baseHP;
+    [SerializeField] protected int m_baseHP = 1;
     public int baseHP
     {
         get => m_baseHP;
@@ -19,14 +19,15 @@ public class HitPoints : Stat
             }
         }
     }
-    [SerializeField] protected int m_hpPerVit;
+
+    [SerializeField] protected int m_hpPerVit = 1;
     public int HPPerVit
     {
         get => m_hpPerVit;
         protected set {
             if (m_hpPerVit != value) {
                 m_hpPerVit = value;
-                this.value = CalculateMaxHP();
+                this.currVal = CalculateMaxHP();
             }
         }
     }
@@ -45,32 +46,24 @@ public class HitPoints : Stat
 
     // It is ok if the Stat doesn't have a reference to the vitality attribute
     // of an Actor, but if it does, it will use it to calculate max HP.
-    protected Vitality m_vitality;
+    protected Vitality m_vitStat;
     private bool m_alreadySubscribed = false;
-
-    // NOTE: This member is just to be able to watch in the inspector how
-    // the hp actually changes.
-    [SerializeField] private int m_currentHP;
-    public int currentHPReadOnly
-    {
-        get => (int)value;
-    }
 
 
     // --- Events ---
     public event Action<float> OnDamageTaken;
-    public event Action OnMaxHPChanged;
+    public event Action OnMaxHPChanged; 
     public event Action OnBaseHPChanged;
     public event Action OnDeath;
 
 
     // --- Methods ---
-    //protected override void OnEnable()
-    //{
-    //    base.OnEnable();
+    protected override void Awake()
+    {
+        base.Awake();
 
-    //    SubscribeEvents();
-    //}
+        m_vitStat = gameObject.GetComponent<Vitality>();
+    }
 
     protected virtual void OnDisable()
     {
@@ -79,24 +72,22 @@ public class HitPoints : Stat
 
     protected virtual void Start()
     {
-        m_vitality = m_actor.GetAttribute<Vitality>();
-
         maxHP = CalculateMaxHP();
-        value = maxHP;
+        currVal = maxHP;
 
         // Subscribe to vitality changes to update HP accordingly.
         SubscribeEvents();
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         if (damage == 0) {
             return;
         }
 
         // Could this cast and next comparison cause issues?
-        int newHP = Mathf.FloorToInt(value - damage);
-        if (newHP != value) {
+        int newHP = currVal - damage;
+        if (newHP != currVal) {
             OnDamageTaken?.Invoke(damage);
         }
 
@@ -104,10 +95,10 @@ public class HitPoints : Stat
         //
         // NOTE: If the min values are set, the OnValueMinimum event will trigger,
         // which will trigger our OnDeath event.
-        value = newHP;
+        currVal = newHP;
     }
 
-    protected override float CalculateStatValue()
+    protected override int CalculateStatValue()
     {
         return CalculateMaxHP();
     }
@@ -117,30 +108,22 @@ public class HitPoints : Stat
     private void OnVitalityChangedHandler()
     {
         maxHP = CalculateMaxHP();
-        value = Mathf.Min(value, maxHP);
-    }
-
-    private void UpdateCurrentHP()
-    {
-        m_currentHP = (int)value;
+        currVal = Mathf.Min(currVal, maxHP);
     }
 
 
     // --- Helpers ---
     private int CalculateMaxHP()
     {
-        // NOTE: Could there be issues with the casting?
         // MaxHP is baseDamage + vitality.
-        return baseHP + (m_vitality != null ? (int)(m_vitality.value * m_hpPerVit) : 0);
+        return baseHP + (m_vitStat != null ? (m_vitStat.currVal * m_hpPerVit) : 0);
     }
 
     private void SubscribeEvents()
     {
-        this.OnValueChanged += UpdateCurrentHP;
-
         if (!m_alreadySubscribed) {
-            if (m_vitality != null) {
-                m_vitality.OnValueChanged += OnVitalityChangedHandler;
+            if (m_vitStat != null) {
+                m_vitStat.OnValueChanged += OnVitalityChangedHandler;
             }
 
             // Invoke the OnDeath event (event of HitPoints) when the Stat reaches its
@@ -155,10 +138,8 @@ public class HitPoints : Stat
 
     private void UnsubscribeEvents()
     {
-        this.OnValueChanged -= UpdateCurrentHP;
-
-        if (m_vitality != null) {
-            m_vitality.OnValueChanged -= OnVitalityChangedHandler;
+        if (m_vitStat != null) {
+            m_vitStat.OnValueChanged -= OnVitalityChangedHandler;
         }
     }
 }

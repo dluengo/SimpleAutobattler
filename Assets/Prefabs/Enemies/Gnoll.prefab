@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4918113400911109296}
   - component: {fileID: 7091407437918470131}
   - component: {fileID: 7998406370537377275}
-  - component: {fileID: 4165720009566466444}
+  - component: {fileID: -2266931648438409672}
   m_Layer: 7
   m_Name: Gnoll
   m_TagString: Enemy
@@ -42,7 +42,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8173934892158519530
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -99,6 +99,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!70 &3444999483179530873
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -205,6 +206,7 @@ MonoBehaviour:
   m_idleClip: {fileID: 7400000, guid: 94df887bbf9024d439670100dfbb7087, type: 2}
   m_deadClip: {fileID: 0}
   neutral: 0
+  m_tier: 0
   m_contactDamage: 1
 --- !u!114 &7091407437918470131
 MonoBehaviour:
@@ -241,7 +243,7 @@ MonoBehaviour:
   actionsPerSecond: 1
   keepCasting: 0
   m_animClip: {fileID: 7400000, guid: 889366d00d9a62c40b4269972d8e168a, type: 2}
-  baseDamage: 1
+  m_defaultDamage: 1
   enableSuggestedDistanceGizmo: 1
   suggestedDistance: 5
   m_projectileSpeed: 10
@@ -249,7 +251,7 @@ MonoBehaviour:
   m_projectilePrefab: {fileID: 3355810703059381141, guid: 49ab243c8a3ff6b4fa3f8932d3312046, type: 3}
   m_projectileMoveSOPrefab: {fileID: 11400000, guid: d0887d45b2a44ac44bd432908db0bad3, type: 2}
   throwArcHeight: 2
---- !u!114 &4165720009566466444
+--- !u!114 &-2266931648438409672
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,6 +263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7cf8dd33694d74ab8f1fc6bc49db65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitPoints
+  m_currVal: 0
+  clampAtMin: 1
+  minValue: 0
   m_statSO: {fileID: 11400000, guid: ace8044dd1168d24d9ce70bd93f30d08, type: 2}
   m_baseHP: 1
   m_hpPerVit: 0

@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2850301677080385363}
   - component: {fileID: 1153422830027987879}
   - component: {fileID: 806074577623365802}
-  - component: {fileID: 3053964704769081324}
+  - component: {fileID: -2069757408196294888}
   m_Layer: 7
   m_Name: GenericEnemy
   m_TagString: Enemy
@@ -120,7 +120,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4020275699560454975
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -177,6 +177,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!70 &2616668902218508749
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -283,6 +284,7 @@ MonoBehaviour:
   m_idleClip: {fileID: 0}
   m_deadClip: {fileID: 0}
   neutral: 0
+  m_tier: 0
   m_contactDamage: 1
 --- !u!114 &1153422830027987879
 MonoBehaviour:
@@ -319,12 +321,12 @@ MonoBehaviour:
   actionsPerSecond: 1
   keepCasting: 0
   m_animClip: {fileID: 0}
-  baseDamage: 1
+  m_defaultDamage: 1
   enableSuggestedDistanceGizmo: 1
   suggestedDistance: 0
   enableAttackHitBoxGizmo: 1
   m_hitbox: {fileID: 451845929072602504}
---- !u!114 &3053964704769081324
+--- !u!114 &-2069757408196294888
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -336,6 +338,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7cf8dd33694d74ab8f1fc6bc49db65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitPoints
+  m_currVal: 0
+  clampAtMin: 1
+  minValue: 0
   m_statSO: {fileID: 11400000, guid: ace8044dd1168d24d9ce70bd93f30d08, type: 2}
   m_baseHP: 1
   m_hpPerVit: 0

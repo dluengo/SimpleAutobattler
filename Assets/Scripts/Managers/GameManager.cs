@@ -19,6 +19,13 @@ public class GameManager : MonoBehaviour
 
     private int m_lastElapsedSeconds = 0;
 
+    // --- Enums ---
+    public enum ExecOrder
+    {
+        AttributesExecPrio = 5,
+        StatsExecPrio = 6,
+    }
+
 
     // --- Events ---
     public event Action OnSecondElapsed;
@@ -183,5 +190,8 @@ public class GameManager : MonoBehaviour
 
         // Drop some gold around the player for testing purposes
         //DropManager.Instance.HandleDrop(Player);
+
+        // Do damage to the player
+        Player.TakeDamage(1);
     }
 }

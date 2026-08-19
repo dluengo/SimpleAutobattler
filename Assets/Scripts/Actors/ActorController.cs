@@ -81,18 +81,9 @@ public class ActorController : MonoBehaviour
         // Initialize the list of actions with the actions attached to this actor.
         actions = new List<ActorAction>(GetComponents<ActorAction>());
 
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // TODO: Actors may not have coinbags (enemies) so change this properly.
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // Initialize the coin bag.
-        //coinBag = new CoinBag();
-
         // Initialize the StatsController. Actors may not have stats.
         stats = new StatsController(this);
         hitpoints = stats.GetStat<HitPoints>();
-
-        // Initialize the Inventory. Actor may not have inventory.
-        //m_inventory = GetComponent<InventoryController>();
     }
 
     protected virtual void OnEnable()
@@ -127,11 +118,6 @@ public class ActorController : MonoBehaviour
         if (stats != null) {
             hitpoints = stats.GetStat<HitPoints>();
         }
-
-        // During initialization (Awake/OnEnable/Start) we don't subscribe to HitPoints
-        // because ActorController.OnEnable() runs before StatsController.Awake(), so
-        // hitpoints would be null at that point. Instead, we subscribe to HitPoints in Start().
-        //SubscribeHPZeroEvent();
     }
 
     protected virtual void Update()
@@ -207,7 +193,7 @@ public class ActorController : MonoBehaviour
         return (enemyLayer.value & (1 << actor.gameObject.layer)) > 0;
     }
 
-    public T GetAttribute<T>() where T : Attribute
+    public T GetStat<T>() where T : Stat
     {
         if (stats != null) {
             foreach (Stat stat in stats) {
@@ -306,29 +292,6 @@ public class ActorController : MonoBehaviour
         OnDestroy?.Invoke();
         Destroy(gameObject);
     }
-
-    // --- Collision Handling ---
-    //protected virtual void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    // Check if we collided with a pick up.
-    //    PickUpController pickUp = collision.gameObject.GetComponent<PickUpController>();
-    //    if (pickUp != null) {
-    //        m_item item = pickUp.item;
-
-    //        // NOTE: As new types of Items are developed, they need to be controlled here.
-    //        // We collided with a coin.
-    //        if (item is Coin) {
-    //            coinBag.coinAmount += (item as Coin).value;
-
-    //            // NOTE: This may trigger a pickup animation.
-    //            pickUp.isPickedUp = true;
-    //        }
-    //        // We don't know what type of item we collided with. Just leave it there.
-    //        else {
-    //            Debug.Log($"Collided with an item of type {item.GetType().Name} that we don't know how to handle. Leaving it there.");
-    //        }
-    //    }
-    //}
 
 
     // --- Gizmos ---

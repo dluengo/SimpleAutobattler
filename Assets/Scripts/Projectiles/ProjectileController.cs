@@ -252,7 +252,7 @@ public class ProjectileController : MonoBehaviour
         if (otherProjectile != null) {
 
             // BUG: Projectiles colliding in opposite directions can get stuck.
-            // Effectively pushing each other and not move, or slowly in the
+            // Effectively pushing each other and not moving, or slowly in the
             // perpendicular direction.
 
             return;

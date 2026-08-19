@@ -26,7 +26,7 @@ public abstract class AttackAction : ActorAction
     {
         // Damage is calculated using the damage stat if present (it should),
         // we return a default damage if damage stat is not present.
-        return m_damageStat != null ? m_damageStat.value : m_defaultDamage;
+        return m_damageStat != null && m_damageStat.enabled ? m_damageStat.currVal : m_defaultDamage;
     }
 
 

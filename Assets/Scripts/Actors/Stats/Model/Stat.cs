@@ -4,40 +4,43 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(ActorController))]
+[Serializable]
 public abstract class Stat : MonoBehaviour
 {
     // --- Members ---
-    protected float m_value;
-    public float value
+    [Header("--- Stat Settings ---")]
+    [SerializeField] protected int m_currVal;
+    public int currVal
     {
-        get => m_value;
-        set {
-            float newValueClamped = clampAtMin ? Mathf.Max(value, minValue) : value;
-            if (m_value != newValueClamped) {
-                float oldValue = m_value;
-                m_value = newValueClamped;
+        get => m_currVal;
+        protected set {
+            int newValueClamped = clampAtMin ? Math.Max(minValue, value) : value;
+            if (m_currVal != newValueClamped) {
+                int oldValue = m_currVal;
+                m_currVal = newValueClamped;
 
                 // Trigger change event
                 OnValueChanged?.Invoke();
 
-                // Trigger zero event if applicable
-                if (clampAtMin && m_value == minValue) {
+                // Trigger minimum event if applicable
+                if (clampAtMin && m_currVal == minValue) {
                     OnValueMinimum?.Invoke();
                 }
             }
         }
     }
 
-    [Header("--- Stat Settings ---")]
-    [SerializeField] protected StatSO m_statSO;
-    public StatSO statSO
-    {
-        get => m_statSO;
-        protected set => m_statSO = value;
-    }
+    [SerializeField] protected bool clampAtMin = true;
+    [SerializeField] protected int minValue = 0;
 
-    protected bool clampAtMin => statSO != null && statSO.hasMinValue;
-    protected float minValue => statSO != null ? statSO.minValue : 0f;
+    [SerializeField] protected StatSO m_statSO;
+    //public StatSO statSO
+    //{
+    //    get => m_statSO;
+    //    protected set => m_statSO = value;
+    //}
+
+    public Sprite icon => m_statSO.icon;
 
     protected ActorController m_actor;
 
@@ -51,16 +54,23 @@ public abstract class Stat : MonoBehaviour
     protected virtual void Awake()
     {
         m_actor = GetComponent<ActorController>();
-        Debug.Assert(m_actor != null, "Stat requires an ActorController component on the same GameObject.");
+        Debug.Assert(m_actor != null, $"{gameObject.name}:Awake(): Stat requires an ActorController component on the same GameObject.");
 
-        Debug.Assert(statSO != null, "Stat requires a reference to a StatSO ScriptableObject.");
+        Debug.Assert(m_statSO != null, $"{gameObject.name}:Awake(): Stat requires a reference to a StatSO ScriptableObject.");
     }
 
     protected virtual void OnEnable()
     {
-        value = m_value;
-        statSO = m_statSO;
+        currVal = m_currVal;
+        //statSO = m_statSO;
     }
 
-    protected abstract float CalculateStatValue();
+    // Allows edit in inspector.
+    //protected virtual void OnValidate()
+    //{
+    //    currVal = m_currVal;
+    //    statSO = m_statSO;
+    //}
+
+    protected abstract int CalculateStatValue();
 }

@@ -35,7 +35,8 @@ public class AttributeSlotUI : UIBase
     {
         this.attr = attr;
 
-        sprite = attr.statSO.icon;
+        //sprite = attr.statSO.icon;
+        sprite = attr.icon;
 
         if (plusBtnListener != null) {
             plusButton.onClick.AddListener(plusBtnListener);
@@ -81,7 +82,7 @@ public class AttributeSlotUI : UIBase
     public override void UpdateUI()
     {
         if (attr != null && m_valueText != null) {
-            m_valueText.text = attr.value.ToString();
+            m_valueText.text = attr.currVal.ToString();
         }
     }
 }

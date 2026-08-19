@@ -42,7 +42,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4229943992367937604
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -99,6 +99,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!70 &1338879521223809455
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -205,6 +206,7 @@ MonoBehaviour:
   m_idleClip: {fileID: 7400000, guid: 9d56c56f68a600c45815ff1c13cc26e8, type: 2}
   m_deadClip: {fileID: 0}
   neutral: 0
+  m_tier: 0
   m_contactDamage: 1
 --- !u!114 &5546185054585067818
 MonoBehaviour:
@@ -241,7 +243,7 @@ MonoBehaviour:
   actionsPerSecond: 1
   keepCasting: 0
   m_animClip: {fileID: 7400000, guid: 77548010663f6a4429f6b51723f0ae66, type: 2}
-  baseDamage: 1
+  m_defaultDamage: 1
   enableSuggestedDistanceGizmo: 0
   suggestedDistance: 2
   enableAttackHitBoxGizmo: 0
@@ -258,6 +260,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7cf8dd33694d74ab8f1fc6bc49db65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitPoints
+  m_currVal: 0
+  clampAtMin: 1
+  minValue: 0
   m_statSO: {fileID: 11400000, guid: ace8044dd1168d24d9ce70bd93f30d08, type: 2}
   m_baseHP: 1
   m_hpPerVit: 0
