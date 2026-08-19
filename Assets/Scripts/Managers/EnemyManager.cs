@@ -100,7 +100,7 @@ public class EnemyManager : MonoBehaviour
 
     public void GenerateEnemy()
     {
-        if (spawnArea != null && enemyPrefabs != null && enemyPrefabs.list.Count > 0) {
+        if (spawnArea != null && enemyPrefabs != null && enemyPrefabs.Count > 0) {
             // Get the bounds of the spawn area
             Collider2D spawnAreaCollider = spawnArea.GetComponent<Collider2D>();
             if (spawnAreaCollider != null) {

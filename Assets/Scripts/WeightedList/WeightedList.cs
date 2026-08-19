@@ -20,11 +20,9 @@ public class WeightedItem<T> where T : class
 // It is useful when you want to randomly select an item from the list, but you want
 // some list to be more likely to be selected than others based on their weights.
 [Serializable]
-public class WeightedList<T> where T : class
+public class WeightedList<T> : List<WeightedItem<T>> where T : class
 {
     // --- Members ---
-    public List<WeightedItem<T>> list;
-
     private float totalWeight;
 
 
@@ -34,7 +32,7 @@ public class WeightedList<T> where T : class
     public void UpdateWeights()
     {
         totalWeight = 0f;
-        foreach (WeightedItem<T> element in list) {
+        foreach (WeightedItem<T> element in this) {
             totalWeight += element.weight;
         }
     }
@@ -47,7 +45,7 @@ public class WeightedList<T> where T : class
         }
 
         WeightedItem<T> newElement = new WeightedItem<T>(item, weight);
-        list.Add(newElement);
+        base.Add(newElement);
         totalWeight += weight;
     }
 
@@ -55,6 +53,11 @@ public class WeightedList<T> where T : class
     {
         if (totalWeight == 0f) {
             Debug.LogWarning("Total weight is zero. Cannot select an item.");
+            return default;
+        }
+
+        if (this.Count == 0) {
+            Debug.LogWarning("WeightedList is empty. Cannot select an item.");
             return default;
         }
 
@@ -67,7 +70,7 @@ public class WeightedList<T> where T : class
         // NOTE: Assuming UnityEngine.Random.Range() generates numbers uniformly.
         float randomValue = UnityEngine.Random.Range(0f, totalWeight);
         float cumulativeWeight = 0f;
-        foreach (WeightedItem<T> element in list) {
+        foreach (WeightedItem<T> element in this) {
             cumulativeWeight += element.weight;
             if (randomValue < cumulativeWeight) {
                 return element.item;
@@ -75,6 +78,6 @@ public class WeightedList<T> where T : class
         }
 
         // Fallback in case of rounding errors
-        return list[list.Count - 1].item;
+        return this[this.Count - 1].item;
     }
 }
