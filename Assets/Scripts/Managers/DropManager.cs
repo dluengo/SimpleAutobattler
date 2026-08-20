@@ -9,10 +9,12 @@ public class DropManager : MonoBehaviour
 
 
     // --- Members ---
+
     [Header("--- DropManager Settings ---")]
-    [SerializeField] float m_dropPositionRadius = 2.5f;
+    [SerializeField] float m_dropPositionRadius = 0.5f;
     [SerializeField] GameObject pickUpPrefab;
     [SerializeField] CoinSO goldSO;
+    [SerializeField] int maxGoldPerStack = 1;
 
 
     // --- Unity Methods ---
@@ -98,24 +100,30 @@ public class DropManager : MonoBehaviour
 
         if (goldAmount > 0) {
 
-            // Create a new PickUp GameObject.
-            GameObject pickUpGO = Instantiate(
-                pickUpPrefab,
-                DetermineDropPosition(actor.transform.position),
-                Quaternion.identity);
+            // We drop one coin per gold amount.
+            while (goldAmount > 0) {
 
-            PickUpController pickUp = pickUpGO.GetComponent<PickUpController>();
-            if (pickUp != null) {
+                // Create a new PickUp GameObject.
+                GameObject pickUpGO = Instantiate(
+                    pickUpPrefab,
+                    DetermineDropPosition(actor.transform.position),
+                    Quaternion.identity);
 
-                // Binds the PickUpController to the gold Item Description (goldSO),
-                pickUp.Init(goldSO);
+                PickUpController pickUp = pickUpGO.GetComponent<PickUpController>();
+                if (pickUp != null) {
 
-                // Set the amount of gold.
-                (pickUp.item as Coin).value = goldAmount;
-            }
-            else {
-                Debug.LogError("DropManager: PickUpController component is missing on the pickUpPrefab.");
-                Destroy(pickUpGO);
+                    // Binds the PickUpController to the gold Item Description (goldSO),
+                    pickUp.Init(goldSO);
+
+                    // Set the amount of gold.
+                    int goldForStack = Math.Min(goldAmount, maxGoldPerStack);
+                    (pickUp.item as Coin).value = goldForStack;
+                    goldAmount -= goldForStack;
+                }
+                else {
+                    Debug.LogError("DropManager: PickUpController component is missing on the pickUpPrefab.");
+                    Destroy(pickUpGO);
+                }
             }
         }
     }
